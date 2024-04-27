@@ -181,15 +181,17 @@ Cookie: yummy_cookie=choco; tasty_cookie=strawberry
 
 
 
-Define the lifetime of a cookie
+### Define the lifetime of a cookie
+
+Cookies can persist for two different periods, depending on the attributes used with the `Set-Cookie` header 
 
 
 
+- *Permanent* cookies are deleted at a date specified by the `Expires`  or  `Max-Age` attribute.
 
+- *Session* cookies – cookies without a `Max-age` or `Expires` attribute – are deleted when the current session ends. The browser defines when the "current session" ends, and some browsers use *session restoring* when restarting. This can cause session cookies to last indefinitely.
 
-
-
-
+  If your site authenticates users, it should regenerate and resend session cookies, even ones that already exist, whenever a user authenticates. This approach helps prevent [session fixation attacks](https://developer.mozilla.org/en-US/docs/Web/Security/Types_of_attacks#session_fixation), where a third party can reuse a user's session.
 
 
 
