@@ -1,1 +1,0 @@
-../../WEB/WEBCTF/picoCTF.md
