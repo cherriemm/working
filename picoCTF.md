@@ -346,13 +346,13 @@ Decode the Base64 encoded bytes-like object or ASCII string *s* and return the d
 
 ## HTTP Cookies
 
-data that a server sends to a user's web browser . The browser may store the cookie and send it back to the same server with later requests.
+Cookies are little text-based files that are kept on the user's computer and are accessible only by that user's browser. It is possible for a cookie's size to reach a maximum of 4 KB. 
 
-Typically, an HTTP cookie is used to tell if two requests come from the same browser—keeping a user logged in, for example. It remembers stateful information for the [stateless](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#http_is_stateless_but_not_sessionless) HTTP protocol.
+It remembers stateful information for the [stateless](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#http_is_stateless_but_not_sessionless) HTTP protocol.
 
 
 
-Cookies are mainly used for three purposes:
+**Cookies are mainly used for three purposes:**
 
 - Session management
 
@@ -368,7 +368,7 @@ Cookies are mainly used for three purposes:
 
 
 
-Cookies are sent with every request, so they can worsen performance (especially for mobile data connections). Modern APIs for client storage are the [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) (`localStorage` and `sessionStorage`) and [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
+Modern APIs for client storage are the [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) (`localStorage` and `sessionStorage`) and [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
 
 
 
@@ -499,41 +499,17 @@ With `Strict`, the browser only sends the cookie with requests from the cookie's
 
 ## Session 
 
-https://developer.mozilla.org/en-US/docs/Web/HTTP/Session#establishing_a_connection
+refers to a way of maintaining state information about a user’s interactions with a website or web application. 
+
+When a user visits a website, the server can create a session for that user. Additionally, a session allows the server to keep track of information such as the user’s login status, preferences, and any data entered into forms.
+
+The server typically initiates a session when a user logs in to a website. Furthermore, **we can identify a session by a unique session ID.** Generally, we pass the session IDs as a parameter in URLs or store them in the cookies. The session ID allows the server to associate the user’s requests with their specific session. Additionally, it also helps to retrieve and update the session data as needed.
+
+We can use sessions to provide a personalized experience for each user. We can display a user’s name and preferences throughout the site. Furthermore, a website can use sessions to remember shopping cart contents between pages of a user. Moreover, sessions can also be used to implement security measures and perform certain actions.
 
 
 
-In client-server protocols, like HTTP, sessions consist of three phases:
-
-1. The client establishes a TCP connection (or the appropriate connection if the transport layer is not TCP).
-2. The client sends its request, and waits for the answer.
-3. The server processes the request, sending back its answer, providing a status code and appropriate data.
-
-As of HTTP/1.1, the connection is no longer closed after completing the third phase, and the client is now granted a further request: this means the second and third phases can now be performed any number of times.
-
-
-
-### Establish a connection
-
-In client-server protocols, it is the client which establishes the connection. Opening a connection in HTTP means initiating a connection in the underlying transport layer, usually this is TCP.
-
-With TCP the default port, for an HTTP server on a computer, is port 80. Other ports can also be used, like 8000 or 8080. 
-
-**Note:** The client-server model does not allow the server to send data to the client without an explicit request for it. However, various Web APIs enable this use case, including the [Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API), [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events), and the [WebSockets API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API).
-
-
-
-### Send a client request
-
-Once the connection is established, the user-agent can send the request (a user-agent is typically a web browser, but can be anything else, a crawler, for example).
-
-A client request can be divided into 3 blocks:
-
-- The first line contains a request method followed by its parameters.
-
-
-
-
+#### How Do Web Sessions Work
 
 
 
