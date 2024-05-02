@@ -312,7 +312,7 @@ There are two interfaces provided by this module. The modern interface supports 
 
 
 
-#### `bytes-like object`
+**`bytes-like object`**
 
 An object that supports the [Buffer Protocol](https://docs.python.org/3/c-api/buffer.html#bufferobjects) and can export a C-[contiguous](https://docs.python.org/3/glossary.html#term-contiguous) buffer. This includes all [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes), [`bytearray`](https://docs.python.org/3/library/stdtypes.html#bytearray), and [`array.array`](https://docs.python.org/3/library/array.html#array.array) objects, as well as many common [`memoryview`](https://docs.python.org/3/library/stdtypes.html#memoryview) objects. Bytes-like objects can be used for various operations that work with binary data; these include compression, saving to a binary file, and sending over a socket.
 
@@ -320,7 +320,7 @@ An object that supports the [Buffer Protocol](https://docs.python.org/3/c-api/bu
 
 
 
-#### `base64.base64encode(s, altchars=None)`
+**`base64.base64encode(s, altchars=None)`**
 
 Encode the [bytes-like object](https://docs.python.org/3/glossary.html#term-bytes-like-object) *s* using Base64 and return the encoded [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes).
 
@@ -330,9 +330,621 @@ Optional *altchars* must be a [bytes-like object](https://docs.python.org/3/glos
 
 
 
-#### `base64.b64decode(s, altchars=None, validate=False)`
+**`base64.b64decode(s, altchars=None, validate=False)`**
 
 Decode the Base64 encoded bytes-like object or ASCII string *s* and return the decoded bytes
+
+
+
+
+
+### Block cipher mode of operation
+
+A block cipher processes the data blocks of fixed size. Usually, the size of a message is larger than the block size. Hence, the long message is divided into a series of sequential message blocks, and the cipher operates on these blocks one at a time. There are five Block Cipher Modes Of Operations which are listed below.
+
+
+
+**Electronic Code Book (ECB) **
+
+ECB is the easiest block cipher mode of functioning, because of direct encryption of each block of input plaintext and output is in form of blocks of encrypted ciphertext. Generally, if a message is larger than the block size lets say b bits, it can be broken down into a bunch of blocks and the procedure is repeated further until the last block.  Decryption is the reverse process by using decryption algorithm as it is shown clearly in the image below.
+
+![No alt text provided for this image](https://media.licdn.com/dms/image/C4D12AQE3dzHZscGDAg/article-inline_image-shrink_400_744/0/1638027715046?e=2147483647&v=beta&t=jju7xlUEKXMH42TmCa4sMqTIkdCQ461a2hLuevGJJJ8)
+
+
+
+**Cipher Block Chaining (CBC)** 
+
+CBC is the advancement mode of ECB since ECB compromises some security requirements like there is a direct connection between the cipher text and the plain text which makes it easier for the attackers to decrypt the encoded message. In CBC, connection between the plain text and cipher text is broken down by providing the previous cipher block as input to the next encryption algorithm after XOR with the original plaintext block. As there is no previous blocks are available for the first block, use a Initial Vector(IV) and continue the process.
+
+![No alt text provided for this image](https://media.licdn.com/dms/image/C4D12AQHYjanwLKunBg/article-inline_image-shrink_1000_1488/0/1637835613988?e=2147483647&v=beta&t=p9LMivGtfwzcL5KCy5ZlMdLGhgsIliAZxWlvOhMvXGs)
+
+
+
+**Cipher Feedback Mode (CFB) ** 
+
+The cipher is given as feedback to the next block of encryption in this mode. First, an initial vector IV is used for first encryption and output bits are divided as a set of *s* and *b-s* bits. The left-hand side *s* bits are selected and are applied an XOR operation with plaintext bits. The result is given as input to a shift register and the process continues. Both encryption and decryption processes use the same encryption algorithm. 
+
+![No alt text provided for this image](https://media.licdn.com/dms/image/C4D12AQH1p_FF0u0YFw/article-inline_image-shrink_1000_1488/0/1637835643119?e=2147483647&v=beta&t=jpoZlleNdy7n3iL_O6xGfrq13o-XCGe2guBcaDWdFo0)
+
+
+
+
+
+The OFB follows nearly the same process as the CFB except that it sends the encrypted output as feedback instead of the actual cipher which is XOR output. In this output feedback mode, all bits of the block are sent instead of sending selected *s* bits. The OFB of block cipher holds great resistance towards bit transmission errors. It also decreases the dependency or relationship of the cipher on the plaintext. 
+
+![No alt text provided for this image](https://media.licdn.com/dms/image/C4D12AQGNBb6E-MN2GA/article-inline_image-shrink_1000_1488/0/1637835678680?e=2147483647&v=beta&t=NjxNd7h8bm67uyw9UMADIrH7VNTC51BlGxI5UHPLxGk)
+
+**Counter Mode (CTR)  
+
+The CTR is a simple counter-based block cipher implementation. Every time a counter-initiated value is encrypted and given as input to XOR with plaintext which results in ciphertext block. The CTR mode is independent of feedback use and thus can be implemented in parallel. Fastest mode compared to CBC, CFB and OFB due to parallel execution while in the mentioned modes each block is dependent on the previous blocks.
+
+![No alt text provided for this image](https://media.licdn.com/dms/image/C4D12AQE5h0GYHBhWCA/article-inline_image-shrink_1000_1488/0/1637835706199?e=2147483647&v=beta&t=6Ol662q_Zzdzt9O7UiVczIsUiB0bWQdPydlDPECvSsw)
+
+**Note:**
+
+Only ECB and CBC use decryption algorithm for decrypting the cipher text. Remaining three uses same encryption algorithm for both encryption and decryption.
+
+
+
+
+
+
+
+
+
+https://zhangzeyu2001.medium.com/attacking-cbc-mode-bit-flipping-7e0a1c185511
+
+https://www.youtube.com/watch?v=QG-z0r9afIs
+
+
+
+#### Bit Flipping: Attack on CBC Mode
+
+
+
+```python
+import socketserver 
+import socket, os
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad,unpad
+from Crypto.Random import get_random_bytes
+from binascii import unhexlify
+
+flag = open('flag','r').read().strip()
+
+def encrypt_data(data,key,iv):
+    padded = pad(data.encode(),16,style='pkcs7')
+    cipher = AES.new(key, AES.MODE_CBC,iv)
+    enc = cipher.encrypt(padded)
+    return enc.hex()
+
+def decrypt_data(encryptedParams,key,iv):
+    cipher = AES.new(key, AES.MODE_CBC,iv)
+    paddedParams = cipher.decrypt( unhexlify(encryptedParams))
+    if b'admin&password=sUp3rPaSs1' in unpad(paddedParams,16,style='pkcs7'):
+        return 1
+    else:
+        return 0
+
+def send_message(server, message):
+    enc = message.encode()
+    server.send(enc)
+
+def setup(server,username,password,key,iv):
+        message = 'access_username=' + username +'&password=' + password
+        send_message(server, "Leaked ciphertext: " + encrypt_data(message,key,iv)+'\n')
+        send_message(server,"enter ciphertext: ")
+
+        enc_message = server.recv(4096).decode().strip()
+
+        try:
+                check = decrypt_data(enc_message,key,iv)
+        except Exception as e:
+                send_message(server, str(e) + '\n')
+                server.close()
+
+        if check:
+                send_message(server, 'No way! You got it!\nA nice flag for you: '+ flag)
+                server.close()
+        else:
+                send_message(server, 'Flip off!')
+                server.close()
+
+def start(server):
+        key = get_random_bytes(16)
+        iv = get_random_bytes(16)
+        send_message(server, 'Welcome! Please login as the admin!\n')
+        send_message(server, 'username: ')
+        username = server.recv(4096).decode().strip()
+
+        send_message(server, username +"'s password: ")
+        password = server.recv(4096).decode().strip()
+
+        message = 'access_username=' + username +'&password=' + password
+
+        if "admin&password=sUp3rPaSs1" in message:
+            send_message(server, 'Not that easy :)\nGoodbye!\n')
+        else:
+            setup(server,username,password,key,iv)
+
+class RequestHandler(socketserver.BaseRequestHandler):
+    def handle(self):
+        start(self.request)
+
+if __name__ == '__main__':
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    server = socketserver.ThreadingTCPServer(('0.0.0.0', 1337), RequestHandler)
+    server.serve_forever()
+```
+
+
+
+**package Crypto** : No module named Crypto 
+
+https://stackoverflow.com/questions/19623267/importerror-no-module-named-crypto-cipher
+
+![image-20240430201121756](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240430201121756.png)
+
+
+
+![image-20240501092707366](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240501092707366.png)
+
+![image-20240501101128048](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240501101128048.png)
+
+the block length is 16 , so 7 bytes will be padded.
+
+Block 1: `access_username=`
+Block 2: `admin&password=s`
+Block 3: `Up3rPaSs1$$$$$$$`
+
+
+
+```
+b9e59bbe2b4062e5917816b0b74d78e72bb3c73b8e71854989591baf54f8146be04d9d755fead367d02e4a695ebf2cf3
+```
+
+
+
+c1 = `b9e59bbe2b4062e5917816b0b74d78e7`
+
+c2 = `2bb3c73b8e71854989591baf54f8146b`
+
+c3 = `e04d9d755fead367d02e4a695ebf2cf3`
+
+
+
+`c1_0 ^ dec(c2_0)` =`p2_0`
+
+to make `c1_0'`^ `dec(c2_0)` =` p2_0'`
+
+->  `c1_0'` = `p2_0' ^ c1_0 ^ p2_0`
+
+
+
+take into the value:
+
+`c1_0'` = `a ^ c1_0 ^ b`  of course you can change any bit in the second cipher text block ,  just change the first bit for convenience.
+
+
+
+- the key is generated randomly every time, so we can't access the value of key
+- Note that we choose to change the second plain text block instead of the third one.  Because the change of the cipher text will affect the plain text. So if we modify the second cipher block ( to generate the desired result in third plain text block ) , the second plain text will be changed as well. But as we can see, the first plain text block is not important, we don't actually care about it.
+- When we knows the structure of the plain text and cypher text, the decrypted text can be controlled.
+
+
+
+we can also write a script to solve the problem
+
+```python
+msg = 'access_username=admin&password=sUp3rPaSs1'
+print(msg, len(msg))
+xor = ord('r') ^ ord('s')
+cipher = encrypt_data(msg) # this function will pad characters automatically.
+cipher = cipher[:16] + hex(int(cipher[16:18], 16) ^ xor)[2:] + cipher[18:]
+print(decrypt_data(cipher))
+```
+
+
+
+- `int(string, 16)` 是Python中将十六进制字符串转换为整数的方法。它将给定的字符串解释为十六进制数，并返回对应的整数值。例如：
+
+  ```python
+  hex_string = "1A"
+  decimal_value = int(hex_string, 16)
+  print(decimal_value)  # 26
+  ```
+
+
+
+
+
+
+
+
+
+
+
+## most cookies
+
+```python
+from flask import Flask, render_template, request, url_for, redirect, make_response, flash, session
+import random
+app = Flask(__name__)
+flag_value = open("./flag").read().rstrip()
+title = "Most Cookies"
+cookie_names = ["snickerdoodle", "chocolate chip", "oatmeal raisin", "gingersnap", "shortbread", "peanut butter", "whoopie pie", "sugar", "molasses", "kiss", "biscotti", "butter", "spritz", "snowball", "drop", "thumbprint", "pinwheel", "wafer", "macaroon", "fortune", "crinkle", "icebox", "gingerbread", "tassie", "lebkuchen", "macaron", "black and white", "white chocolate macadamia"]
+app.secret_key = random.choice(cookie_names)
+
+@app.route("/")
+def main():
+	if session.get("very_auth"):
+		check = session["very_auth"]
+		if check == "blank":
+			return render_template("index.html", title=title)
+		else:
+			return make_response(redirect("/display"))
+	else:
+		resp = make_response(redirect("/"))
+		session["very_auth"] = "blank"
+		return resp
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+	if "name" in request.form and request.form["name"] in cookie_names:
+		resp = make_response(redirect("/display"))
+		session["very_auth"] = request.form["name"] # session can't be set at the client side
+		return resp # directe to /display
+	else:
+		message = "That doesn't appear to be a valid cookie."
+		category = "danger"
+		flash(message, category)
+		resp = make_response(redirect("/"))
+		session["very_auth"] = "blank"
+		return resp
+
+@app.route("/reset")
+def reset():
+	resp = make_response(redirect("/"))
+	session.pop("very_auth", None)
+	return resp
+
+@app.route("/display", methods=["GET"])
+def flag():
+	if session.get("very_auth"):
+		check = session["very_auth"]
+		if check == "admin": # you have to make the form value 'name' : admin .
+ 			resp = make_response(render_template("flag.html", value=flag_value, title=title))
+			return resp
+		flash("That is a cookie! Not very special though...", "success")
+		return render_template("not-flag.html", title=title, cookie_name=session["very_auth"])
+	else:
+		resp = make_response(redirect("/"))
+		session["very_auth"] = "blank"
+		return resp
+
+if __name__ == "__main__":
+	app.run()
+
+
+```
+
+
+
+### Analyses
+
+![image-20240502162729476](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502162729476.png)
+
+`Set-Cookie: session=eyJ2ZXJ5X2F1dGgiOiJibGFuayJ9.ZjNN3Q.lqfJRkuoI7Ft-lLLZ36o2T_49v0; HttpOnly; Path=/`
+
+
+
+![image-20240502162826226](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502162826226.png)
+
+
+
+
+
+
+
+![image-20240502162858473](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502162858473.png)
+
+`Set-Cookie: session=eyJ2ZXJ5X2F1dGgiOiJzbmlja2VyZG9vZGxlIn0.ZjNOCw.qVeZgYMaE2Wox_sEyFvfezvZrz8; HttpOnly; Path=/`
+
+
+
+![image-20240502162923501](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502162923501.png)
+
+`Set-Cookie: session=eyJ2ZXJ5X2F1dGgiOiJzbmlja2VyZG9vZGxlIn0.ZjNODA.V6DStg3v2e5BZ5ZpVnkalZNDLUs; HttpOnly; Path=/`
+
+
+
+由session中的 `.` 联想到 JWT 结构
+
+![image-20240502193317048](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502193317048.png)
+
+So the target is to change the `very_auth` and accordingly, change the signature since the secret_key is known( brute force )
+
+
+
+#### 参考
+
+https://medium.com/@MohammedAl-Rasheed/picoctf-2021-most-cookies-7f3d8b6cd0b
+
+https://tedboy.github.io/flask/interface_api.session_interface.html
+
+https://ctf.zeyu2001.com/2021/picoctf/most-cookies-150
+
+https://gist.github.com/aescalana/7e0bc39b95baa334074707f73bc64bfe
+
+
+
+
+
+![image-20240502200254243](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502200254243.png)
+
+![image-20240502201339028](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502201339028.png)
+
+![image-20240502201321269](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502201321269.png)
+
+
+
+![image-20240502202757928](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502202757928.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+### JWT
+
+**JSON Web Token**is a proposed Internet standard for creating data with optional signature and/or optional encryptionwhose payload holds [JSON](https://en.wikipedia.org/wiki/JSON) that asserts some number of claims. The tokens are signed either using a private secret or a public/private key.
+
+For example, a server could generate a token that has the claim "logged in as administrator" and provide that to a client. The client could then use that token to prove that it is logged in as admin. The tokens can be signed by one party's private key (usually the server's) so that any party can subsequently verify whether the token is legitimate.
+
+
+
+#### Structure
+
+JWT 本质上就是一组字串，通过（`.`）切分成三个为 Base64 编码的部分
+
+
+
+1. **Header**
+
+Identifies which algorithm is used to generate the signature
+
+Typical cryptographic algorithms used are [HMAC](https://en.wikipedia.org/wiki/HMAC) with [SHA-256](https://en.wikipedia.org/wiki/SHA-256) (HS256) and [RSA signature](https://en.wikipedia.org/wiki/Digital_signature) with SHA-256 (RS256). JWA (JSON Web Algorithms) RFC 7518 introduces many more for both authentication and encryption
+
+```
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+- `typ`（Type）：令牌类型，也就是 JWT。
+- `alg`（Algorithm）：签名算法
+
+
+
+
+
+2. **Payload**
+
+JSON 格式数据，其中包含了 Claims(声明，包含 JWT 的相关信息)。
+
+Claims 分为三种类型：
+
+- **Registered Claims（注册声明）**：预定义的一些声明，建议使用，但不是强制性的。
+- **Public Claims（公有声明）**：JWT 签发方可以自定义的声明，但是为了避免冲突，应该在 [IANA JSON Web Token Registryopen in new window](https://www.iana.org/assignments/jwt/jwt.xhtml) 中定义它们。
+- **Private Claims（私有声明）**：JWT 签发方因为项目需要而自定义的声明，更符合实际项目场景使用。
+
+下面是一些常见的注册声明：
+
+- `iss`（issuer）：JWT 签发方。
+- `iat`（issued at time）：JWT 签发时间。
+- `sub`（subject）：JWT 主题。
+- `aud`（audience）：JWT 接收方。
+- `exp`（expiration time）：JWT 的过期时间。
+- `nbf`（not before time）：JWT 生效时间，早于该定义的时间的 JWT 不能被接受处理。
+- `jti`（JWT ID）：JWT 唯一标识。
+
+Payload 部分默认是不加密的，**一定不要将隐私信息存放在 Payload 当中！！！**
+
+example:
+
+```
+{
+  "uid": "ff1212f5-d8d1-4496-bf41-d2dda73de19a",
+  "sub": "1234567890",
+  "name": "John Doe",
+  "exp": 15323232,
+  "iat": 1516239022,
+  "scope": ["admin", "user"]
+}
+```
+
+
+
+
+
+- **Signature**
+
+Signature 部分是对前两部分的签名，作用是防止 JWT（主要是 payload） 被篡改。
+
+这个签名的生成需要用到：
+
+- Header + Payload。
+
+- 存放在服务端的密钥(一定不要泄露出去)。
+
+- 签名算法
+
+  
+
+签名的计算公式 ：
+
+```plain
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+```
+
+算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用"点"（`.`）分隔，这个字符串就是 JWT 。
+
+
+
+
+
+#### Base64URL
+
+Header 和 Payload 串型化的算法是 Base64URL。这个算法跟 Base64 算法基本类似，但有一些小的不同。
+
+JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api.example.com/?token=xxx）。Base64 有三个字符`+`、`/`和`=`，在 URL 里面有特殊含义，所以要被替换掉：`=`被省略、`+`替换成`-`，`/`替换成`_` 。这就是 Base64URL 算法。
+
+- `base64.standard_b64decode(s)`
+
+  Decode bytes-like object or ASCII string *s* using the standard Base64 alphabet and return the decoded bytes
+
+- `base64.urlsafe_b64encode(s)`
+
+  Encode bytes-like objects using the URL- and filesystem-safe alphabet, which substitutes `-` instead of `+` and `_` instead of `/` in the standard Base64 alphabet, and return the encoded bytes. The result can still contain` =`.
+
+![image-20240502193128066](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502193128066.png)
+
+3 `=` is always a safe padding.
+
+
+
+
+
+#### Practices
+
+https://www.youtube.com/watch?v=mhcnBTDLxCI
+
+https://blog.miguelgrinberg.com/post/how-secure-is-the-flask-user-session
+
+
+
+The application is in file `guess.py`:
+
+```
+import os
+import random
+from flask import Flask, session, redirect, url_for, request, render_template
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or \
+    'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
+
+@app.route('/')
+def index():
+    # the "answer" value cannot be stored in the user session as done below
+    # since the session is sent to the client in a cookie that is not encrypted!
+    session['answer'] = random.randint(1, 10)
+    session['try_number'] = 1
+    return redirect(url_for('guess'))
+
+@app.route('/guess')
+def guess():
+    guess = int(request.args['guess']) if 'guess' in request.args else None
+    if request.args.get('guess'):
+        if guess == session['answer']:
+            return render_template('win.html')
+        else:
+            session['try_number'] += 1
+            if session['try_number'] > 3:
+                return render_template('lose.html', guess=guess)
+    return render_template('guess.html', try_number=session['try_number'],
+                           guess=guess)
+
+if __name__ == '__main__':
+    app.run()
+```
+
+There are also three template files that you will need to store in a `templates` subdirectory. Template number one is called `guess.html`:
+
+```
+<html>
+    <head>
+        <title>Guess the number!</title>
+    </head>
+    <body>
+        <h1>Guess the number!</h1>
+        {% if try_number == 1 %}
+        <p>I thought of a number from 1 to 10. Can you guess it?</p>
+        {% else %}
+        <p>Sorry, {{ guess }} is incorrect. Try again!</p>
+        {% endif %}
+        <form action="">
+            Try #{{ try_number }}: <input type="text" name="guess">
+            <input type="submit">
+        </form>
+    </body>
+</html>
+```
+
+Template number two is `win.html`:
+
+```
+<html>
+    <head>
+        <title>Guess the number: You win!</title>
+    </head>
+    <body>
+        <h1>Guess the number!</h1>
+        <p>Congratulations, {{ session['answer'] }} is the correct number.</p>
+        <p><a href="{{ url_for('index') }}">Play again</a></p>
+    </body>
+</html>
+```
+
+And the last template is `lose.html`:
+
+```
+<html>
+    <head>
+        <title>Guess the number: You lose!</title>
+    </head>
+    <body>
+        <h1>Guess the number!</h1>
+        <p>Sorry, {{ guess }} is incorrect. My guess was {{ session['answer'] }}.</p>
+        <p><a href="{{ url_for('index') }}">Play again</a></p>
+    </body>
+</html>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
