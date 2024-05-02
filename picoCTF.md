@@ -499,17 +499,45 @@ With `Strict`, the browser only sends the cookie with requests from the cookie's
 
 ## Session 
 
-refers to a way of maintaining state information about a user’s interactions with a website or web application. 
-
-When a user visits a website, the server can create a session for that user. Additionally, a session allows the server to keep track of information such as the user’s login status, preferences, and any data entered into forms.
-
-The server typically initiates a session when a user logs in to a website. Furthermore, **we can identify a session by a unique session ID.** Generally, we pass the session IDs as a parameter in URLs or store them in the cookies. The session ID allows the server to associate the user’s requests with their specific session. Additionally, it also helps to retrieve and update the session data as needed.
-
-We can use sessions to provide a personalized experience for each user. We can display a user’s name and preferences throughout the site. Furthermore, a website can use sessions to remember shopping cart contents between pages of a user. Moreover, sessions can also be used to implement security measures and perform certain actions.
+pass the session IDs as **a parameter in URLs or store them in the cookies**. 
 
 
 
-#### How Do Web Sessions Work
+**Usage**
+
+- display a user’s preferences throughout the site. 
+-  remember shopping cart  between pages
+-  implement security measures and perform certain actions.
+
+
+
+**How Do Web Sessions Work**
+
+![image-20240502094209124](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502094209124.png)
+
+
+
+**Difference between Cookies and Session**
+
+| Session                                                      | Cookies                                                      |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| A session stores the variables and their values within a file in a temporary directory on the server. | Cookies are stored on the user's computer as a text file.    |
+| The session ends when the user logout from the application or closes his web browser. | Cookies end on the lifetime set by the user.                 |
+| It can store an unlimited amount of data.                    | It can store only limited data.                              |
+| We can store as much data as we want within a session, but there is a maximum memory limit, which a script can use at one time, and it is 128 MB. | The maximum size of the browser's cookies is 4 KB.           |
+| We need to call the session_start() function to start the session. | We don't need to call a function to start a cookie as it is stored within the local computer. |
+| In PHP, to destroy or remove the data stored within a session, we can use the session_destroy() function, and to unset a specific variable, we can use the unset() function. | We can set an expiration date to delete the cookie's data. It will automatically delete the data at that specific time. There is no particular function to remove the data. |
+| Sessions are more secured compared to cookies, as they save data in encrypted form. | Cookies are not secure, as data is stored in a text file, and if any unauthorized user gets access to our system, he can temper the data. |
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -803,4 +831,136 @@ response = requests.post(url, json=data)
 # 打印响应内容
 print(response.text)
 ```
+
+
+
+
+
+
+
+# Flask
+
+
+
+## Flask-session
+
+
+
+### Introduction
+
+- **Client-side vs Server-side sessions**
+
+  - **Client-side sessions** store session data in the client’s browser. This is done by placing it in a cookie that is sent to and from the client on each request and response. This can be any small, basic information about that client or their interactions for quick retrieval 
+
+  - **Server-side sessions** storing session data in server-side . A cookie is also used, but it only contains the session identifier that links the client to their corresponding data on the server.
+
+
+
+**Flask-Session sequence diagram**
+
+![sequence diagram for flask-session](https://flask-session.readthedocs.io/en/latest/_images/sequence.webp)
+
+
+
+### modify session data
+
+https://overiq.com/flask-101/sessions-in-flask/
+
+When we use sessions the data is stored in the browser as a cookie. The cookie used to store session data is known session cookie. However, unlike an ordinary cookie, Flask Cryptographically signs the session cookie. It means that anyone can view the contents of the cookie, but can't modify the cookie unless he has the secret key used to sign the cookie.
+
+That's why it is recommended to set a long and hard to guess string as a secret key. Once the session cookie is set, every subsequent request to the server verifies the authenticity of the cookie by unsigning it using the same secret key. If Flask fails to unsign the cookie then its content is discarded and a new session cookie is sent to the browser.
+
+
+
+**PHP vs Flask**
+
+ In PHP, session cookie doesn't store session data instead it only stores a session id. The session id is a unique string PHP creates to associate session data with the cookie. The session data itself is stored on the server in a file. Upon receiving a request from the client, PHP uses the session id to retrieve session data and makes it available in your code. This type of sessions is known as server-side sessions and type of sessions Flask provides by default is known as client-side sessions.
+
+By default, there isn't much difference between cookies and client-based sessions in Flask. As a result, the client-based sessions suffer from the same drawbacks the cookies have like:
+
+- Can't store sensitive data like passwords.
+- Additional payload on every request.
+- Can't store data more than 4KB.
+- Limit on the number of cookie per website and so on.
+
+The only real difference between cookies and the client-based session is that Flask guarantees that the contents of the session cookie is not tempered by the user (unless he has the secret key).
+
+If you want to use server-side sessions in Flask, you can either write your own session interface or use extensions like Flask-Session and Flask-KVSession.
+
+
+
+```python
+@app.route('/visits-counter/')
+def visits():
+    if 'visits' in session:
+        session['visits'] = session.get('visits') + 1
+    else:
+        session['visits'] = 1
+    return "Total visits: {}".format(session.get('visits'))
+
+@app.route('/delete-visits/')
+def delete_visits():
+    session.pop('visits', None)
+    return 'Visits deleted'
+```
+
+
+
+
+
+
+
+
+
+
+
+### Session object
+
+Assign session IDs to sessions for each client. Session data is stored at the top of the cookie, and the server signs it in encrypted mode.For this encryption, the Flask application requires a defined `SECRET_KEY`.
+
+
+
+- A Session object is a dictionary object that contains key value pairs for session variables and associated values. `session['username'] = 'admin'`
+
+- To release a session variable, use the `pop()` method.
+
+  `session.pop('username', None)`
+
+
+
+example:
+
+```python
+@app.route('/')
+def index():
+   if 'username' in session:
+      username = session['username']
+      return 'Logged in as ' + username + '<br>' + "<b><a href = '/logout'>click here to log out</a></b>"
+   return "You are not logged in <br><a href = '/login'>" + "click here to log in</a>"
+
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+   if request.method == 'POST':
+      session['username'] = request.form['username']
+      return redirect(url_for('index'))
+
+@app.route('/logout')
+def logout():
+   # remove the username from the session if it is there
+   session.pop('username', None)
+   return redirect(url_for('index'))
+```
+
+
+
+Run the application and access the home page.(Ensure that the application’s secrett_key is set)
+
+```
+from flask import Flask, session, redirect, url_for, escape, request
+app = Flask(__name__)
+app.secret_key = 'any random string’
+```
+
+
 
