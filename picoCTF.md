@@ -1576,3 +1576,20 @@ app.secret_key = 'any random string’
 
 
 
+# js obfuscation
+
+
+
+Codes written in many languages are published and executed without being compiled in interpreted languages, such as Python,PHP, and JavaScript. While Python and PHP usually reside on the server-side and hence are hidden from end-users, JavaScript is usually used within browsers at the client-side, and the code is sent to the user and executed in cleartext. This is why obfuscation is very often used with JavaScript.
+
+*It must be noted that doing authentication or encryption on the client-side is not recommended, as code is more prone to attacks this way.*
+
+- concealing data is just one of several dimensions of JS obfuscation. Strong obfuscation will also **obfuscate the layout and program control flow**, as well as include several **optimization** techniques. Typically, it will target:
+  - Identifiers;
+  - Booleans;
+  - Functions;
+  - Numbers;
+  - Predicates;
+  - Regular expressions;
+  - Statements; and
+  - Program control flow.
