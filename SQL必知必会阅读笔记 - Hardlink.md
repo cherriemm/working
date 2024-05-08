@@ -1,6 +1,4 @@
-
-
-# 关系代数与关系演算
+关系代数与关系演算
 
 
 
@@ -22,7 +20,7 @@
 
 关系代数中有 五个基本运算 ：选择、投影、笛卡尔乘积、集合并、集合差 ， 还有连接 、集合交、除运算等。
 
-![image-20240422204512140](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422204512140.png)
+![image-20240422204512140](https://s2.loli.net/2024/05/07/A4CWhaz9bZcw76s.png)
 
 
 
@@ -32,17 +30,17 @@
 
 #### 选择
 
-![image-20240422204612602](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422204612602.png)
+![image-20240422204612602](https://s2.loli.net/2024/05/07/H2QmFX5qvojgBSL.png)
 
 
 
-![image-20240422204633382](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422204633382.png)
+![image-20240422204633382](https://s2.loli.net/2024/05/07/uVIaZ8dxsQGqWw1.png)
 
 
 
 #### 投影
 
-![image-20240422204656657](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422204656657.png)
+![image-20240422204656657](https://s2.loli.net/2024/05/07/nRtsxcOXMhGkLoW.png)
 
 
 
@@ -54,7 +52,7 @@
 
 #### 集合并
 
-![image-20240422204756296](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422204756296.png)
+![image-20240422204756296](https://s2.loli.net/2024/05/07/l34tZ6vrx7iwG5F.png)
 
 可以先用投影运算使得两个关系具有并相容性。
 
@@ -62,13 +60,13 @@
 
 #### 集合差
 
-![image-20240422204922618](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422204922618.png)
+![image-20240422204922618](https://s2.loli.net/2024/05/07/udZzlJRrUGLpEgB.png)
 
 
 
 #### 集合交
 
-![image-20240422204947217](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422204947217.png)
+![image-20240422204947217](https://s2.loli.net/2024/05/07/RrD9jH1qw2VvNXM.png)
 
 
 
@@ -76,13 +74,13 @@
 
 #### 笛卡尔积
 
-![image-20240422205024961](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422205024961.png)
+![image-20240422205024961](https://s2.loli.net/2024/05/07/7mOtsD8H9M2pnqy.png)
 
 若一个关系有 I 个元组， N 个属性； 而另一个关系有 J 个元组，M 个属性， 则它们的笛卡尔乘积将会有 ( I * J ) 个元组， ( N + M ) 个属性。
 
 
 
-![image-20240422205227421](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422205227421.png)
+![image-20240422205227421](https://s2.loli.net/2024/05/07/J6XDRVgUdNjwBOM.png)
 
 
 
@@ -90,9 +88,9 @@
 
 #### 除法运算
 
-![image-20240423143528067](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423143528067.png)
+![image-20240423143528067](https://s2.loli.net/2024/05/07/9lULbaEx6vFVi8O.png)
 
-![image-20240423143545483](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423143545483.png)
+![image-20240423143545483](https://s2.loli.net/2024/05/07/31uz9BaODdcUZjC.png)
 
 
 
@@ -116,9 +114,9 @@
 
 #### θ连接
 
-![image-20240422205708214](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422205708214.png)
+![image-20240422205708214](https://s2.loli.net/2024/05/07/7RweE8OHQVsniSr.png)
 
-![image-20240422205719781](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422205719781.png)
+![image-20240422205719781](https://s2.loli.net/2024/05/07/8tvsKTRjuGaF34J.png)
 
 
 
@@ -126,7 +124,7 @@
 
 在谓词 F 仅包含 = 的情况下， θ连接就变成了等接(` Equijoin` )
 
-![image-20240422205840946](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422205840946.png)
+![image-20240422205840946](https://s2.loli.net/2024/05/07/mpWlfEqihS796t4.png)
 
 
 
@@ -134,7 +132,7 @@
 
 #### 自然连接
 
-![image-20240422205940573](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422205940573.png)
+![image-20240422205940573](https://s2.loli.net/2024/05/07/gOpDXnP7lihxaBG.png)
 
 
 
@@ -144,11 +142,11 @@
 
 连接两个关系时，常会出现一个关系中的某些元组无法在另一个关系中找到匹配元组的情况。 即这些元组在连接属性上不存在匹配值， 但仍希望这些元组出现在结果中。
 
-![image-20240422210114146](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422210114146.png)
+![image-20240422210114146](https://s2.loli.net/2024/05/07/PpqYKdWv2AxTfUg.png)
 
 
 
-![image-20240422210327634](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422210327634.png)
+![image-20240422210327634](https://s2.loli.net/2024/05/07/DvNtcZ6SVK7wIm4.png)
 
 严格的说， 上图是左( 自然 ) 外连接， 因为它在结果中保留了左边关系的所有元组 。
 
@@ -158,17 +156,17 @@
 
 #### 半连接
 
-![image-20240423143242497](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423143242497.png)
+![image-20240423143242497](https://s2.loli.net/2024/05/07/s6uXLWzt8Fm1oEO.png)
 
-![image-20240423143400232](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423143400232.png)
+![image-20240423143400232](https://s2.loli.net/2024/05/07/G8CYTOsJNyxiWLU.png)
 
-![image-20240423143420605](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423143420605.png)
+![image-20240423143420605](https://s2.loli.net/2024/05/07/lrtzhLOK1y4vm9f.png)
 
 
 
 ### 聚集运算和分组运算
 
-![image-20240423143713254](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423143713254.png)
+![image-20240423143713254](https://s2.loli.net/2024/05/07/GcVNzpSHMWd7uvQ.png)
 
 
 
@@ -190,13 +188,13 @@
 
 
 
-![image-20240423145017067](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423145017067.png)
+![image-20240423145017067](https://s2.loli.net/2024/05/07/uTa9Cq8IHbFeDgt.png)
 
 
 
-![image-20240423145224148](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423145224148.png)
+![image-20240423145224148](https://s2.loli.net/2024/05/07/auh3QlrD7gj8tEn.png)
 
-![image-20240423152232812](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423152232812.png)
+![image-20240423152232812](https://s2.loli.net/2024/05/07/OrhAPTpwt6kelRY.png)
 
 
 
@@ -204,31 +202,265 @@
 
 在元组关系演算中， 使用了定义在关系上的元组变量。在域关系演算中， 同样也要用到变量， 但它的论域不再是关系中的元组， 而是属性的域 。
 
-![image-20240423153536915](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423153536915.png)
+![image-20240423153536915](https://s2.loli.net/2024/05/07/Fkmoa1PYRc7X35u.png)
 
 
 
-![image-20240423153557604](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423153557604.png)
+![image-20240423153557604](https://s2.loli.net/2024/05/07/rtwm3sJaMHZuRdo.png)
 
-![image-20240423153624064](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240423153624064.png)
-
-
-
+![image-20240423153624064](https://s2.loli.net/2024/05/07/4ZMB7wLH1cjW6fl.png)
 
 
 
 
-SQL 必知必会
 
-https://forta.com/books/0135182794/
+# 数据库系统概述
+
+数据库系统是由数据库，数据库管理系统(及其应用开发工具)，应用程序，数据库管理员(DBA) 组成的存储、管理、处理和维护数据的系统
+
+
+
+## 数据库管理系统
+
+**DataBase Management System( DBMS )**
+
+功能 ：
+
+- 数据定义 ：DDL ( DBMS 提供数据定义语言 Data Definition Language)
+- 数据组织、存储和管理
+- 数据操纵 ：DML ( Data Manipulation Language )
+
+
+
+## 数据模型
+
+
+
+### **两类数据模型 **
+
+- 概念模型 ( conceptual model ) ， 也称信息模型， 按用户的观点对数据和信息建模，主要用于数据库设计
+
+  - 常用概念 ：实体 、属性、码 、实体集( entity set , 同一类型实体的集合 )、 
+  - 实体间的联系 ：
+    - 1 : 1 实体集 A 中的任一实体， 实体集B 中至多一个实体与之联系， 反之依然 。
+    - 1 : n  A 中的任一实体， B中有 n 个实体与之联系。 反之，B中的任一实体， A 中至多一个实体与之联系
+    - n : m
+
+- 逻辑模型和物理模型
+
+  - 逻辑模型主要包括 ：层次模型( hierarchical model ), 网状模型( network model), 关系模型( relation model), 面向对象数据模型， 对象关系数据模型， 半结构化数据模型 。
+
+    逻辑模型是按计算机系统的观点对数据建模，主要用于数据库管理系统的视线
+
+  - 物理模型 ：对数据最底层的抽象。
+
+
+
+#### **数据模型组成三要素**
+
+- 数据结构 ：描述数据库的组成对象以及对象间的联系 ，描述系统的静态特性
+- 数据操作 ：主要有查询和更新(插入、删除、修改) 两大类操作，描述系统的动态特性
+- 完整性约束条件( integrity constraints )
+
+
+
+### 常用逻辑数据模型
+
+层次模型和网络模型统称为**格式化模型** 
+
+在格式化模型中实体用记录表示，实体的实行对应记录的数据项( 或字段 ) 。实体间的联系在格式化模型中转换成记录间的两两联系
+
+![image-20240507150817654](https://s2.loli.net/2024/05/07/jJhPtZcEIMn4Tfo.png)
+
+
+
+#### 层次模型 
+
+层次模型用树形结构来表示各类实体以及实体间的联系，现实世界中许多实体间的联系本来就呈现出一种很自然的层次关系，如行政机构、家族关系等。
+
+
+
+**层次模型的数据结构**
+
+1. 有且只有一个结点没有双亲结点 ：根结点
+2. 根以外的其他结点有且仅有一个双亲结点
+
+层次模型中，每个结点表示一个记录类型，记录类型之间的联系用结点间的连线( 有相边 ) 表示，这种联系是父子之间的一对多联系。这就使得层次数据库系统只能处理一对多的实体联系。
+
+层次模型 ：该层次模型有 4 个记录类型 ，均为一对多联系
+
+![image-20240507153020996](https://s2.loli.net/2024/05/07/W8HCj3UfraPEp25.png)
+
+该数据模型对应的一个值 ：
+
+![image-20240507153313457](https://s2.loli.net/2024/05/07/rV6XhEUxTeYSDuF.png)
+
+
+
+
+
+**层次模型的数据操纵与完整性约束**
+
+层次模型的数据操纵主要有查询、插入、删除和更新。进行数据操纵时需要满足层次模型的完整性约束条件 ：进行插入操作时，若没有相应的双亲结点值进不能插入它的子女结点 ；删除操作时 ，若删除双亲结点值则相应的子女结点值也将被同时删除。
+
+
+
+
+
+#### 网状模型
+
+网状数据模型的典型代表是 DBTG 系统，亦称 CODASYL 系统
+
+
+
+**网状模型的数据结构**
+
+1. 允许一个以上的结点无双亲
+2. 一个结点可以有多于一个的双亲
+
+层次模型实际上是网状模型的一个特例
+
+![image-20240508112713913](https://s2.loli.net/2024/05/08/rdtkLK5y9wblDmF.png)
+
+
+
+example：学生选课，学生与课程之间是多对多关系，而 DBTG 模型不能表示记录间多对多的联系，为此引进一个学生选课的连接记录。
+
+学生与选课间的联系是一对多的联系，联系名为 : S-SC , 课程与选课间的联系同理
+
+![image-20240508113114444](https://s2.loli.net/2024/05/08/IRB9bvSPNwrdfX1.png)
+
+
+
+#### 关系模型
+
+
+
+**关系模型的数据结构**
+
+关系模型与以往的模型不同，它是建立在严格的数学概念的基础上的
+
+从用户观点看，关系模型由一组关系组成。每个关系的数据结构是一张规范化的二维表 。
+
+
+
+**术语**
+
+- 关系(relation) : 一个关系对应一张表
+
+- 元组(tuple): 表中的一行
+
+- 属性(attribute): 表中的一列
+
+- 域(domain) : 一组具有相同数据类型的值的集合。属性的取值范围来自某个域
+
+- 关系模式 ：对关系的描述，一般表示为 ：`关系名(属性1，属性2，属性3 ..)`
+
+  关系模型要求关系必须是规范化的，即要求关系必须满足一定的规范条件
+
+
+
+**关系模型的数据操纵和完整性约束**
+
+关系模型中的数据操作时集合操作，操作对象和结果都是关系 ：即若干元组的集合，而不像格式化模型中那样是单记录的操作方式。
+
+
+
+
+
+
+
+### ER 图 
+
+**entity relationship diagrams** 实体关系图
+
+摘自 https://drawio-app.com/blog/entity-relationship-diagrams-with-draw-io/
+
+![](https://s2.loli.net/2024/05/07/qhefcp7RUm15uLr.png)
+
+
+
+![](https://s2.loli.net/2024/05/07/fDaCOmYNeX5LU3J.png)
+
+#### REDs的三个组成部分
+
+
+
+##### 1.属性
+
+**Attributes** : 组成实体的各个数据。 
+
+- In the first style of diagram, they are drawn as circles floating around their entity. 
+- In the second style, similar to  they are listed within the rectangle.
+  - 主键并带有下划线。外键斜体表示
+
+- 如果不是实际存储属性，而是根据其他属性计算属性，则该属性是派生属性，并且具有虚线轮廓。
+
+![](https://s2.loli.net/2024/05/07/lJDAeN4FYgVQSnW.png)
+
+
+
+##### 2.关系
+
+- 可以用菱形表示，也可以在两个实体之间的连接器上写成文本。
+
+- In the first style of diagram, you can see that both User and Coach write comments, and the User can perform a habit Checkin, these two ‘actions’ aren’t represented at all in the second style of diagram, which purely represents the data, not any interactions.
+
+- Relationship connectors use Crow’s foot notation to show how many of each entity is related to another entity. 
+
+  - For example, in the Habit Tracker app – A Coach can have 0 to many Users, but a User can only have 0 or 1 Coach. 
+
+    Users may have many Habits, and each Habit may belong to many users.
+
+- 将鼠标悬停在实体关系库中的每个形状上，以查看其类型。
+
+
+
+
+
+##### 3.实体
+
+- These represent a collection of data, using a rectangle with attributes ‘hanging’ off it, or box containing a list of its attributes.
+
+- 一个弱实体（显示为双矩形），因为它没有自己的主键——它只存在于它所属的实体中。
+- 关联实体（在第二种类型的图中更容易看到）以虚线轮廓和连接器显示——无论在哪里有多对多关系，都需要这种类型的实体。要在第一种图表样式中创建关联实体，请添加实体形状和关系形状，并将这两个形状组合在一起。
+
+
+
+#### draw.io 使用技巧
+
+**连接线**
+
+- 滑动连接：绘制关系的连接线时，请确保将鼠标悬停实例上直到轮廓变为蓝色——不要将其连接到其中一个连接点。这样，当您拖动某个实例以腾出空间时，连接线将滑动到正确的位置(自动避免交叉)。
+- 如果不希望连接线在实例周边滑动，可以将它们附着到固定连接点（小十字，悬停在形状上时以绿色突出显示）。
+
+
+
+**编辑某行**
+
+- 选择属性行，然后按Enter键编辑该行。完成后，按CTRL+Enter退出文本编辑。使用箭头键移动到下一个实体，或按CTRL+Enter（或在MacOS上按CMD+Enter）复制该实体。
+
+   
+
+- **Inserting entities from a text file:** You can insert entities directly from SQL code – click on **Arrange**, then **Insert**, then **Advanced**, then **From Text**. In the dialog, select **Table** from the drop down list. You’ll see example code – paste in your SQL, then click **Insert**.
+
+
+
+## 数据库系统的结构
+
+
+
+
+
+
+
+
+
+
 
 #  SQL
 
 
-
-**数据库 vs 数据库软件**
-
-确切地说，数据库软件应称为数据库管理系统 ( DBMS : database management system ) 数据库是通过 DBMS 创建和操纵的容器。
 
 
 
@@ -506,7 +738,7 @@ ORDER BY vend_name;
 
 
 
-![image-20240310224539355](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240310224539355.png)
+![image-20240310224539355](https://s2.loli.net/2024/05/07/Z4BkgCUbEDPhsr6.png)
 
 ##### 使用别名
 
@@ -523,7 +755,7 @@ FROM Vendors
 ORDER BY vend_name;
 ```
 
-![image-20240310224607021](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240310224607021.png)
+![image-20240310224607021](https://s2.loli.net/2024/05/07/aj1DJc7o64LWg5h.png)
 
 
 
@@ -959,6 +1191,390 @@ ORDER BY items, order_num;
 
 
 
+
+
+#### 子查询
+
+ **子查询** ( 或嵌套查询 **subquery** ) ：内部SELECT语句( 子查询 ) 的结果用在外部语句中用以决定最后的查询结果
+
+子查询可以被使用在外部 SELECT 语句的 WHERE 和 HAVING 子句中，子查询也可出现在 INSERT, UPDATE, DELETE 语句中
+
+可以认为 子查询产生一个临时表，便于外部语句访问和利用。在 WHERE 子句和 HAVING 子句中，子查询可以进拎着关系运算符 ( =, <, > , <=, >=, <>)
+
+**子查询有 3 种类型 ：**
+
+- 标量子查询返回单个列和单个行，即单个值。原则上，标量子查询可用于任何需要单个值的地方
+- 行子查询返回多个列，但只有单个行。行子查询可用于任何需要行值构造器的时候，如在为此中
+- 表子查询返回多个行，每行有一个或多个列。表子查询用于需要一个表的情况，例如，作为谓词 IN 的操作数
+
+
+
+##### **用于相等判断的子查询**
+
+```sql
+SELECT staffNo, fName, lName, position
+FROM Staff
+WHERE branchNo = (SELECT branchNo
+                 	FROM Branch
+                 	WHERE street = '163 Main St')
+# 若只有一个分公司编号，就是标量查询
+```
+
+
+
+
+
+
+
+
+
+
+
+##### 用于IN操作符
+
+ 如需要列出订购物品 RGAN01 的所有顾客，怎样检索？
+
+1. 检索包含物品 GRAN01 的所有订单的编号。
+2. 检索具有前一步骤列出的订单编号所有顾客的ID
+3. 检索前一步骤返回的所有顾客ID 的顾客信息
+
+上述每个步骤都可以单独作为一个查询来执行。可以把一条 SELECT 语句返回的结果用于另一条SELECT 语句的 WHERE 子句。
+
+也可以使用子查询来把3个查询组合成一条语句。
+
+```sql
+SELECT order_num
+FROM OrderItems
+WHERE prod_id = 'GRAN01';
+```
+
+
+
+输出：
+
+```sql
+order_num
+--------
+20007
+20008
+```
+
+
+
+下一步查询与订单 20007 和 20008 相关的顾客 ID
+
+```sql
+SELECT cust_id
+FROM Orders
+WHERE order_num IN (20007, 20008);
+```
+
+ ![image-20240314214817688](https://s2.loli.net/2024/05/07/dzyms35VafKCTji.png)
+
+
+
+结合这两个查询，将第一个查询( 返回订单号的那个 )变为子查询
+
+```sql
+SELECT cust_id
+FROM Orders
+WHERE order_num IN (SELECT order_num 		   
+                    FROM OrderItems 					   
+                    WHERE prod_id = 'RGAN01');
+                    
+                    
+SELECT cust_name, cust_contact
+FROM Customers
+WHERE cust_id IN (SELECT cust_id
+                  FROM Orders
+                  WHERE order_num IN (SELECT order_num 
+                                      FROM OrderItems
+                                      WHERE prod_id = 'RGAN01'));
+```
+
+- 在 SELECT 语句中 ，子查询总是从内向外处理 。
+- 作为子查询的SELECT 语句只能查询单个列 ，企图检索多个列将返回错误。
+
+- 格式化SQL：包含子查询的 SELECT 的语句难以阅读和调试，它们在较为复杂时更是如此 。把子查询分解为多行并进行适当的缩进，能极大地简化子查询的使用。
+
+
+
+## 作为计算字段使用子查询
+
+使用子查询的另一方法是创建计算字段
+
+例如需要显示 Customers 表中每个顾客的订单总数 。订单与相应的顾客 ID 存储在 Orders表中。
+
+1. 从 Customers表中检索顾客列表
+2. 对于检索出的每个顾客，统计其在 Orders 表中的订单数目。
+
+
+
+可使用SELECT COUNT(*) 对表中的行进行计数，并通过提供一条 WHERE 子句来过滤某个特定的顾客 ID, 仅对该顾客的订单进行计数。
+
+```sql
+SELECT COUNT(*) AS orders
+FROM Orders
+WHERE cust_id = 100000001;
+```
+
+
+
+要对每个顾客执行 COUNT(*) , 应该将它作为一个子查询：
+
+```sql
+SELECT cust_name,
+	   cust_state,
+	   (SELECT COUNT(*)
+        FROM Orders
+        WHERE Orders.cust_id = Customers.cust_id) AS orders
+FROM Customers
+ORDER BY cust_name;
+```
+
+- **完全限定列名**
+  - 子查询中的 WHERE 子句与前面使用的 WHERE 子句稍有不同 ，因为它使用了**完全限定列名**，而不只是 列名 ( cust_id ) , 它指定 表名和 列名 ( Orders.cust_id, Customers.cust_id )
+  - 用句点分隔表名和列名 ，在SELECT 语句中操作多个表，有可能混淆列名时必须使用这种语法。
+- ` WHERE Orders.cust_id = Customers.cust_id` 告诉 SQL ， 比较 Orders 表中的 cust_id 和当前正从 Customers 表中检索的 cust_id
+
+
+
+##### 挑战题
+
+![image-20240315183036922](https://s2.loli.net/2024/05/07/mUI1VNSr4ePJwqY.png)
+
+```sql
+# 1.
+SELECT cust_id
+FROM Orders
+WHERE order_num IN (SELECT order_num
+					FROM orderItems
+					WHERE prod_price >= 10);
+
+
+# 2.
+SELECT cust_id, order_date
+FROM Orders
+WHERE order_num IN (SELECT order_num
+					FROM OrderItems
+					WHERE prod_id = 'BR01')
+ORDER BY order_date;
+
+
+# 3.
+SELECT cust_email 
+FROM Customers
+WHERE cust_id IN (SELECT cust_id 
+				  FROM Customers 
+				  WHERE cust_id IN (SELECT cust_id 
+									FROM OrderItems
+									WHERE prod_id = 'BR01'));
+									
+									
+# 4.
+SELECT cust_id, ( SELECT SUM(item_price*quantity)
+				 FROM OrderItems
+				 WHERE OrderItems.order_num = Orders.order_num
+				 ) AS total_ordered
+FROM Orders
+GROUP BY cust_id
+ORDER BY total_ordered DESC; -- bug: 若一个用户有多个订单怎么办？
+
+# 5.
+SELECT prod_name, (SELECT SUM(quantity)
+				   FROM OrderItems
+				   WHERE Products.prod_id = OrderItems.prod_id) AS quant_sold
+FROM Products;
+```
+
+
+
+##### Problem Record
+
+![image-20240321185426136](https://s2.loli.net/2024/05/07/l9fYIFJCgQcMa3T.png)
+
+报错原因 ：一个 cust_id 可能对应多个 order_num , 因此报错 ：子查询返回的值不止一个 。
+
+改正：
+
+![image-20240321185849326](https://s2.loli.net/2024/05/07/sBYapxcCqAbNnEi.png)
+
+或许此例的最佳表达是 联结 而不是子查询。
+
+
+
+
+
+```sql
+# 返回顾客名称和订单号，添加第三列 OrderTotal，其中包含每个订单的总价
+
+ -- 子查询版本
+ SELECT	(SELECT cust_name
+				FROM Customers
+				WHERE Orders.cust_id = Customers.cust_id) AS cust_name,
+				order_num, 
+				(SELECT SUM(item_price*quantity)
+				FROM OrderItems
+				WHERE OrderItems.order_num = Orders.order_num
+				GROUP BY order_num) AS orderTotal
+FROM Orders;
+```
+
+
+
+
+
+
+
+
+
+### INSERT
+
+将行插入到数据库表 。
+
+- 插入完整的行
+- 插入行的一部分
+- 插入某些查询的结果
+
+
+
+
+
+#### 插入完整的行 INSERT INTO
+
+- 不管使用哪种INSERT 语法，VALUES 的数目都必须正确。如果不提供列名，则必须给每个表列提供一个值；如果提供列名，则必须给列出的每个列一个值。否则，就会产生一条错误消息，相应的行不能成功插入。
+
+  
+
+**不提供列名**
+
+```sql
+INSERT INTO Customers
+VALUES(1000000006,
+		'Toy Land',
+		'123 Any Street',
+		'New York',
+		'NY',
+		'11111',
+		'USA',
+		NULL,
+		NULL);
+-- 这个例子将一个新顾客插入到Customers 表中。	
+```
+
+- 存储到表中每一列的数据在VALUES 子句中给出，必须给每一列提供一个值。如果某列没有值，则应该使用NULL 值（假定表允许对该列指定空值）。
+
+- 各列必须以它们在表定义中出现的次序填充。
+
+
+
+**提供列名**
+
+```sql
+INSERT INTO Customers(cust_id.
+                      cust_name,
+                      cust_address,
+                      cust_city,
+                      cust_state,
+                      cust_zip,
+                      cust_country,
+                      cust_contact,
+                      cust_email)
+VALUES((1000000006,
+		'Toy Land',
+		'123 Any Street',
+		'New York',
+		'NY',
+		'11111',
+		'USA',
+		NULL,
+		NULL);
+```
+
+- 不能插入同一条记录两次 。主键的值必须有唯一性，而cust_id 是主键，DBMS 不允许插入相同cust_id 值的新行。
+
+  
+
+  
+
+## 插入部分行
+
+使用INSERT 的推荐方法是明确给出表的列名。使用这种语
+法，还可以省略列，这表示可以只给某些列提供值，给其他列不提供值。
+
+
+
+省略的列需满足条件 ：
+
+- 该列定义为允许NULL 值
+- 或 ：表定义中给出默认值
+
+若表中不允许有 NULL 值或默认值 ，这时却省略了表中的值， DBMS 就会报错，相应的行不能成功插入 。
+
+
+
+## 插入检索出的数据 INSERT SELECT
+
+
+
+**INSERT SELECT 插入多行**
+
+INSERT 通常只插入一行。要插入多行，必须执行多INSERT 语句。
+INSERT SELECT 是个例外，它可以用一条INSERT 插入行，不管SELECT语句返回多少行，都将被INSERT 插入。
+
+EXAMPLE :
+
+假如想把另一表中的顾客列合并到Customers 表中，不需要每次读取一行再将它用INSERT 插入 ：
+
+```sql
+INSERT INTO Customers(cust_id.
+                      cust_name,
+                      cust_address,
+                      cust_city,
+                      cust_state,
+                      cust_zip,
+                      cust_country,
+                      cust_contact,
+                      cust_email)
+
+SELECT  cust_id.
+        cust_name,
+        cust_address,
+        cust_city,
+        cust_state,
+        cust_zip,
+        cust_country,
+        cust_contact,
+        cust_email
+FROM CustNew; 
+-- 使用INSERT SELECT 从CustNew 中将所有数据导入Customers
+```
+
+- **INSERT SELECT 中的列名**
+
+  为简单起见，这个例子在INSERT 和SELECT 语句中使用了相同的列名。但是，不一定要求列名匹配。事实上，DBMS 一点儿也不关心SELECT返回的列名。它使用的是列的位置，因此SELECT 中的第一列（不管其列名）将用来填充表列中指定的第一列，第二列将用来填充表列中指定的第二列
+
+- 任何 SELECT 选项和子句都可以使用， 包括 WHERE 和 GROUP BY, 也可利用联结从多个表插入数据
+
+
+
+## 从一个表复制到另一个表
+
+要将一个表的内容复制到一个全新的表（运行中创建的表），可以使用CREATE SELECT 语句（或者在SQL Server 里也可用SELECT INTO 语句）。
+
+与INSERT SELECT 将数据添加到一个已经存在的表不同，CREATE SELECT 将数据复制到一个新表（有的DBMS 可以覆盖已经存在的表，这依赖于所使用的具体DBMS）。
+
+```sql
+CREATE TABLE CustCopy AS SELECT * FROM Customers
+
+-- SQL Server :
+SELECT * INTO CustCopy FROM Customers
+```
+
+
+
+
+
 ## 易犯的错误
 
 错误提示：
@@ -1007,7 +1623,7 @@ group by sex
 
 ## 挑战题
 
-![image-20240314185845520](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240314185845520.png)
+![image-20240314185845520](https://s2.loli.net/2024/05/07/yNdI9CTiQrEOF47.png)
 
 ```sql
 # 1.
@@ -1041,36 +1657,11 @@ HAVING SUM(item_price*quantity) >= 1000;
 
 
 
-## SQL 数据类型
 
-数据类型是定义列中可以存储什么数据以及该数据实际怎样存储的基本规则
-
-- 限制可存储在列中的数据
-- 更有效地存储数据，可用一种比文本字符串更简洁的格式存储数值和日期时间值。
-- 数据类型允许变换排序顺序，若所有数据都作为字符串处理，则 1 位于 10 之前， 而 10 又位于 2 之前 ( 字符串以字典顺序排序， 从左侧开始比较，一次一个字符 ) 。作为数值数据类型，数值才能正确排序 。
-
-- 即便具有相同名称的数据类型也可能代表不同的东西
-
-### 字符串
-
-```sql
-CHAR 	# 1-255 个字符的定长字符串。它的长度必须在创建时规定
-NCHAR 	# CHAR 的特殊形式用来支持多字节或 Unicode字符( 此类型的不同实现变化很大 )
-NVARCHAR 	#TEXT 的特殊形式，用来支持多字节或 Unicode字符 ( 此类型的不同实现变化很大 )
-TEXT ( 也称为LONG, MEMO 或VARCHAR )		#变长文本
-```
-
-- **定长列不允许多于指定的字符数目。它们的存储空间与指定的一样多 。**
-
-  若字符串Ben存储到30个字符的字段，则存储的是 30 个字符，缺少的字符用空格填充，或根据需要补为 NULL
-
-- 变长字符串存储任意长度的文本( 其最大长度随不同的数据类型和 DBMS 而变化) 。有些变长数据类型具有最小的定长，而有些则是完全变长的。不管是哪种，只有指定的数据得以保存( 额外的数据不保存 )
-
-  
 
 ## 后续使用的table
 
-![image-20240307110039367](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240307110039367.png)
+![image-20240307110039367](https://s2.loli.net/2024/05/07/P1VH4j53nxNrA6W.png)
 
 
 
@@ -1158,75 +1749,6 @@ OrderItems 表存储每个订单中的物品，每个订单的每个物品一行
 
 
 
-# 拓展 ：ER 图 
-
-**entity relationship diagrams** 实体关系图
-
-摘自 https://drawio-app.com/blog/entity-relationship-diagrams-with-draw-io/
-
-![](D:\study\database\shortcuts\1.png)
-
-
-
-![](D:\study\database\shortcuts\2.png)
-
-## REDs的三个组成部分
-
-
-
-### 1.属性
-
-**Attributes** : 组成实体的各个数据。 
-
-- In the first style of diagram, they are drawn as circles floating around their entity. In the second style, similar to UML class diagrams, they are listed within the rectangle.
-
-- 如果一个属性用于标识实体，则它是主键并带有下划线。如果它指的是另一个实体的标识属性，则它是外键，并用斜体表示。
-
-- 如果不是实际存储属性，而是根据其他属性计算属性，则该属性是派生属性，并且具有虚线轮廓。
-
-![](D:\study\database\shortcuts\3.png)
-
-
-
-### 2.关系
-
-- 可以用菱形表示，也可以在两个实体之间的连接器上写成文本。
-- In the first style of diagram, you can see that both User and Coach write comments, and the User can perform a habit Checkin, these two ‘actions’ aren’t represented at all in the second style of diagram, which purely represents the data, not any interactions.
-- Relationship connectors use Crow’s foot notation to show how many of each entity is related to another entity. For example, in the Habit Tracker app – A Coach can have 0 to many Users, but a User can only have 0 or 1 Coach. Users may have many Habits, and each Habit may belong to many users.
-- 将鼠标悬停在实体关系库中的每个形状上，以查看其类型。
-
-![4](D:\study\database\shortcuts\4.png)
-
-
-
-### 3.实体
-
-- These represent a collection of data, using a rectangle with attributes ‘hanging’ off it, or box containing a list of its attributes.
-
-- 一个弱实体（显示为双矩形），因为它没有自己的主键——它只存在于它所属的实体中。
-- 关联实体（在第二种类型的图中更容易看到）以虚线轮廓和连接器显示——无论在哪里有多对多关系，都需要这种类型的实体。要在第一种图表样式中创建关联实体，请添加实体形状和关系形状，并将这两个形状组合在一起。
-
-
-
-## draw.io 使用技巧
-
-### 连接线
-
-- 滑动连接：绘制关系的连接线时，请确保将鼠标悬停实例上直到轮廓变为蓝色——不要将其连接到其中一个连接点。这样，当您拖动某个实例以腾出空间时，连接线将滑动到正确的位置(自动避免交叉)。
-- 如果不希望连接线在实例周边滑动，可以将它们附着到固定连接点（小十字，悬停在形状上时以绿色突出显示）。
-
-
-
-### 编辑某行
-
-- 选择属性行，然后按Enter键编辑该行。完成后，按CTRL+Enter退出文本编辑。使用箭头键移动到下一个实体，或按CTRL+Enter（或在MacOS上按CMD+Enter）复制该实体。
-
-   
-
-- **Inserting entities from a text file:** You can insert entities directly from SQL code – click on **Arrange**, then **Insert**, then **Advanced**, then **From Text**. In the dialog, select **Table** from the drop down list. You’ll see example code – paste in your SQL, then click **Insert**.
-
-
-
 
 
 
@@ -1251,7 +1773,7 @@ OrderItems 表存储每个订单中的物品，每个订单的每个物品一行
 
 与所有的 DBMS 都等同地支持SQL语句不同，每一个DBMS 都有特定的函数 , SQL函数不是可移植的。
 
-![image-20240311152828277](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240311152828277.png)
+![image-20240311152828277](https://s2.loli.net/2024/05/07/aF3EUYvIN5HTmjw.png)
 
 
 
@@ -1420,204 +1942,6 @@ TAN()	# 正切
 
 
 
-# 子查询
-
- **子查询** ( **subquery** ) ：嵌套在其他查询中的查询。
-
-子查询常用于 WHERE 子句的 IN 操作符中，以及用来填充计算列。
-
-
-
-## 用于IN操作符
-
- 如需要列出订购物品 RGAN01 的所有顾客，怎样检索？
-
-1. 检索包含物品 GRAN01 的所有订单的编号。
-2. 检索具有前一步骤列出的订单编号所有顾客的ID
-3. 检索前一步骤返回的所有顾客ID 的顾客信息
-
-上述每个步骤都可以单独作为一个查询来执行。可以把一条 SELECT 语句返回的结果用于另一条SELECT 语句的 WHERE 子句。
-
-也可以使用子查询来把3个查询组合成一条语句。
-
-```sql
-SELECT order_num
-FROM OrderItems
-WHERE prod_id = 'GRAN01';
-```
-
-
-
-输出：
-
-```sql
-order_num
---------
-20007
-20008
-```
-
-
-
-下一步查询与订单 20007 和 20008 相关的顾客 ID
-
-```sql
-SELECT cust_id
-FROM Orders
-WHERE order_num IN (20007, 20008);
-```
-
- ![image-20240314214817688](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240314214817688.png)
-
-
-
-结合这两个查询，将第一个查询( 返回订单号的那个 )变为子查询
-
-```sql
-SELECT cust_id
-FROM Orders
-WHERE order_num IN (SELECT order_num 		   
-                    FROM OrderItems 					   
-                    WHERE prod_id = 'RGAN01');
-                    
-                    
-SELECT cust_name, cust_contact
-FROM Customers
-WHERE cust_id IN (SELECT cust_id
-                  FROM Orders
-                  WHERE order_num IN (SELECT order_num 
-                                      FROM OrderItems
-                                      WHERE prod_id = 'RGAN01'));
-```
-
-- 在 SELECT 语句中 ，子查询总是从内向外处理 。
-- 作为子查询的SELECT 语句只能查询单个列 ，企图检索多个列将返回错误。
-
-- 格式化SQL：包含子查询的 SELECT 的语句难以阅读和调试，它们在较为复杂时更是如此 。把子查询分解为多行并进行适当的缩进，能极大地简化子查询的使用。
-
-
-
-## 作为计算字段使用子查询
-
-使用子查询的另一方法是创建计算字段
-
-例如需要显示 Customers 表中每个顾客的订单总数 。订单与相应的顾客 ID 存储在 Orders表中。
-
-1. 从 Customers表中检索顾客列表
-2. 对于检索出的每个顾客，统计其在 Orders 表中的订单数目。
-
-
-
-可使用SELECT COUNT(*) 对表中的行进行计数，并通过提供一条 WHERE 子句来过滤某个特定的顾客 ID, 仅对该顾客的订单进行计数。
-
-```sql
-SELECT COUNT(*) AS orders
-FROM Orders
-WHERE cust_id = 100000001;
-```
-
-
-
-要对每个顾客执行 COUNT(*) , 应该将它作为一个子查询：
-
-```sql
-SELECT cust_name,
-	   cust_state,
-	   (SELECT COUNT(*)
-        FROM Orders
-        WHERE Orders.cust_id = Customers.cust_id) AS orders
-FROM Customers
-ORDER BY cust_name;
-```
-
-- **完全限定列名**
-  - 子查询中的 WHERE 子句与前面使用的 WHERE 子句稍有不同 ，因为它使用了**完全限定列名**，而不只是 列名 ( cust_id ) , 它指定 表名和 列名 ( Orders.cust_id, Customers.cust_id )
-  - 用句点分隔表名和列名 ，在SELECT 语句中操作多个表，有可能混淆列名时必须使用这种语法。
-- ` WHERE Orders.cust_id = Customers.cust_id` 告诉 SQL ， 比较 Orders 表中的 cust_id 和当前正从 Customers 表中检索的 cust_id
-
-
-
-## 挑战题
-
-![image-20240315183036922](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240315183036922.png)
-
-```sql
-# 1.
-SELECT cust_id
-FROM Orders
-WHERE order_num IN (SELECT order_num
-					FROM orderItems
-					WHERE prod_price >= 10);
-
-
-# 2.
-SELECT cust_id, order_date
-FROM Orders
-WHERE order_num IN (SELECT order_num
-					FROM OrderItems
-					WHERE prod_id = 'BR01')
-ORDER BY order_date;
-
-
-# 3.
-SELECT cust_email 
-FROM Customers
-WHERE cust_id IN (SELECT cust_id 
-				  FROM Customers 
-				  WHERE cust_id IN (SELECT cust_id 
-									FROM OrderItems
-									WHERE prod_id = 'BR01'));
-									
-									
-# 4.
-SELECT cust_id, ( SELECT SUM(item_price*quantity)
-				 FROM OrderItems
-				 WHERE OrderItems.order_num = Orders.order_num
-				 ) AS total_ordered
-FROM Orders
-GROUP BY cust_id
-ORDER BY total_ordered DESC; -- bug: 若一个用户有多个订单怎么办？
-
-# 5.
-SELECT prod_name, (SELECT SUM(quantity)
-				   FROM OrderItems
-				   WHERE Products.prod_id = OrderItems.prod_id) AS quant_sold
-FROM Products;
-```
-
-
-
-## Problem Record
-
-![image-20240321185426136](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240321185426136.png)
-
-报错原因 ：一个 cust_id 可能对应多个 order_num , 因此报错 ：子查询返回的值不止一个 。
-
-改正：
-
-![image-20240321185849326](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240321185849326.png)
-
-或许此例的最佳表达是 联结 而不是子查询。
-
-
-
-
-
-```sql
-# 返回顾客名称和订单号，添加第三列 OrderTotal，其中包含每个订单的总价
-
- -- 子查询版本
- SELECT	(SELECT cust_name
-				FROM Customers
-				WHERE Orders.cust_id = Customers.cust_id) AS cust_name,
-				order_num, 
-				(SELECT SUM(item_price*quantity)
-				FROM OrderItems
-				WHERE OrderItems.order_num = Orders.order_num
-				GROUP BY order_num) AS orderTotal
-FROM Orders;
-```
-
 
 
 
@@ -1626,7 +1950,7 @@ FROM Orders;
 
 SQL最强大的功能之一就是能在数据查询的执行中 联结( join) 表。
 
-![image-20240315224739590](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240315224739590.png)
+![image-20240315224739590](https://s2.loli.net/2024/05/07/N6rW8snMgvLPdiU.png)
 
 - 同一供应商生产的每个产品 ，其供应商信息都是相同的 ，对每个产品重复此信息既浪费时间又浪费存储空间；
 - 若供应商信息发生变化，只需修改一次
@@ -1643,7 +1967,7 @@ SQL最强大的功能之一就是能在数据查询的执行中 联结( join) �
 
 **用来在 SELECT 语句中关联表** 。可以联结多个表返回一组输出 ，联结在运行时关联表中正确的行 
 
-![image-20240316095038701](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240316095038701.png)
+![image-20240316095038701](https://s2.loli.net/2024/05/07/JliBvUcaO7pCs3o.png)
 
 在一条 SELECT 语句中联结几个表时 ，相应的关系是在运行中构造的 。在数据库表的定义中没有指示 DBMS 如何对表进行联结 ，你必须手动定义 。
 
@@ -1735,7 +2059,7 @@ AND order_num = 20007;
 
 
 
-![image-20240317222137412](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240317222137412.png)
+![image-20240317222137412](https://s2.loli.net/2024/05/07/tOSdBQ2y6hbCEZ9.png)
 
 虽然SQL本身不限制每个联结约束中表的数目，但实际上许多 DBMS 都有限制 。
 
@@ -1770,9 +2094,9 @@ AND prod_id = 'RGAN01'
 
 ## 挑战题
 
-![image-20240321130325069](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240321130325069.png)
+![image-20240321130325069](https://s2.loli.net/2024/05/07/7eorYwkC1M6EAjs.png)
 
-![image-20240321130340805](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240321130340805.png)
+![image-20240321130340805](https://s2.loli.net/2024/05/07/pKuhONvoAlkmxXq.png)
 
 ```sql
 # 1.
@@ -2034,9 +2358,9 @@ Tips ：多数情况下，组合相同表的两个查询所完成的工作与具
 
 ### UNION
 
-![image-20240408122238895](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240408122238895.png)
+![image-20240408122238895](https://s2.loli.net/2024/05/07/vDNr5e7qahHcA6Q.png)
 
-![image-20240408122251323](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240408122251323.png)
+![image-20240408122251323](https://s2.loli.net/2024/05/07/6WKXjRyUwLoreza.png)
 
 
 
@@ -2095,153 +2419,6 @@ ORDER BY cust_name, cust_contact;
 
 
 
-
-# 数据插入
-
-INSERT 用来将行插入到数据库表 。
-
-- 插入完整的行
-- 插入行的一部分
-- 插入某些查询的结果
-
-
-
-插入及系统安全 ：
-
-使用 INSERT 语句可能需要客户端/服务器 DBMS 中特定安全权限， 在试图使用INSERT 前，应确保自己有足够的安全权限
-
-
-
-## 插入完整的行 INSERT INTO
-
-- 不管使用哪种INSERT 语法，VALUES 的数目都必须正确。如果不提供列名，则必须给每个表列提供一个值；如果提供列名，则必须给列出的每个列一个值。否则，就会产生一条错误消息，相应的行不能成功插入。
-
-  
-
-**不提供列名**
-
-```sql
-INSERT INTO Customers
-VALUES(1000000006,
-		'Toy Land',
-		'123 Any Street',
-		'New York',
-		'NY',
-		'11111',
-		'USA',
-		NULL,
-		NULL);
--- 这个例子将一个新顾客插入到Customers 表中。	
-```
-
-- 存储到表中每一列的数据在VALUES 子句中给出，必须给每一列提供一个值。如果某列没有值，则应该使用NULL 值（假定表允许对该列指定空值）。
-
-- 各列必须以它们在表定义中出现的次序填充。
-
-
-
-**提供列名**
-
-```sql
-INSERT INTO Customers(cust_id.
-                      cust_name,
-                      cust_address,
-                      cust_city,
-                      cust_state,
-                      cust_zip,
-                      cust_country,
-                      cust_contact,
-                      cust_email)
-VALUES((1000000006,
-		'Toy Land',
-		'123 Any Street',
-		'New York',
-		'NY',
-		'11111',
-		'USA',
-		NULL,
-		NULL);
-```
-
-- 不能插入同一条记录两次 。主键的值必须有唯一性，而cust_id 是主键，DBMS 不允许插入相同cust_id 值的新行。
-
-  
-
-  
-
-## 插入部分行
-
-使用INSERT 的推荐方法是明确给出表的列名。使用这种语
-法，还可以省略列，这表示可以只给某些列提供值，给其他列不提供值。
-
-
-
-省略的列需满足条件 ：
-
-- 该列定义为允许NULL 值
-- 或 ：表定义中给出默认值
-
-若表中不允许有 NULL 值或默认值 ，这时却省略了表中的值， DBMS 就会报错，相应的行不能成功插入 。
-
-
-
-## 插入检索出的数据 INSERT SELECT
-
-
-
-**INSERT SELECT 插入多行**
-
-INSERT 通常只插入一行。要插入多行，必须执行多INSERT 语句。
-INSERT SELECT 是个例外，它可以用一条INSERT 插入行，不管SELECT语句返回多少行，都将被INSERT 插入。
-
-EXAMPLE :
-
-假如想把另一表中的顾客列合并到Customers 表中，不需要每次读取一行再将它用INSERT 插入 ：
-
-```sql
-INSERT INTO Customers(cust_id.
-                      cust_name,
-                      cust_address,
-                      cust_city,
-                      cust_state,
-                      cust_zip,
-                      cust_country,
-                      cust_contact,
-                      cust_email)
-
-SELECT  cust_id.
-        cust_name,
-        cust_address,
-        cust_city,
-        cust_state,
-        cust_zip,
-        cust_country,
-        cust_contact,
-        cust_email
-FROM CustNew; 
--- 使用INSERT SELECT 从CustNew 中将所有数据导入Customers
-```
-
-- **INSERT SELECT 中的列名**
-
-  为简单起见，这个例子在INSERT 和SELECT 语句中使用了相同的列名。但是，不一定要求列名匹配。事实上，DBMS 一点儿也不关心SELECT返回的列名。它使用的是列的位置，因此SELECT 中的第一列（不管其列名）将用来填充表列中指定的第一列，第二列将用来填充表列中指定的第二列
-
-- 任何 SELECT 选项和子句都可以使用， 包括 WHERE 和 GROUP BY, 也可利用联结从多个表插入数据
-
-
-
-## 从一个表复制到另一个表
-
-要将一个表的内容复制到一个全新的表（运行中创建的表），可以使用CREATE SELECT 语句（或者在SQL Server 里也可用SELECT INTO 语句）。
-
-与INSERT SELECT 将数据添加到一个已经存在的表不同，CREATE SELECT 将数据复制到一个新表（有的DBMS 可以覆盖已经存在的表，这依赖于所使用的具体DBMS）。
-
-```sql
-CREATE TABLE CustCopy AS SELECT * FROM Customers
-
--- SQL Server :
-SELECT * INTO CustCopy FROM Customers
-```
 
 
 
@@ -2394,7 +2571,7 @@ CREATE TABLE Products
 
   默认值经常用于日期或时间戳列。例如，通过指定引用系统日期的函数或变量，将系统日期用作默认日期
 
-![image-20240408163758057](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240408163758057.png)
+![image-20240408163758057](https://s2.loli.net/2024/05/07/DlhfoN3HbtQKz8e.png)
 
 
 
@@ -2402,7 +2579,7 @@ CREATE TABLE Products
 
 ## 更新表 ALTER TABLE
 
-![image-20240408163950695](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240408163950695.png)
+![image-20240408163950695](https://s2.loli.net/2024/05/07/qef7YOy1BU946bi.png)
 
 
 
@@ -2416,7 +2593,7 @@ ALTER TABLE Vendors
 ADD vend_phone CHAR(20)
 ```
 
-![image-20240408164528595](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240408164528595.png)
+![image-20240408164528595](https://s2.loli.net/2024/05/07/2WT6P47jqEHoVtu.png)
 
 
 
@@ -2449,9 +2626,9 @@ DROP TABLE CustCopy;
 视图提供了一种封装SELECT 语句的层次，可用来简化数据处理，重新
 格式化或保护基础数据。
 
-![image-20240408212705294](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240408212705294.png)
+![image-20240408212705294](https://s2.loli.net/2024/05/07/lwoDz4AyxiNa1W6.png)
 
-![image-20240408212721897](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240408212721897.png)
+![image-20240408212721897](https://s2.loli.net/2024/05/07/aPg4JrHsTUtLmbo.png)
 
 
 
@@ -2578,7 +2755,7 @@ WHERE order_num = 20008;
 
 # 存储过程
 
-![image-20240409121444135](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240409121444135.png)
+![image-20240409121444135](https://s2.loli.net/2024/05/07/ZkhOQyMbUt4Fp9g.png)
 
 可以单独编写每条SQL 语句，并根据结果有条件地执行其他语句。在每次需要这个处理时（以及每个需要它的应用中），都必须做这些工作。
 也可以创建存储过程。简单来说，存储过程就是为以后使用而保存的一条或多条SQL 语句。可将其视为批文件，虽然它们的作用不仅限于批处理。
@@ -2595,7 +2772,7 @@ WHERE order_num = 20008;
 
 简化对变动的管理。如果表名、列名或业务逻辑（或别的内容）有变化，那么只需要更改存储过程的代码。使用它的人员甚至不需要知道这些变化。
 
-![image-20240409121908657](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240409121908657.png)
+![image-20240409121908657](https://s2.loli.net/2024/05/07/IYQrPUbtvAh8xZH.png)
 
 
 
@@ -3464,3 +3641,281 @@ END;
  仅通过视图或存储过程对表进行访问；
  创建多层次的安全措施，从而允许多种基于登录的访问和控制；
  限制管理用户账号的能力。
+
+
+
+
+
+
+
+# T-SQL
+
+Transact-SQL (T-SQL) is Microsoft's proprietary extension of SQL used in SQL Server and Azure SQL Database. It adds various programming constructs such as variables, control-of-flow language, and error handling to SQL's data manipulation language (DML).
+
+Some common tasks performed using T-SQL include:
+
+1. **Data Retrieval**: SELECT statement is used to query data from tables.
+2. **Data Modification**: INSERT, UPDATE, DELETE statements are used to add, modify, or remove data from tables.
+3. **Data Definition**: CREATE, ALTER, DROP statements are used to define, modify, or remove database objects like tables, views, stored procedures, etc.
+4. **Data Control**: GRANT, REVOKE statements are used to control access to database objects.
+5. **Transaction Control**: BEGIN TRANSACTION, COMMIT TRANSACTION, ROLLBACK TRANSACTION statements are used to control transactions.
+6. **Error Handling**: TRY…CATCH blocks are used to handle errors in T-SQL scripts or stored procedures.
+
+
+
+
+
+## data types
+
+https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver16
+
+![SQL Server Data Types](https://www.sqlservertutorial.net/wp-content/uploads/SQL-Server-Data-Types.png)
+
+Notice that SQL Server will remove **ntext**, **text**, and **image** data types in its future version. Therefore, you should avoid using these data types and use **nvarchar(max)**, **varchar(max)**, and **varbinary(max)** data types instead.
+
+
+
+### numeric
+
+#### Exact numeric data types
+
+Exact numeric data types store exact numbers such as integer, decimal, or monetary amount.
+
+
+
+- The `bit `store one of three values : 0, 1 and Null
+- The `int `, `bigint`, `smallint`, `tinyint` data types store integer data.
+- The `decimal` and  `numeric` data types store numbers that have fixed precision and scale. Note that decimal and numeric are synonyms.
+- The `money` and `smallmoney` data types store currency values.
+
+![image-20240418192727258](https://s2.loli.net/2024/05/07/9p7BrWmYNxSsuzF.png)
+
+
+
+#### Decimal and numeric
+
+`decimal[(p[,s])]` and `numeric[(p[,s])]`
+
+Fixed precision and scale numbers
+
+When maximum precision is used , valid values are from  - 10^38^ + 1 through 10^38^ -1 ,
+
+The ISO synonyms for decimal  are dec and dec(p, s)**. **numeric is functionally identical to decimal.
+
+
+
+- **Arguments**
+
+  - **p (precision)**
+
+    The maximum total number of decimal digits to be stored. This number includes both the left and the right sides of the decimal point. 
+
+    The precision must be a value from 1 through the maximum precision of 38. The default precision is 18.
+
+  - **s (scale, 小数位数)**
+
+    Can only be specified if precision is specified. The default scale is 0 and so 0 <= *s* <= *p*. 
+
+    Number of decimal digits stored to the **right of the decimal point.** `p - s `determine the maximum number of digits to the left of the decimal point. 
+
+
+
+
+- **Converting** 
+
+  - In Transact-SQL statements, **a constant with a decimal point is automatically converted into a numeric data value, using the minimum precision and scale necessary.**
+
+    Example : the constant 12.345 is converted into a numeric value with a precision of 5 and a scale of 3 .
+
+  - Converting from decimal or numeric to float or  real can cause some loss of precision. 
+
+  - Converting from int, smallint, tinyint, float**, **real**, **money, or smallmoney to either decimal or numeric can cause overflow.
+
+
+
+#### Approximate numeric data types
+
+![image-20240418193649848](https://s2.loli.net/2024/05/07/OiWkzqNaTpuXRHD.png)
+
+**syntax**
+
+`float[(n)]` : n is the number of bits that are used to store the mantissa of the float number in scientific notation and, therefore, dictates the precision and storage size.
+
+ If *n* is specified, it must be a value between **1** and **53**. The default value of *n* is **53**.
+
+| *n* value | Precision | Storage size |
+| :-------- | :-------- | :----------- |
+| **1-24**  | 7 digits  | 4 bytes      |
+| **25-53** | 15 digits | 8 bytes      |
+
+ Note
+
+SQL Server treats *n* as one of two possible values. If **1**<=n<=**24**, *n* is treated as **24**. If **25**<=n<=**53**, *n* is treated as **53**.
+
+
+
+
+
+### Strings
+
+Character strings data types allow you to store either fixed-length (char) or variable-length data (varchar). The text data type can store non-Unicode data in the code page of the server.
+
+
+
+#### Character strings
+
+##### `char[(n)]`
+
+Fixed-size string data. *n* defines the string size in bytes and must be a value from 1 through 8,000. 
+
+For single-byte encoding character sets such as `Latin`, the storage size is *n* bytes and the number of characters that can be stored is also *n*. For multibyte encoding character sets, the storage size is still *n* bytes but the number of characters that can be stored may be smaller than *n*. 
+
+The ISO synonym for **char** is **character**. For more information on character sets, see [Single-Byte and Multibyte Character Sets](https://learn.microsoft.com/en-us/cpp/c-runtime-library/single-byte-and-multibyte-character-sets).
+
+
+
+##### `varchar[(n|max)]`
+
+Variable-size string data. Use *n* to define the string size in bytes and can be a value from 1 through 8,000, or use **max** to indicate a column constraint size up to a maximum storage of 2^31-1 bytes (2 GB)
+
+he ISO synonyms for **varchar** are **char varying** or **character varying**.
+
+
+
+##### Remarks
+
+- A common misconception is to think that with **char(n)** and **varchar(n)**, the *n* defines the number of characters. 
+
+  However, in char(n) and varchar(n), the *n* defines the string length in **bytes** (0 to 8,000). 
+
+  *n* never defines numbers of characters that can be stored. This is similar to the definition of **nchar(n)** and **nvarchar(n)**
+
+  The misconception happens because when using single-byte encoding, the storage size of char and varchar is *n* bytes and the number of characters is also *n*. However, for multibyte encoding such as [UTF-8](https://www.wikipedia.org/wiki/UTF-8), higher Unicode ranges (128 to 1,114,111) result in one character using two or more bytes.
+
+
+
+- When *n* isn't specified in a data definition or variable declaration statement, the default length is 1. If *n* isn't specified when using the `CAST` and `CONVERT` functions, the default length is 30.
+
+
+
+- If you use **char** or **varchar**, we recommend that you:
+  - Use **char** when the sizes of the column data entries are consistent.
+  - Use **varchar** when the sizes of the column data entries vary considerably.
+  - Use **varchar(max)** when the sizes of the column data entries vary considerably, and the string length might exceed 8,000 bytes.
+
+
+
+
+
+#### binary and varbinary
+
+
+
+##### `binary[(n)]`
+
+Fixed-length binary data with a length of *n* bytes, where *n* is a value from 1 through 8,000. The storage size is *n* bytes.
+
+
+
+##### `varbinary [ ( n | max ) ]`
+
+Variable-length binary data. *n* can be a value from 1 through 8,000. max indicates that the maximum storage size is 2^31^-1 bytes. The storage size is the actual length of the data entered + 2 bytes. The data that is entered can be 0 bytes in length.
+
+![image-20240422194951448](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422194951448.png)
+
+
+
+##### truncation
+
+```sql
+DECLARE @BinaryVariable2 BINARY(2);
+  
+SET @BinaryVariable2 = 123456;
+SET @BinaryVariable2 = @BinaryVariable2 + 1;
+  
+SELECT CAST( @BinaryVariable2 AS INT);
+GO
+```
+
+
+
+
+
+
+
+
+
+## Manage
+
+
+
+### Create database
+
+https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-transact-sql?view=sql-server-ver16&tabs=sqlpool
+
+```sql
+USE master;
+GO
+
+CREATE DATABASE Sales ON
+(NAME = Sales_dat,
+    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\saledat.mdf',
+    SIZE = 10,
+    MAXSIZE = 50,
+    FILEGROWTH = 5)
+LOG ON
+(NAME = Sales_log,
+    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\salelog.ldf',
+    SIZE = 5 MB,
+    MAXSIZE = 25 MB,
+    FILEGROWTH = 5 MB);
+GO
+```
+
+
+
+#### Files and Filegroups
+
+At a minimum, every SQL Server database has two operating system files: a data file and a log file
+
+Data files contain data and objects such as tables, indexes, stored procedures, and views.
+
+Log files contain the information that is required to recover all transactions in the database
+
+Data files can be grouped together in filegroups for allocation and administration purposes.
+
+
+
+
+
+## Operators
+
+
+
+### UNION
+
+Concatenates the results of two queries into a single result set. You control whether the result set includes duplicate rows:
+
+**UNION ALL** - Includes duplicates.
+
+**UNION** - Excludes duplicates.
+
+```sql
+{ <query_specification> | ( <query_expression> ) }   
+{ UNION [ ALL ]   
+  { <query_specification> | ( <query_expression> ) } 
+  [ ...n ] }
+```
+
+
+
+
+
+- basic rules using **UNION**:
+
+  - The number and the order of the columns must be the same in all queries.
+
+  - The definitions of the columns that are part of a UNION operation don't have to be the same, but they must be compatible through implicit conversion. 
+
+Columns of the **xml** data type must be equal. All columns must be either typed to an XML schema or untyped. If typed, they must be typed to the same XML schema collection.
+

