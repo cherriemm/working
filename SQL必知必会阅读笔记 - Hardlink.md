@@ -214,13 +214,19 @@
 
 
 
+
+
+
+
+
+
 # 数据库系统概述
 
 数据库系统是由数据库，数据库管理系统(及其应用开发工具)，应用程序，数据库管理员(DBA) 组成的存储、管理、处理和维护数据的系统
 
 
 
-## 数据库管理系统
+**数据库管理系统**
 
 **DataBase Management System( DBMS )**
 
@@ -258,9 +264,9 @@
 
 #### **数据模型组成三要素**
 
-- 数据结构 ：描述数据库的组成对象以及对象间的联系 ，描述系统的静态特性
-- 数据操作 ：主要有查询和更新(插入、删除、修改) 两大类操作，描述系统的动态特性
-- 完整性约束条件( integrity constraints )
+- **数据结构** ：描述数据库的组成对象以及对象间的联系 ：静态特性
+- **数据操作** ：主要有查询和更新(插入、删除、修改) 两大类操作：动态特性
+- **完整性约束条件**( integrity constraints )
 
 
 
@@ -356,13 +362,56 @@ example：学生选课，学生与课程之间是多对多关系，而 DBTG 模�
 
 - 关系模式 ：对关系的描述，一般表示为 ：`关系名(属性1，属性2，属性3 ..)`
 
-  关系模型要求关系必须是规范化的，即要求关系必须满足一定的规范条件
 
 
 
 **关系模型的数据操纵和完整性约束**
 
 关系模型中的数据操作时集合操作，操作对象和结果都是关系 ：即若干元组的集合，而不像格式化模型中那样是单记录的操作方式。
+
+
+
+
+
+
+
+## 关系模型
+
+![image-20240509160106490](https://s2.loli.net/2024/05/09/LhY7xQrafVzgD1A.png)
+
+
+
+### 术语
+
+- **关系模式**：用一组属性和域名对定义的具名的关系
+
+  设属性 A1,A2,...An 对应的域分别是 D1,D2,...Dn , 则集合 `{A1:D1, A2:D2,...An:Dn}`就是一个关系模式，由关系模式 S 所定义的关系 R 是一组从属性名到其对应的域的映射 。关系R 就是如下 n 元组的集合 ： `(A1:d1, A2:d2,...An:dn)` d1∈A1 ...  这样就可以将关系模式中的每个关系看做属性对应域的笛卡尔积的子集 。表则是这种关系的简单表示
+
+D1 x D2 x ... x Dn 的子集叫做在域 D1 ， D2 ， ... ， Dn 上的关系，表示为 `R(D1 ，D2 ，... ，Dn )`
+
+n 是关系的目或度 (degree )
+
+
+
+- 超关键字(super key) : 唯一标识出关系中的每个元组的属性组
+
+- 候选码/候选关键字(candidate key) : 若关系中的某一属性组的值能唯一标识一个元组，而其子集不能，则称该属性组为 *候选码* ： 唯一性 & 不可约性
+- 主码/主关键字(primary key): 若一个关系有多个候选码，则选定其中一个为主码
+- 外部关键字/外码( Foreign Key): 当一个关系中的某个属性组 与 另一个关系(或自己) 的候选关键字匹配时 ，就称这个属性组为外部关键字 
+- 主属性(prime attribute): 候选码的诸属性
+- 非主属性(non-prime attribute) : 不包含在任何候选码中的属性
+
+
+
+
+
+- 关系可以有三种类型 ：基本关系( 又称为基本表 )、查询表和视图表 
+
+  基本表是实际存在的表：实际存储数据的逻辑表示；查询表是查询结果对应的表；视图表是由基本表或其他视图表导出的表。
+
+- 关系模型要求关系必须是规范化的( normalization ) ,规范化的关系简称为范式( Normal Form, NF )
+
+
 
 
 
@@ -446,6 +495,14 @@ example：学生选课，学生与课程之间是多对多关系，而 DBTG 模�
 
 
 
+
+
+
+
+
+
+
+
 ## 数据库系统的结构
 
 
@@ -458,7 +515,7 @@ example：学生选课，学生与课程之间是多对多关系，而 DBTG 模�
 
 
 
-#  SQL
+# SQL
 
 
 
@@ -488,11 +545,9 @@ SQL:1999 出现以前， SQL仅包括数据定义和数据操作命令， 不包
 
 
 
-- **SQL语句** ： 由简单的英语单词组成，称为**关键字** ： 关键字不能用作表或列的名字
 
 
-
-**注释**
+### **注释**
 
 ```sql
 SELECT 	-- This is a 注释
@@ -505,6 +560,8 @@ SELECT 	-- This is a 注释
 
 
 
+### BNF
+
 用扩展的巴克斯范式( Backus Naur Form, BNF ) 定义SQL语句 ：
 
 - 大写字母用于保留字
@@ -515,6 +572,288 @@ SELECT 	-- This is a 注释
 - `...` 表示某一项可选择重复零到多次。
 
 example : `{a|b (,c...)}` 意思是a或b后紧跟着用逗号分开的零个或多个 c
+
+
+
+### SQL标量数据类型
+
+| 数据类型 | 声明                                                         | 描述                                                         |
+| -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 布尔型   | BOOLEAN                                                      |                                                              |
+| 字符型   | CHAR, VARCHAR                                                | CHAR : 当字符串定义为定长时，若输入字符串小于该长度，则字符串右边用空格补足所需大小<br>VARCHAR : 定义为变长时，若输入字符串小于最大长度，则只存储输入的哪些字符 |
+| 定点数   | `NUMERIC[precision [,scale]],` <br>`DECIMAL[precision [,scale]]`<br>, INTEGER, SMALLINT, BIGINT | 定点数据类型用于定义准确表示的数值。数值包括数字、可选的小数点和可选的正负号，数据类型包括精度(precision) 和小数位数(scale) <br>精度表示数的全部位数<br>小数位数表示小数部分的全部位数<br><br>NUMERIC 和 DECIMAL 用于表示十进制数，默认小数位数为 0 ，默认精度依赖于具体实现 |
+| 浮点数   | `FLOAT[precision]` , REAL, DOUBLE PRECISION                  | 浮点数用于定义非精确数字，<br>精度决定了位数的精度           |
+| 日期时间 | DATE, <br>`TIME[timePrecision][WITH TIME ZONE]`, `TIMESTAMP[timePrecision][WITH TIME ZONE]` | DATE 用于存储用 YEAR , MONTH , DAY 字段表示的日历日期<br>TIME 用于存储用 HOUR, MINUTE, SECOND 字段表示的时间<br>TIMESTAMP 用于存储日期和时间<br>timePrecision 是一个十进制数，给出秒的精度，TIME默认精度为0(整秒) ，TIMESTAMP默认值为6(微秒) 。<br>关键字 WITH TIME ZONE 决定了字段 TIMEZONE_HOUR ,  TIMEZONE_MINUTE 字段的表示 |
+| 间隔型   | INTERVAL                                                     | 间隔数据类型表示一段时间，每个间隔类型由 YEAR, MONTH, DAY, HOUR, MINUTE, SECOND 字段的一个连续子集构成。 <br> 将数据类型分为两类 ：年-月间隔和 天-时间间隔 |
+| 大对象型 | CHARACTER LARGE OBJECT, BINARY LARGE OBJECT                  |                                                              |
+
+Numeric 和 Decimal 都保存着精确的数值，不会存在四舍五入的情况。它们之间的区别在于 Decimal 可以保存更大的数值，但占用的存储空间也更多。
+
+Numeric 存储方式为变长的，根据实际存储的数值长度来分配存储空间，因此占用空间较小。而 Decimal 则是固定长度的，所以占用的空间比 Numeric 大。
+
+
+
+### 标量运算符
+
+SQL 提供若干预定义的标量运算符与函数
+
+
+
+**ISO SQL 标量运算符**
+
+![image-20240517132801777](https://s2.loli.net/2024/05/17/TV5S4q9YWnxpjbR.png)
+
+![image-20240517132818760](https://s2.loli.net/2024/05/17/AmRJhxVMFBjPOlk.png)
+
+
+
+#### CASE Expression
+
+The `CASE` expression goes through conditions and returns a value when the first condition is met (like an if-then-else statement).
+
+- once a condition is true, it will stop reading and return the result. 
+- If no conditions are true, returns the value in the `ELSE` clause.
+- If there is no `ELSE` part and no conditions are true, it returns NULL.
+
+
+
+```
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    WHEN conditionN THEN resultN
+    ELSE result
+END;
+```
+
+
+
+```sql
+SELECT OrderID, Quantity,
+CASE
+    WHEN Quantity > 30 THEN 'The quantity is greater than 30'
+    WHEN Quantity = 30 THEN 'The quantity is 30'
+    ELSE 'The quantity is under 30'
+END AS QuantityText
+FROM OrderDetails;
+```
+
+
+
+### 完整性约束
+
+共有 5 种类型 ：
+
+- 必须有值的数据
+- 域约束
+- 实体完整性
+- 引用完整性
+- 一般性约束
+
+这些约束可以用 CREATE 和 ALTER TABLE 语句定义
+
+
+
+#### **必须有值的数据**
+
+ISO 标准为 CREATE , ALTER TABLE 语句提供的 NOT NULL 列说明符实现了这种约束。 ISO 默认值为 NULL( NULL允许向列中插入空值 ，NOT NULL 不允许向列中插入控制)
+
+
+
+#### **域约束**
+
+每列都有一个域，即合法值的集合 。ISO 标准允许在 CREATE 和 ALTER TABLE 语句中提供两种定义域的方式 ： 
+
+- CHECK 子句 ：允许对列或整个表定义约束
+
+  ```sql
+  CHECK(searchCondition)
+  
+  -- demo
+  sex CHAR NOT NULL CHECK(sex IN ('M','F'))
+  -- 在一个列约束中，CHECK 子句只能引用已定义列
+  ```
+
+  
+
+- `CREATE DOMAIN`  : 更显示的定义域
+
+  ```sql
+  CREATE DOMAIN DomainName [AS] dataType
+  [DEFAULT defaultOption]
+  [DEFAULT (searchCondition)]
+  ```
+
+  
+
+  demo
+
+  ```sql
+  CREATE DOMAIN SexType AS CHAR
+  	DEFAULT 'M'
+  	CHECK (VALUE IN('M','F'));
+  ```
+
+  定义列sex时， 可用域名 SexType 代替数据类型 CHAR ：`sex SexType NOT NULL`
+
+  
+
+  searchCondition 还能查表 ：
+
+  ```sql
+  CREATE DOMAIN BranchNumber AS CHAR(4)
+  	CHECK(VALUE IN(SELECT branchNo FROM Branch));
+  ```
+
+
+
+定义域约束的首选方法是使用 CREATE DOMAIN 语句，从数据库中撤销域约束可用 DROP DOMAIN 语句 ：
+
+```sql
+DROP DOMAIN DomainName [RESTRICT | CASCADE]
+```
+
+RESTRICT : 若该域正被用于某个现存的表、视图或断言的定义，则撤销失败 。
+
+CASCADE : 任一表中基于该域的列都会自动地变为用该域的基类型定义
+
+
+
+##### MySQL CHECK ：
+
+```sql
+[CONSTRAINT [symbol]] CHECK (expr) [[NOT] ENFORCED]
+```
+
+- The optional *`symbol`* specifies a name for the constraint. If omitted, MySQL generates a name from the table name, a literal `_chk_`, and an ordinal number (1, 2, 3, ...).
+
+- If omitted or specified as `ENFORCED`, the constraint is created and enforced.
+
+  If specified as `NOT ENFORCED`, the constraint is created but not enforced.
+
+  
+
+A `CHECK` constraint is specified as either a table constraint or column constraint:
+
+- A table constraint does not appear within a column definition and can refer to any table column or columns. Forward references are permitted to columns appearing later in the table definition.
+
+- A column constraint appears within a column definition and can refer only to that column.
+
+  
+
+example :
+
+```sql
+CREATE TABLE t1
+(
+  CHECK (c1 <> c2),
+  c1 INT CHECK (c1 > 10),
+  c2 INT CONSTRAINT c2_positive CHECK (c2 > 0),
+  c3 INT CHECK (c3 < 100),
+  CONSTRAINT c1_nonzero CHECK (c1 <> 0),
+  CHECK (c1 > c3)
+);
+```
+
+
+
+
+
+
+
+
+
+#### 实体完整性
+
+实体完整性：表中每一行的主关键字必须是唯一的非空值。
+
+ISO 标准在 CREATE 和 ALTER TABLE 语句中用 PRIMARY KEY 子句支持实体完整性。
+
+每个表中只能使用一个 PROMARY KEY 子句，但可用关键字 UNIQUE 保证列的唯一性( UNIQUE 子句中出现的每个列必须被声明为 NOT NULL )
+
+
+
+#### 引用完整性
+
+`FOREIGN KEY (columnName) REFERENCES tableName`
+
+引用完整性 ：外部关键字必须是父表中已存在的有效的元组
+
+在子表中若试图用 INSERT 和 UPDATE 操作，创建与父表中候选关键字不匹配的外部关键字，SQL会拒绝该操作。
+
+而在父表中若尝试用 UPDATE 和 DELETE 操作更新或删除域子表有匹配行的候选关键字， SQL将根据 FOREIGN KEY 子句中的 ON UPDATE 或 ON DELETE 子句来决定如何执行该操作。
+
+- CASCADE ：删除父表中的行并自动删除子表中匹配的行 / 子表中外部关键字设置为父表中新的候选关键字的值
+- SET NULL：删除父表的元组并设置子表的外部关键字为 NULL(仅当外部关键字列未设置为 NOT NULL 时)
+- SET DEFAULT ：仅当指定 DEFAULT 时有效
+- NO ACITON : 拒绝对父表进行删除操作，ON DELETE 默认设置为 NO ACTION
+
+
+
+##### MySQL FOREIGN KEY Constraints
+
+```sql
+[CONSTRAINT [symbol]] FOREIGN KEY
+    [index_name] (col_name, ...)
+    REFERENCES tbl_name (col_name,...)
+    [ON DELETE reference_option]
+    [ON UPDATE reference_option]
+
+reference_option:
+    RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
+```
+
+
+
+
+
+
+
+
+
+#### 用户定义完整性
+
+ISO 标准允许用 CREATE 和 ALTER TABLE 中的 CHECK 和 UNIQUE 子句，及 CREATE ASSERTION语句 指定用户定义完整性
+
+```sql
+CREATE ASSERTION AssertionName
+CHECK (searchCondition)
+```
+
+如果一般性约束作用于多个表，则较好的选择是使用一个 ASSERTION 语句
+
+example :定义用户定义完整性，禁止员工同时管理100处以上房产
+
+```sql
+CREATE ASSERTION StaffNoHandlingTooMuch
+	CHECK(NOT EXISTS(SELECT staffNo	
+                    	FROM PropertyForRent
+                    	GROUP BY staffNo
+                    	HAVING COUNT(*)>100))
+```
+
+
+
+
+
+
+
+#### CONSTRAINT 定义
+
+```sql
+ALTER TABLE Vendors
+ADD CONSTRAINT PROMARY KEY (vend_id);
+```
+
+`CONSTRAINT` 语法可用于 `CREATE TABLE` 和 `ALTER TABLE ` 语句
+
+- SQLite 不允许使用 ALTER TABLE 定义键 ， 要求在初始的 CREATE TABLE 语句中定义它们 。
+
+
+
+
+
+
 
 
 
@@ -690,9 +1029,7 @@ SELECT 操作为封闭的， 即查询表的结果将用另一张表显示。
 **直接从数据库中检索出转换、计算或格式化过的数据，而不是检索出数据，然后再在客户端应用程序中重新格式化。**
 
 - 在SQL语句内可完成的许多转换和格式化工作都可以直接在客户端应用程序内完成。但一般来说，在数据库服务器上完成这些操作比在客户端中完成要快得多。
-
 - 计算字段并不实际存在于数据库表中。计算字段是运行时在 SELECT 语句内创建的。
-  - 字段 ( field ) , 基本上于列 ( column ) 的意思相同，经常互换使用
 - 只有数据库知道 SELECT 语句中哪些列是实际的表列，哪些列是计算字段 。从客户端 ( 如应用程序 ) 来看 ，计算字段的数据与其他列的数据返回方式相同
 
 
@@ -1039,13 +1376,17 @@ ORDER BY 2, 3;
 
   **COUNT, MIN, MAX 可以用于数值和非数值字段， 而 SUM 和 AVG 只能用于数值字段 。**
 
+  
+
   除了 COUNT(*) 外， 每个函数首先要去掉空值， 然后计算其非空值 。`COUNT(*)` 是COUNT 的特殊用法， 计算表中所有行的数目， 而不管是否有空值或重复出现
 
+  
+  
   - `COUNT(column) [WHERE ..]` : 返回指定列中数据的个数
-
+  
     -  **COUNT(*)**  : 对表中行数目进行计数，不管表列中的是NULL 还是非空值
-    -  **COUNT(column**) :  对指定列中非 NULL值的行进行计数
-
+    -  **COUNT(column**) :  对column列中非 NULL行进行计数
+  
     ```sql
     SELECT COUNT(*) AS num_cust
     FROM Customers;
@@ -1056,21 +1397,27 @@ ORDER BY 2, 3;
 
     **ATTENTION** : 注意区分`COUNT() ` 和 `SUM() ` 的区别 ，`COUNT() ` 是统计表中行的数目， 而 SUM() 是求特定函数值的和 。
 
+    
+  
   - `SUM(column)` ：返回指定列中数据的总和
-
+  
+    
+  
   - `AVG(column)` ：返回指定列中数据的平均值
-
+  
     ```sql
     SELECT AVG(prod_price) AS avg_price
     FROM Products
     WHERE vend_id = 'DLL01';
     -- 该SELECT 语句包含 WHERE 子句，此WHERE 子句仅过滤出 vend_id 为DLL01 的产品，因此 avg_price 中返回的值仅是该供应商产品的平均值。
     ```
-
+  
+    
+  
   - `MIN(column)` ：返回指定列中数据最小值
-
+  
   - `MAX(column)`：返回指定列中数据最小值
-
+  
     对非数值数据使用 MAX() : 许多DBMS 允许将它用来返回任意列中的最大值，包括数值、日期、文本数据( 返回该列排序后的最后一行)
 
 
@@ -1092,6 +1439,128 @@ ORDER BY 2, 3;
   若 SELECT 列表包括聚集函数， 却没有使用 GROUP BY 子句分组， 那么 SELECT 列表的任何项都不能引用列， 除了作为聚集函数的参数 。
 
   example ：`SELECT staffNo, COUNT(salary) FROM Staff;` 是非法的。
+
+
+
+#### 合并结果集 UNION, INTERSECT, EXCEPT
+
+SQL 中，可用标准的并、交、差集合操作将多个查询结果表合并为一个查询结果表
+
+![image-20240509193856124](https://s2.loli.net/2024/05/09/8yNp2ALTi5ujmRv.png)
+
+**ISO 标准的3个集合运算符分别是 ：UNION, INTERSECT( 交 ), EXCEPT(差)** 
+
+集合操作子句格式 ：`operator [ALL][CORRESPONDING [BY {column1[,...]}]]`    
+
+注意 ：`[]` 表示可选内容，`{}` 表示必选内容
+
+- 若指定 CORRESPONDING BY, 则集合操作就在给定的列上执行
+- 若指定 CORRESPONDING 而没有 BY 子句，则集合操作就在两表共同的列上执行
+- 若指定 ALL, 则查询包括一切重复的行( 默认去重 )
+
+
+
+- **不一致的列名**
+  如果运算使用的SELECT 语句遇到不同的列名，返回第一个名字。
+  - 这种行为带来一个副作用：由于只使用第一个名字，那么想要排序也只能用这个名字。
+
+- 对组合查询结果排序
+
+  只能使用一条ORDER BY 子句，位于最后一条SELECT 语句之后。不允许使用多条ORDER BY 子句。
+
+  
+
+##### UNION
+
+```sql
+(SELECT city
+FROM Branch
+WHERE city IS NOT NULL)
+UNION
+(SELECT city 
+FROM PropertyForRent
+WHERE city IS NOT NULL)
+
+-- or
+
+(SELECT *
+FROM Branch
+WHERE city IS NOT NULL)
+UNION CORRESPONDING BY city
+(SELECT *
+FROM PropertyForRent
+WHERE city IS NOT NULL)
+```
+
+
+
+```sql
+SELECT cust_name, cust_contact, cust_email
+FROM Customers
+WHERE cust_state IN ('IL','IN','MI')
+UNION
+SELECT cust_name, cust_contact, cust_email
+FROM Customers
+WHERE cust_name = 'Fun4ALL'
+ORDER BY cust_name, cust_contact;
+```
+
+
+
+##### INTERSECT
+
+```sql
+(SELECT city
+FROM Branch)
+INTERSECT
+(SELECT city
+FROM PropertyForRent);
+
+-- or
+(SELECT *
+FROM Branch)
+INTERSECT CORRESPONDING BY city
+(SELECT *
+FROM PropertyForRent);
+```
+
+可以不用 INTERSECT 运算符重写该查询 ：
+
+```sql
+SELECT DISTINCT b.city
+FROM Branch b, PropertyForRent p
+WHERE b.city = p.city
+
+-- or
+SELECT DISTINCT city
+FROM Branch b
+WHERE EXISTS(SELECT *
+            FROM PropertyForRent p
+            WHERE b.city = p.city)
+```
+
+可用各种等价的形式书写查询是SQL语言的一大缺陷
+
+
+
+##### EXCEPT
+
+```sql
+(SELECT city
+FROM Branch)
+EXCEPT
+(SELECT city
+FROM PropertyForRent);
+
+-- or
+(SELECT *
+FROM Branch)
+EXCEPT CORRESPONDING BY city
+(SELECT *
+FROM PropertyForRent);
+```
+
+
 
 
 
@@ -1191,6 +1660,40 @@ ORDER BY items, order_num;
 
 
 
+##### 挑战题
+
+![image-20240314185845520](https://s2.loli.net/2024/05/07/yNdI9CTiQrEOF47.png)
+
+```sql
+# 1.
+SELECT order_num ,COUNT(*) AS order_lines
+FROM OrderItems
+GROUP BY order_num
+ORDER BY order_lines;
+
+# 2.
+SELECT MIN(prod_price) AS cheapest_item
+FROM Products
+GROUP BY vend_id
+ORDER BY cheapest_item;
+
+# 3.
+SELECT order_num
+FROM OrderItems
+GROUP BY order_num
+HAVING COUNT(*) >= 100;
+
+# 4.
+SELECT item_price*quantity AS total_price, order_num
+FROM OrderItems
+GROUP BY order_num,item_price*quantity
+HAVING SUM(item_price*quantity) >= 1000;
+```
+
+
+
+
+
 
 
 #### 子查询
@@ -1199,17 +1702,26 @@ ORDER BY items, order_num;
 
 子查询可以被使用在外部 SELECT 语句的 WHERE 和 HAVING 子句中，子查询也可出现在 INSERT, UPDATE, DELETE 语句中
 
-可以认为 子查询产生一个临时表，便于外部语句访问和利用。在 WHERE 子句和 HAVING 子句中，子查询可以进拎着关系运算符 ( =, <, > , <=, >=, <>)
+可以认为 子查询产生一个临时表，便于外部语句访问和利用。在 WHERE 子句和 HAVING 子句中，子查询可以紧邻着关系运算符 ( =, <, > , <=, >=, <>)
 
 **子查询有 3 种类型 ：**
 
-- 标量子查询返回单个列和单个行，即单个值。原则上，标量子查询可用于任何需要单个值的地方
-- 行子查询返回多个列，但只有单个行。行子查询可用于任何需要行值构造器的时候，如在为此中
-- 表子查询返回多个行，每行有一个或多个列。表子查询用于需要一个表的情况，例如，作为谓词 IN 的操作数
+- **标量子查询**返回单个列和单个行，即单个值。原则上，标量子查询可用于任何需要单个值的地方
+- **行子查询**返回多个列，但只有单个行。行子查询可用于任何需要行值构造器的时候，如在谓词中
+- **表子查询**返回多个行，每行有一个或多个列。表子查询用于需要一个表的情况，例如，作为谓词 IN 的操作数
 
 
 
-##### **用于相等判断的子查询**
+**子查询需遵循的规则**
+
+1. 子查询 SELECT 列表必须由单个列名或表达式组成，除非子查询使用了关键词 EXISTS
+2. 当子查询时比较表达式中的一个操作数时，子查询必须出现在表达式右边
+
+
+
+
+
+##### **相等判断的子查询**
 
 ```sql
 SELECT staffNo, fName, lName, position
@@ -1222,15 +1734,49 @@ WHERE branchNo = (SELECT branchNo
 
 
 
+##### 聚集函数的子查询
+
+
+
+**example 1 ：**
+
+```sql
+SELECT COUNT(*) AS orders
+FROM Orders
+WHERE cust_id = 100000001;
+```
+
+要对每个顾客执行 COUNT(*) , 应该将它作为一个子查询：
+
+```sql
+SELECT cust_name,
+	   cust_state,
+	   (SELECT COUNT(*)
+        FROM Orders
+        WHERE Orders.cust_id = Customers.cust_id) AS orders
+FROM Customers
+ORDER BY cust_name;
+```
+
+
+
+**example 2**  ：
+
+```sql
+SELECT staffNo, fName, lName, position,
+	salary - (SELECT AVG(salary) FROM Staff) AS salDiff
+FROM Staff
+WHERE salary > (SELECT AVG(salary) FROM Staff) ;
+
+-- 列出个人工资高于平均工资的所有员工，并求出多于平均数的值
+--  注意不能写 WHERE salary > AVG (salary) : 聚集函数不能用于 WHERE 子句。应先用子查询求出 AVG (salary) (标量子查询)
+```
 
 
 
 
 
-
-
-
-##### 用于IN操作符
+##### 嵌套子查询 ：IN的使用 
 
  如需要列出订购物品 RGAN01 的所有顾客，怎样检索？
 
@@ -1246,34 +1792,23 @@ WHERE branchNo = (SELECT branchNo
 SELECT order_num
 FROM OrderItems
 WHERE prod_id = 'GRAN01';
-```
-
-
-
-输出：
-
-```sql
+"""
+output :
 order_num
 --------
 20007
 20008
-```
+"""
 
-
-
-下一步查询与订单 20007 和 20008 相关的顾客 ID
-
-```sql
+-- next 
 SELECT cust_id
 FROM Orders
 WHERE order_num IN (20007, 20008);
 ```
 
- ![image-20240314214817688](https://s2.loli.net/2024/05/07/dzyms35VafKCTji.png)
 
 
-
-结合这两个查询，将第一个查询( 返回订单号的那个 )变为子查询
+结合这两个查询，将查询订单号的查询变为子查询
 
 ```sql
 SELECT cust_id
@@ -1292,50 +1827,46 @@ WHERE cust_id IN (SELECT cust_id
                                       WHERE prod_id = 'RGAN01'));
 ```
 
-- 在 SELECT 语句中 ，子查询总是从内向外处理 。
-- 作为子查询的SELECT 语句只能查询单个列 ，企图检索多个列将返回错误。
-
-- 格式化SQL：包含子查询的 SELECT 的语句难以阅读和调试，它们在较为复杂时更是如此 。把子查询分解为多行并进行适当的缩进，能极大地简化子查询的使用。
 
 
 
-## 作为计算字段使用子查询
 
-使用子查询的另一方法是创建计算字段
+##### ANY 和 ALL
 
-例如需要显示 Customers 表中每个顾客的订单总数 。订单与相应的顾客 ID 存储在 Orders表中。
+关键字 ANY 和 ALL 用于产生单个列的子查询。
 
-1. 从 Customers表中检索顾客列表
-2. 对于检索出的每个顾客，统计其在 Orders 表中的订单数目。
+- ALL ：仅当子查询产生的所有值都满足条件时，条件才为真
+- ANY ：子查询产生的任何一个值满足条件时，条件就为真。ISO标准允许用 限定词 SOME 代替 ANY
+- 若子查询为空值，ALL 条件返回真值，ANY 条件返回假值。
 
 
 
-可使用SELECT COUNT(*) 对表中的行进行计数，并通过提供一条 WHERE 子句来过滤某个特定的顾客 ID, 仅对该顾客的订单进行计数。
+##### `EXISTS` 和 `NOT EXISTS`
+
+`EXISTS` 和 `NOT EXISTS`仅用于子查询中，返回结果为真 / 假 。 EXISTS 为真当且仅当子查询返回的结果表至少存在一行 ，为空时则为假。
+
+
+
+example : 找出在伦敦分公司工作的所有员工
 
 ```sql
-SELECT COUNT(*) AS orders
-FROM Orders
-WHERE cust_id = 100000001;
+SELECT staffNo, fName, lName
+FROM Staff s
+WHERE EXISTS (SELECT *
+              	FROM Branch b
+              	WHERE s.branchNo = b.branchNo AND city = 'London') ;
+              	
+-- 用连接重写 ：
+SELECT staffNo, fName, lName
+FROM Staff s, Branch b
+WHERE s.branchNo = b.branchNo AND b.city = 'London'
 ```
 
 
 
-要对每个顾客执行 COUNT(*) , 应该将它作为一个子查询：
 
-```sql
-SELECT cust_name,
-	   cust_state,
-	   (SELECT COUNT(*)
-        FROM Orders
-        WHERE Orders.cust_id = Customers.cust_id) AS orders
-FROM Customers
-ORDER BY cust_name;
-```
 
-- **完全限定列名**
-  - 子查询中的 WHERE 子句与前面使用的 WHERE 子句稍有不同 ，因为它使用了**完全限定列名**，而不只是 列名 ( cust_id ) , 它指定 表名和 列名 ( Orders.cust_id, Customers.cust_id )
-  - 用句点分隔表名和列名 ，在SELECT 语句中操作多个表，有可能混淆列名时必须使用这种语法。
-- ` WHERE Orders.cust_id = Customers.cust_id` 告诉 SQL ， 比较 Orders 表中的 cust_id 和当前正从 Customers 表中检索的 cust_id
+
 
 
 
@@ -1422,595 +1953,70 @@ FROM Orders;
 
 
 
+#### 多表查询
+
+SQL 连接操作通过配对相关行(这两行在两个表的匹配列上具有相同值)来合并两个表中的信息。
+
+- WHERE 子句指明连接列
+- FROM 子句列出多个表名，可用别名替代表名，用空格隔开
 
 
 
+##### 简单连接
+
+最普通的多表查询包括**一对多( 1:n )(或父/子) 联系的两个表** (主关键字所在的表是父表，外部关键字所在的表是子表 )
+
+```sql
+SELECT Customers.cust_id,
+		COUNT(Orders.order_num) AS num_ord
+FROM Customers
+INNER JOIN Orders ON Customers.cust_id = Orders.cust_id
+GROUP BY Customers.cust_id
+```
+
+注意执行顺序 
+
+- FROM 子句获取表数据
+- INNER JOIN 子句将 Customers 和 Orders 表相互关联
+- GROUP BY 分组数据
+- 聚集函数 `COUNT(Orders.order_num) `计算每个顾客的订单数
+- 作为 `num_ord `返回 
 
 
 
-### INSERT
-
-将行插入到数据库表 。
-
-- 插入完整的行
-- 插入行的一部分
-- 插入某些查询的结果
+- SQL标准提供了以下可选择的方式来指定连接 ：
+  - `FROM Client c JOIN Viewing v ON c.clientNo = v.clientNo`
+  - `FROM Client JOIN Viewing USING clientNo`
+  - `FROM Client NATURAL JOIN Viewing`
 
 
 
+- 多表连接 ：AND 分隔
 
-
-#### 插入完整的行 INSERT INTO
-
-- 不管使用哪种INSERT 语法，VALUES 的数目都必须正确。如果不提供列名，则必须给每个表列提供一个值；如果提供列名，则必须给列出的每个列一个值。否则，就会产生一条错误消息，相应的行不能成功插入。
-
+  ```sql
+  SELECT b.branchNo, b.city, s.staffNo, fName, lName, propertyNo
+  FROM Branch b, Staff s, PropertyForRent p
+  WHERE b.branchNo = s.branchNo AND s.staffNo = p.staffNo
   
-
-**不提供列名**
-
-```sql
-INSERT INTO Customers
-VALUES(1000000006,
-		'Toy Land',
-		'123 Any Street',
-		'New York',
-		'NY',
-		'11111',
-		'USA',
-		NULL,
-		NULL);
--- 这个例子将一个新顾客插入到Customers 表中。	
-```
-
-- 存储到表中每一列的数据在VALUES 子句中给出，必须给每一列提供一个值。如果某列没有值，则应该使用NULL 值（假定表允许对该列指定空值）。
-
-- 各列必须以它们在表定义中出现的次序填充。
-
-
-
-**提供列名**
-
-```sql
-INSERT INTO Customers(cust_id.
-                      cust_name,
-                      cust_address,
-                      cust_city,
-                      cust_state,
-                      cust_zip,
-                      cust_country,
-                      cust_contact,
-                      cust_email)
-VALUES((1000000006,
-		'Toy Land',
-		'123 Any Street',
-		'New York',
-		'NY',
-		'11111',
-		'USA',
-		NULL,
-		NULL);
-```
-
-- 不能插入同一条记录两次 。主键的值必须有唯一性，而cust_id 是主键，DBMS 不允许插入相同cust_id 值的新行。
-
   
-
+  -- 可选表示法 ：
+  FROM (Branch b JOIN Staff s USING branchNo) AS bs
+  	JOIN PropertyForRent p USING staffNo
+  	
+  -- INNER JOIN 嵌套 
+  -- FROM table1 
+  -- INNER JOIN (table2 INNER JOIN (table3 INNER JOIN table4 on..) on..)on ..
   
+  SELECT cust_email
+  FROM Customers
+  INNER JOIN ( Orders INNER JOIN OrderItems 
+  				ON OrderItems.order_num = Orders.order_num) 
+  	ON Orders.cust_id = Customers.cust_id;
+  ```
 
-## 插入部分行
 
-使用INSERT 的推荐方法是明确给出表的列名。使用这种语
-法，还可以省略列，这表示可以只给某些列提供值，给其他列不提供值。
 
-
-
-省略的列需满足条件 ：
-
-- 该列定义为允许NULL 值
-- 或 ：表定义中给出默认值
-
-若表中不允许有 NULL 值或默认值 ，这时却省略了表中的值， DBMS 就会报错，相应的行不能成功插入 。
-
-
-
-## 插入检索出的数据 INSERT SELECT
-
-
-
-**INSERT SELECT 插入多行**
-
-INSERT 通常只插入一行。要插入多行，必须执行多INSERT 语句。
-INSERT SELECT 是个例外，它可以用一条INSERT 插入行，不管SELECT语句返回多少行，都将被INSERT 插入。
-
-EXAMPLE :
-
-假如想把另一表中的顾客列合并到Customers 表中，不需要每次读取一行再将它用INSERT 插入 ：
-
-```sql
-INSERT INTO Customers(cust_id.
-                      cust_name,
-                      cust_address,
-                      cust_city,
-                      cust_state,
-                      cust_zip,
-                      cust_country,
-                      cust_contact,
-                      cust_email)
-
-SELECT  cust_id.
-        cust_name,
-        cust_address,
-        cust_city,
-        cust_state,
-        cust_zip,
-        cust_country,
-        cust_contact,
-        cust_email
-FROM CustNew; 
--- 使用INSERT SELECT 从CustNew 中将所有数据导入Customers
-```
-
-- **INSERT SELECT 中的列名**
-
-  为简单起见，这个例子在INSERT 和SELECT 语句中使用了相同的列名。但是，不一定要求列名匹配。事实上，DBMS 一点儿也不关心SELECT返回的列名。它使用的是列的位置，因此SELECT 中的第一列（不管其列名）将用来填充表列中指定的第一列，第二列将用来填充表列中指定的第二列
-
-- 任何 SELECT 选项和子句都可以使用， 包括 WHERE 和 GROUP BY, 也可利用联结从多个表插入数据
-
-
-
-## 从一个表复制到另一个表
-
-要将一个表的内容复制到一个全新的表（运行中创建的表），可以使用CREATE SELECT 语句（或者在SQL Server 里也可用SELECT INTO 语句）。
-
-与INSERT SELECT 将数据添加到一个已经存在的表不同，CREATE SELECT 将数据复制到一个新表（有的DBMS 可以覆盖已经存在的表，这依赖于所使用的具体DBMS）。
-
-```sql
-CREATE TABLE CustCopy AS SELECT * FROM Customers
-
--- SQL Server :
-SELECT * INTO CustCopy FROM Customers
-```
-
-
-
-
-
-## 易犯的错误
-
-错误提示：
-
-消息 8120，级别 16，状态 1，第 2 行
-选择列表中的列 'Qiu.dbo.students.name' 无效，因为该列没有包含在聚合函数或 GROUP BY 子句中。
-
-解决方案：
-
-如果 SELECT 子句 <select list> 中包含聚合函数，则 GROUP BY 将计算每个组的汇总值。指定 GROUP BY 时，选择列表中任何非聚合表达式内的每个属性名都应包含在GROUP BY列表中，或者GROUP BY表达式必须与选择列表表达式完全匹配。
-
-错误用法：
-
-```
-SELECT name,sex,SUM(age)
-  FROM [Qiu].[dbo].[students]
-  group by sex
-```
-
-更正后用法：
-
-```
-SELECT name,sex,SUM(age)
-  FROM [Qiu].[dbo].[students]
-  group by sex,name
-```
-
-使用Group By子句的时候，一定要记住下面的一些规则：
-（1）不能Group By非标量基元类型的列，如不能Group By text，image或bit类型的列
-（2）Select指定的每一列都应该出现在Group By子句中，除非对这一列使用了聚合函数；
-（3）进行分组前可以使用Where子句消除不满足条件的行；
-（4）使用Group By子句返回的组没有特定的顺序，可以使用Order By子句指定次序。
-
-```
-use Qiu
-select sex,avg(age)
-from students
-group by sex
-```
-
-
-
-
-
-
-
-## 挑战题
-
-![image-20240314185845520](https://s2.loli.net/2024/05/07/yNdI9CTiQrEOF47.png)
-
-```sql
-# 1.
-SELECT order_num ,COUNT(*) AS order_lines
-FROM OrderItems
-GROUP BY order_num
-ORDER BY order_lines;
-
-# 2.
-SELECT MIN(prod_price) AS cheapest_item
-FROM Products
-GROUP BY vend_id
-ORDER BY cheapest_item;
-
-# 3.
-SELECT order_num
-FROM OrderItems
-GROUP BY order_num
-HAVING COUNT(*) >= 100;
-
-# 4.
-SELECT item_price*quantity AS total_price, order_num
-FROM OrderItems
-GROUP BY order_num,item_price*quantity
-HAVING SUM(item_price*quantity) >= 1000;
-```
-
-
-
-
-
-
-
-
-
-## 后续使用的table
-
-![image-20240307110039367](https://s2.loli.net/2024/05/07/P1VH4j53nxNrA6W.png)
-
-
-
-
-
-###  Orders 表
-
-orders表存储顾客订单( 不是订单细节 ) ， 每个订单唯一编号 ( order_num 列)
-
-- 每个表都应该有主键 ，这个表应该用 order_num 作为其主键
-- 为实施引用完整性，应该在 cust_id 上定义一个外键 ，关联到 Customers 的 cust_id 列
-
-
-
-### OrderItems 表
-
-OrderItems 表存储每个订单中的物品，每个订单的每个物品一行。对于 Orders表的每一行，在 OrderItems 表中有一行或多行。每个订单物品由**订单号**加**订单物品号**( 订单内的顺序 ,即 order_item  ) 唯一标识 。
-
-
-
-
-
-
-
-## 表 table
-
-某种**特定类型数据**的结构化清单( Attention: 存储在表中的数据是同一种类型的数据或清单)
-
-
-
-**表名**
-
-数据库名和表名等的组合，使表名成为唯一的。( 同一个数据库中不能两次使用相同表名，但不同的数据库中可以使用相同表名 )
-
-
-
-**模式 schema**
-
-表具有一些特性，这些特性定义了数据在表中如何存储，包括存储什么样的数据，数据如何分解，各部分信息如何命名等信息。描述表的这组信息就是**模式**
-
-模式既可以描述数据库中特定的表，也可以描述整个数据库 ( 和其中表的关系)
-
-
-
-**列 column**
-
-表中的一个字段。
-
-- **理解**： 
-  - 将数据库想象成一个网格，网格中的每一列都存储着某种特定的信息。例如，在顾客表中，一列存储顾客标号，另一列存储顾客姓名 ......
-
-- **tips : 数据分解** ： 
-  - 正确地将数据分解成多个列极为重要。例如，城市、州、邮政编码总是彼此独立的列。通过分解这些数据，才有可能利用特定的列对数据进行分类和过滤。
-
-- **数据类型 datetype**
-  - 数据类型定义了列可以存储哪些数据种类。每个表列都有相应的数据类型，它限制该列中存储的数据
-  - 数据类型及其名称是SQL不兼容的一个主要原因。虽然大多数基本数据类型得到了一致的支持，但许多高级的数据类型却没有。更糟的是，偶尔会有相同的数据类型在不同的DBMS 中具有不同的名称。对此用户毫无办法，重要的是在创建表结构时记住这些差异
-
-
-
-**行 row**
-
-表中的数据按行存储的，所保存的每个记录存储在自己的行内。例如，顾客表可以每行存储一个顾客。表中的行编号为记录的编号
-
-
-
-**主键 primary key**
-
-- **主键**： 一列或几列，其值能够唯一标识表中每一行。顾客表可以使用顾客标号， 其中订单表可以使用订单 ID 。
-
-- **tips** ：虽然并不总是需要主键，但多数数据库设计者都会保证他们创建的每一个表具有一个主键，以便于以后得数据操作和管理
-
-- **表中的任何列都可以作为主键**，只要它满足：
-  - 任意两行主键值不同
-  - 每一行必须具有一个主键值( 不允许为 NULL )
-  - **主键列中的值不允许修改**（但并不代表某行不允许修改如删除本行）
-  - 主键列值不可**重用**( 若某行从表中删除，它的主键不能赋给以后的新行)
-- 在使用多列作为 primary key时 ，要求所有列值的组合必须唯一( 但其中单个列的值可以不唯一 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 用函数处理数据
-
-
-
-
-
-## 函数类型
-
-与所有的 DBMS 都等同地支持SQL语句不同，每一个DBMS 都有特定的函数 , SQL函数不是可移植的。
-
-![image-20240311152828277](https://s2.loli.net/2024/05/07/aF3EUYvIN5HTmjw.png)
-
-
-
-大多数SQL实现支持以下类型的函数：
-
-- 文本函数( 如删除或填充值，转换大小写 ) 
-- 算数操作函数
-- 日期和时间函数( 如返回两个日期之差，检查日期有效性 ) 
-- 格式化函数
-- 返回 DBMS 正使用的特殊信息 ( 如用户登录信息 ) 的系统函数。
-
-
-
-## 文本处理函数
-
-```sql
-LEFT() ， RIGHT()	#返回字符串左/右边的字符
-LENGTH() , DATALENGTH() ,LEN() # 返回字符串长度
-LOWER() UPPER() #字符串转换小大写
-LTRIM() , RTRIM() , TRIM() #去掉字符串左/右/两边的空格
-SUBSTR() , SUBSTRING() # 提取字符串组成部分
-SOUNDEX()  #返回字符串的 SOUNDEX 值
-```
-
-
-
-**UPPER()**
-
-```sql
-SELECT vend_name, UPPER(vend_name) AS vend_name_upcase
-FROM Vendors
-RODER BY vend_name;
-```
-
-
-
-**SOUNDEX()**
-
-SOUNDEX() 是一个将任何文本串转换为描述其语音表示的字母数字模式的算法。
-
-类似的发音字符和音节，使得能对字符串进行发音比较而不是字母比较。
-
-
-
-**` substr`**
-
-**` substr`** 用于提取字符串子串。
-
-在大多数DBMS中，`SUBSTR` 函数的语法：
-
-```sql
-SUBSTR(string_expression, start, length)
-```
-
-- `string_expression` 是要提取子串的字符串表达式。
-- `start` 是子串的起始位置，从 1 开始计数。
-- `length` 是要提取的子串的长度。
-
-```sql
-SELECT cust_id, 
-	   cust_name, 			
-	   UPPER( SUBSTRING(cust_contact, 1, 2) + SUBSTRING(cust_city, 1, 3) ) 
-	   AS user_login
-FROM Customers;
-```
-
-
-
-
-
-## 日期和时间处理函数
-
-日期和时间值以特殊的格式存储，以便能快速和有效地排序或过滤 ，并且节省物理存储空间。
-
-应用程序一般不使用日期和时间的存储格式，因此日期和时间函数总是用来读取、统计和处理这些值。但日期和时间函数可移植性最差 。
-
-
-
-SQL Server:
-
-```sql
-SELECT order_num
-FROM Orders
-WHERE DATEPART(yy, order_date) = 2020;
-```
-
-DATEPART() 函数有两个参数：返回的成分和从中返回成分的日期
-
-
-
-PostgreSQL :
-
-```sql
-SELECT order_num
-FROM Orders
-WHERE DATE_PART('year', order_date) = 2020;
-```
-
-
-
-Oracle:
-
-```sql
-SELECT order_num
-FROM Orders
-WHERE EXTRACT(year FROM order_date) = 2020;
-```
-
-或使用 BETWEEN 操作符：
-
-```sql
-SELECT order_num
-FROM Orders
-WHERE order_date BETWEEN to_date('2020-01-01', 'yyyy-mm-dd') AND to_date('2020-12-31', 'yyyy-mm-dd');
-```
-
-Oracle 的 to_date() 函数用来将两个字符串转换为日期。
-
-SQL Server不支持 to_date() 函数
-
-
-
-DB2, MySQL, MariaDB , 具有各种日期处理函数，但没有 DATEPART() , 可用 YEAR() 从日期中提取year
-
-```sql
-SELECT order_num
-FROM Orders
-WHERE YEAR(order_date) = 2020;
-```
-
-
-
-在 SQLite 中有个技巧：
-
-```sql
-SELECT order_num
-FROM Orders
-WHERE strftime('%Y', order_date) = '2020';
-```
-
-
-
-
-
-## 数值处理函数
-
-```sql
-ABS()	# 返回绝对值
-COS()	# 角度的余弦值
-EXP()	# 返回一个数的指数值
-PI()	# 返回圆周率的值
-SIN()	# 正弦
-SORT()	# 平方根
-TAN()	# 正切
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 联结表
-
-SQL最强大的功能之一就是能在数据查询的执行中 联结( join) 表。
-
-![image-20240315224739590](https://s2.loli.net/2024/05/07/N6rW8snMgvLPdiU.png)
-
-- 同一供应商生产的每个产品 ，其供应商信息都是相同的 ，对每个产品重复此信息既浪费时间又浪费存储空间；
-- 若供应商信息发生变化，只需修改一次
-- 若有重复，则很难保证每次输入该数据的方式都相同。不一致的数据在报表中就很难利用。
-- 关键是 ，相同的数据出现多次绝不是一件好事，这是关系数据库设计的基础 。关系表的设计就是要把信息分解成多个表，一类数据一个表 。各表通过某些共同的值互相关联( 所以才叫 关系数据库 )
-
-- **可伸缩** ：能够适应不断增加的工作量而不失败 ，设计良好的数据库或应用程序称为可伸缩性良好( scale well )
-
-本例可建立两个表：一个存储供应商信息，另一个存储产品信息。Vendors 表包含所有供应商信息，每个供应商占一行，具有唯一的表示( primary key) ，Products 表只存储产品信息，除了存储 供应商 ID（ Vendors表的主键） 外 ，它不存储其他有关供应商的信息 。Vendors表的主键将 Vendors 表与 Products表关联 。利用供应商 ID 从 Vendors表中找出相应供应商的详细信息 。
-
-
-
-**联结**是一种机制：
-
-**用来在 SELECT 语句中关联表** 。可以联结多个表返回一组输出 ，联结在运行时关联表中正确的行 
-
-![image-20240316095038701](https://s2.loli.net/2024/05/07/JliBvUcaO7pCs3o.png)
-
-在一条 SELECT 语句中联结几个表时 ，相应的关系是在运行中构造的 。在数据库表的定义中没有指示 DBMS 如何对表进行联结 ，你必须手动定义 。
-
-
-
-## 创建联结
-
-**指定要联结的所有表以及关联它们的方式**
-
-```sql
-SELECT vend_name, prod_name, prod_price
-FROM Vendors, Products
-WHERE Vendors.vend_id = Products.vend_id
-```
-
-- FROM 子句列出了该SELECT 语句需要联结的两个表 ：Vendors 和 Products
-
-  
-
-- **联结中使用WHERE 子句**
-
-  - **联结两个表时 ，实际要做的是将表一的每一行与表二的符合联结条件的行配对 。**
-  - WHERE 子句作为过滤条件 ，只包含**匹配给定条件 ( 这里是联结条件 ) 的行**
-
-  - 没有 WHERE 子句，表一的每一行与表二的每一行配对，而不管它们逻辑上是否能配在一起
-
-    - **笛卡尔积** CARTESIAN PRODUCT
-
-      由没有联结条件的表 返回的结果为笛卡尔积 
-
-      ```sql
-      SELECT vend_name, prod_name, prod_price
-      FROM Vendors, Products;
-      ```
-
-      
-
-
-## 内联结
-
-上面使用的联结称为 **等值联结( equijoin ) ，也称为 内联结 ( inner join )**, 它基于两个表之间的相等测试 。
-
-除上述语法外，还可以明确指定联结的类型 。具体选用哪种语法，参阅具体的 DBMS 文档 。
+上面使用的联结称为 **等值连接( equijoin ) ，也称为 内连接 ( inner join )**, 它基于两个表之间的相等测试 。
 
 - **ANSI SQL 规范首选 INNER JOIN 语法**
 
@@ -2022,46 +2028,112 @@ INNER JOIN Products ON Vendors.vend_id = Products.vend_id;
 
 
 
-### INNER JOIN 嵌套
+
+
+##### outer-join
+
+内连接：找在匹配列上具有相同值的行，若表中某一行不匹配另一表的任何行，则该行从结果表中删除 。
+
+外连接：保留不满足条件的行，包括左外连接，右外连接和全外连接 。
+
+
+
+example
 
 ```sql
-FROM table1 
-INNER JOIN (table2 INNER JOIN (table3 INNER JOIN table4 on..) on..)on ..
-```
-
-
-
-```sql
-SELECT cust_email
+SELECT Customers.cust_id, Orders.order_num
 FROM Customers
-INNER JOIN ( Orders INNER JOIN OrderItems 
-				ON OrderItems.order_num = Orders.order_num) 
-	ON Orders.cust_id = Customers.cust_id;
+LEFT OUTER JOIN Orders ON Customers.cust_id = Orders.cust_id
+-- LEFT or RIGHT or FULL JOIN 
 ```
 
 
 
 
 
-## 联结多个表
+##### self-join
 
-SQL不限制一条 SELECT 语句中可以联结的表的数目 。创建联结的基本规则也相同 。
+example :
 
-首先列出所有表 ，然后定义表间的关系
+假如要给与Jim Jones 同一公司的所有顾客发送一封信件。这个查询要求
+首先找出Jim Jones 工作的公司，然后找出在该公司工作的顾客。
+
+version 1 :
 
 ```sql
-SELECT prod_name, vend_name, prod_price, quantity
-FROM OrderItems, Products, Vendors
-WHERE Products.vend_id = Vendors.vend_id
-AND OrderItems.prod_id = Products.prod_id
-AND order_num = 20007;
+SELECT cust_id, cust_name, cust_contact
+FROM Customers
+WHERE cust_name = (SELECT cust_name
+                  FROM Customers
+                  WHERE cust_contact = 'Jim Jones')
 ```
 
 
 
-![image-20240317222137412](https://s2.loli.net/2024/05/07/tOSdBQ2y6hbCEZ9.png)
+version 2 :
 
-虽然SQL本身不限制每个联结约束中表的数目，但实际上许多 DBMS 都有限制 。
+```sql
+SELECT c1.cust_id, c1.cust_name, c1.cust_contact
+FROM Customers AS c1, Customers AS c2
+WHERE c1.cust_name = c2.cust_name
+AND c2.cust_contact = 'Jim Jones'
+```
+
+此查询中需要的两个表实际上是相同的表，因此Customers 表在FROM
+子句中出现了两次。虽然这是完全合法的，但对Customers 的引用具有
+歧义性，因为DBMS 不知道你引用的是哪个Customers 表。
+解决此问题，需要使用表别名。Customers 第一次出现用了别名c1，第
+二次出现用了别名c2。
+
+需要表前缀来明确给出所需列的全名
+WHERE 首先联结两个表，然后按第二个表中的cust_contact 过滤数据，返回所需的数据。
+
+
+
+**Tips : 用自l连接而不用子查询**
+
+自联结通常作为外部语句，用来代替从相同表中检索数据的子查询语句 。虽然最终结果相同，但许多DBMS 处理联结远比处理子查询快得多。
+
+
+
+
+
+
+
+##### 连接运算的计算过程
+
+
+
+- **笛卡尔积** CARTESIAN PRODUCT
+
+  由没有联结条件的表 返回的结果为笛卡尔积 
+
+没有 WHERE 子句，表一的每一行与表二的每一行配对，而不管它们逻辑上是否能配在一起
+
+ISO 标准为笛卡尔乘积提供了特殊的 SELECT 语句格式 ：
+
+```sql
+SELECT [DISTINCT|ALL] {* | columnList}
+FROM TableName1 CROSS JOIN TableName2
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2092,7 +2164,7 @@ AND prod_id = 'RGAN01'
 
 
 
-## 挑战题
+##### 挑战题
 
 ![image-20240321130325069](https://s2.loli.net/2024/05/07/7eorYwkC1M6EAjs.png)
 
@@ -2173,299 +2245,113 @@ ORDER BY cust_name;
 
 
 
-## 创建高级联结
+### 数据更新
+
+修改数据库内容的三种SQL语句 ：INSERT ,UPDATE ,DELETE 
 
 
 
-### 使用表别名
+#### INSERT
 
-why ？
-
-- 缩短SQL语句
-- 允许在一条SELECT 语句中多次使用相同的表 。
-
-example：
-
-```sql
-SELECT cust_name, cust_contact
-FROM Customers AS C, Orders AS 0, OrderItems AS OI
-WHERE C.cust_id = O.cust_id
-AND OI.order_num = O.order_num
-AND prod_id = 'RGAN01'
-```
-
-ATTENTION : **与列别名不同，表别名不会返回到客户端，只在查询执行中使用**
+两种 INSERT 语句 
 
 
 
-### 不同类型的联结
+##### `INSERT ... VALUES`
 
-Another three join ： 
+- 插入一个行 ：
 
-自联结( self-join ) , 自然联结( natural join ) , 外联结( outer join )
+  ```
+  INSERT INTO TableName [(columnList)]
+  VALUES (dataValueList)
+  ```
+
+  - 若省略columnList , SQL 将严格按它们在 CREATE TABLE 命令中的顺序。
+  - 若给出 columnList ，则 columnList 中未出现的列在建表时不能声明为 NOT NULL, 除非建表时使用 DEFAULT 选项
 
 
 
-#### self-join
+##### `INSERT ... SELECT `
+
+- 把一个或多个表中的多个行复制到另一个表
+
+  ```sql
+  INSERT INTO TableName [(columnList)]
+  SELECT ... -- 子查询表达式
+  
+  # 任何 SELECT 选项和子句都可以使用，也可利用联结从多个表插入数据
+  ```
 
 example :
 
-假如要给与Jim Jones 同一公司的所有顾客发送一封信件。这个查询要求
-首先找出Jim Jones 工作的公司，然后找出在该公司工作的顾客。
-
-version 1 :
+用 `Staff` 表和 `PropertyForRent` 中的数据产生表 `StaffPropCount`
 
 ```sql
-SELECT cust_id, cust_name, cust_contact
-FROM Customers
-WHERE cust_name = (SELECT cust_name
-                  FROM Customers
-                  WHERE cust_contact = 'Jim Jones')
+INSERT INTO StafPropCount
+(SELECT s.staffNo, fName, lName, COUNT(*)
+FROM Staff s, PropertyForRent p
+WHERE s.staffNo = p.staffNo
+GROUP BY s.staffNo,fName, lName)
+UNION 
+(SELECT staffNo,fName, lName,0
+FROM Staff s
+WHERE NOT EXISTS(SELECT *	
+                	FROM PropertyForRent p
+                	WHERE p.staffNo = s.staffNo));
+-- 若省略此部分，则得到的是至少管理一处房产的员工的列表 
 ```
 
 
 
-version 2 :
 
-```sql
-SELECT c1.cust_id, c1.cust_name, c1.cust_contact
-FROM Customers AS c1, Customers AS c2
-WHERE c1.cust_name = c2.cust_name
-AND c2.cust_contact = 'Jim Jones'
-```
 
-此查询中需要的两个表实际上是相同的表，因此Customers 表在FROM
-子句中出现了两次。虽然这是完全合法的，但对Customers 的引用具有
-歧义性，因为DBMS 不知道你引用的是哪个Customers 表。
-解决此问题，需要使用表别名。Customers 第一次出现用了别名c1，第
-二次出现用了别名c2。
+- **INSERT SELECT 中的列名**
 
-需要表前缀来明确给出所需列的全名
-因为名为cust_id、cust_name、cust_contact 的列各有两个。DBMS
-不知道想要的是哪一列（即使它们其实是同一列）。WHERE 首先联结两个
-表，然后按第二个表中的cust_contact 过滤数据，返回所需的数据。
-
-
-
-**Tips : 用自联结而不用子查询**
-
-自联结通常作为外部语句，用来代替从相同表中检索数据的子查询语句 。虽然最终结果相同，但许多DBMS 处理联结远比处理子查询快得多。
-
-
-
-#### natural-join
-
-无论何时对表进行联结，应该至少有一列不止出现在一个表中（被联结的列）。标准的联结（内联结）返回所有数据，相同的列甚至多次出现。
-
-自然联结排除多次出现，使每一列只返回一次。
-
-怎样完成这项工作呢？答案是，系统不完成这项工作，由你自己完成它。
-
-一般通过对一个表使用通配符（SELECT *），而对其他表的列使用明确的子集来完成。
-
-```sql
-SELECT C.*, O.order_num, O.order_date,
-OI.prod_id, OI.quantity, OI.item_price
-FROM Customers AS C, Orders AS O,
-OrderItems AS OI
-WHERE C.cust_id = O.cust_id
-AND OI.order_num = O.order_num
-AND prod_id = 'RGAN01';
-```
-
-事实上，我们迄今为止建立的每个内联结都是自然联结，很可能永远都不会用到不是自然联结的内联结。
-
-
-
-#### outer-join
-
-- 许多联结将一个表中的行与另一个表中的行相关联，但有时候需要包含没有关联行的那些行。例如，可能需要使用联结完成以下工作：
-
-  - 对每个顾客下的订单进行计数，包括那些至今尚未下订单的顾客；
-
-  -  列出所有产品以及订购数量，包括没有人订购的产品；
-
-  - 计算平均销售规模，包括那些至今尚未下订单的顾客。
-
-在上述例子中，联结包含了那些在相关表中没有关联行的行。这种联结称为外联结。
-
-类似内联结 ，SELECT 语句使用了关键字  `OUTER JOIN` 来指定联结类型， 而不是在 `WHERE` 子句中指定 
-
-
-
-example
-
-```sql
-SELECT Customers.cust_id, Orders.order_num
-FROM Customers
-LEFT OUTER JOIN Orders ON Customers.cust_id = Orders.cust_id
-```
-
-- 在使用 `OUTER JOIN`  语法时 ，必须使用 `RIGHT` 和 `LEFT` 关键字指定包括其所有行的表 。
-  - `RIGHT`  ：OUTER JOIN 右边的表
-  - `LEFT`  :  OUTER JOIN 左边的表 
-
-
-
-### 使用带聚集函数的联结
-
-example ：
-
-```sql
-SELECT Customers.cust_id,
-		COUNT(Orders.order_num) AS num_ord
-FROM Customers
-INNER JOIN Orders ON Customers.cust_id = Orders.cust_id
-GROUP BY Customers.cust_id
-
-
-vs
-SELECT Customers.cust_id,
-		COUNT(Orders.order_num) AS num_ord
-FROM Customers
-LEFT OUTER JOIN Orders ON Customers.cust_id = Order.cust_id
-GROUP BY Customers.cust_id
-#使用左外部联结来包含所有顾客，甚至包含那些没有任何订单
-```
-
-- 注意执行顺序 
-  - FROM 子句获取表数据
-  - INNER JOIN 子句将 Customers 和 Orders 表相互关联
-  - GROUP BY 子句按顾客分组数据
-  - 聚集函数 `COUNT(Orders.order_num) `计算每个顾客的订单数
-  - 作为 `num_ord `返回 
-
-
-
-# 组合查询
-
-多数SQL 查询只包含从一个或多个表中返回数据的单条SELECT 语句。SQL 也允许执行多个查询（多条SELECT 语句），并将结果作为一个查询结果集返回
-
-这些组合查询通常称为 union 或 复合查询( compound query 
-
-使用组合查询的两种主要情况 ：
-
-- 在一个查询中从不同的表返回结构数据
-- 对一个表执行多个查询，按一个查询返回数据
-
-Tips ：多数情况下，组合相同表的两个查询所完成的工作与具有多个 WHERE 子句条件的一个查询所完成的工作相同 。
-
-
-
-## 创建组合查询
-
-
-
-### UNION
-
-![image-20240408122238895](https://s2.loli.net/2024/05/07/vDNr5e7qahHcA6Q.png)
-
-![image-20240408122251323](https://s2.loli.net/2024/05/07/6WKXjRyUwLoreza.png)
-
-
-
-组合：
-
-```sql
-SELECT cust_name, cust_contact, cust_email
-FROM Customers
-WHERE cust_state IN ('IL','IN','MI')
-UNION
-SELECT cust_name, cust_contact, cust_email
-FROM Customers
-WHERE cust_name = 'Fun4ALL'
-ORDER BY cust_name, cust_contact;
-```
-
-- UNION 指示DBMS 执行这两条 SELECT 语句，并把输出组合成一个查询结果集 。
-- 在这个简单的例子中，使用UNION 可能比使用WHERE 子句更为复杂。但对于较复杂的过滤条件，或者从多个表（而不是一个表）中检索数据的情形，使用UNION 可能会使处理更简单。
-
-
-
-### UNION 规则
-
-- 必须由两条及以上SELECT 语句组成 ，语句间用关键字 UNION 分隔
-- UNION 中的每个查询必须包含相同的列、表达式或聚集函数( 不过各个列不需要以相同次序列出)
-- 列数据类型必须兼容 ： 类型不必完全相同，但必须是 DBMS 可以隐含转换的类型
-
-- **UNION 的列名**
-  如果结合UNION 使用的SELECT 语句遇到不同的列名，那么会返回什么名字呢？比如说，如果一条语句是SELECT prod_name，而另一条语句是SELECT productname
-  答案是它会返回第一个名字，举的这个例子就会返回prod_name，而不管第二个不同的名字。这也意味着你可以对第一个名字使用别名，因而返回一个你想要的名字。
-
-  - 这种行为带来一个有意思的副作用。由于只使用第一个名字，那么想要排序也只能用这个名字。
-  - 以例子说明 ：可以用 `ORDER BY prod_name` 对结果排序，如果写成`ORDER BY productname` 就会出错，
-    因为查询结果里没有叫作productname 的列。
+  为简单起见，这个例子在INSERT 和SELECT 语句中使用了相同的列名。但是，不一定要求列名匹配。事实上，DBMS 一点儿也不关心SELECT返回的列名。它使用的是列的位置，因此SELECT 中的第一列（不管其列名）将用来填充表列中指定的第一列，第二列将用来填充表列中指定的第二列
 
   
 
-- **包含或取消重复的行** 
-
-  UNION 从查询结果集中自动去除了重复的行；换句话说，它的行为与一条SELECT 语句中使用多个WHERE 子句条件一样
-
-  这是UNION 的默认行为，如果愿意也可以改变它。
-
-  如果想返回所有的匹配行，可使用 `UNION ALL` 而不是UNION。
 
 
+##### `CREATE SELECT`
 
-- 对组合查询结果排序
+要将一个表的内容复制到一个全新的表（运行中创建的表），可以使用CREATE SELECT 语句（或者在SQL Server 里也可用SELECT INTO 语句）。
 
-  在用UNION 组合查询时，只能使用一条ORDER BY 子句，它必须位于最后一条SELECT 语句之后。
-
-  对于结果集，不存在用一种方式排序一部分，而又用另一种方式排序另一部分的情况，因此不允许使用多条ORDER BY 子句。
-
-  虽然ORDER BY 子句似乎只是最后一条SELECT 语句的组成部分，但实际上DBMS 将用它来排序所有SELECT 语句返回的所有结果。
-
-
-
-
-
-
-
-
-
-
-
-# 更新和删除数据
-
-
-
-## 更新数据 UPDATE
-
-
-
-**三要素**
-
-- 要更新的表；
-- 列名和它们的新值；
-- WHERE 指定过滤条件
-
-
-
-**Update one col**
+与INSERT SELECT 将数据添加到一个已经存在的表不同，CREATE SELECT 将数据复制到一个新表（有的DBMS 可以覆盖已经存在的表，这依赖于所使用的具体DBMS）。
 
 ```sql
-UPDATE Customers
-SET cust_email = 'kim@thetoystore.com'
-WHERE cust_id = 1000000005;
+CREATE TABLE CustCopy AS SELECT * FROM Customers
+
+-- SQL Server :
+SELECT * INTO CustCopy FROM Customers
 ```
 
-- 在使用UPDATE 时一定要细心。因为稍不注意，就会更新表中的所有行 ， 如此例中若不指定 cust_id , 则会修改所有用户的  email
 
 
 
-**Update multiple cols**
+
+#### 更新数据 UPDATE
+
+UPDATE 允许改变已存在行的内容
 
 ```sql
-UPDATE Customers
-SET cust_contact = 'Sam Robers',
-	cust_email = '..'
-WHERE cust_id = ..
+UPDATE TableName
+SET columnName1 = dataValue1 [, columnName2 = dataValue2 ...]
+[WHERE searchCondition]
 ```
 
-- 在更新多个列时，只需要使用一条SET 命令，每个“列=值”对之间用 ， 分隔 。
 
 
+- **更新所有行**
+
+```sql
+UPDATE Staff
+SET salary = salary*1.03
+```
+
+
+
+- 使用子查询
 
 ```sql
 UPDATE Vendors
@@ -2474,34 +2360,25 @@ SET vend_state = (SELECT UPPER(vend_state)
 					WHERE Vendors.vend_state = V.vend_state)
 ```
 
-- UPDATE 语句中可以使用子查询，使得能用SELECT 语句检索出的数据更新列数据。
 
 
 
 
+#### 删除数据 DELETE
 
-要删除某个列的值，可设置它为NULL（假如表定义允许NULL 值 。这与保存空字符串很不同（空字符串用''表示，是一个值），而NULL 表示没有值
+DELETE 从给定表中删除行
 
-
-
-## 删除数据 DELETE
-
+DELETE 不需要列名或通配符。DELETE 删除整行而不是删除列。要删除指定的列，请使用UPDATE 语句(将值设置为 NULL)。
 
 
-**二要素** ：
-
-列名 + WHERE 指定过滤条件
-
-DELETE 不需要列名或通配符。DELETE 删除整行而不是删除列。要删除指定的列，请使用UPDATE 语句。
 
 ```sql
-DELETE FROM Customers
-WHERE cust_id = ..
+DELETE FROM TableName
+[WHERE searchCondition]
+-- 若省略where则删除全部数据
 ```
 
-
-
-- **外键**
+- **外键约束**
 
   简单联结两个表只需要这两个表中的公用字段。
   也可以让DBMS 通过使用外键来严格实施关系。
@@ -2513,7 +2390,7 @@ WHERE cust_id = ..
   
 
 - 删除表的内容而不是表
-  DELETE 语句从表中删除行，甚至是删除表中所有行。但是，DELETE不删除表本身。
+  DELETE 语句从表中删除行但是不删除表本身， 若想删除表使用 `DROP TABLE`
 
   **更快的删除**
   如果想从表中删除所有行，不要使用DELETE。可使用TRUNCATE TABLE
@@ -2523,55 +2400,283 @@ WHERE cust_id = ..
 
 
 
-# 创建和操纵表
 
 
 
-## 创建表 CREATE TABLE
 
-**要素**
 
-- 表定义（所有列）括在圆括号之中，各列之间用逗号分隔
-- 每列的定义以列名（它在表中必须是唯一的）开始，后跟列的数据类型
-- 整条语句以圆括号后的分号结束。
+
+
+
+
+
+## DDL 语句
+
+DDL(Data Define Language) :SQL数据定义语言允许创建和删除模式、域、表、视图、索引等数据库对象。
+
+
+
+SQL 主要数据定义语句 ：
 
 ```sql
-CREATE TABLE Products
-(
-	prod_id		CHAR(10)		NOT NULL,
-    vend_id 	CHAR(10)		NOT NULL,
-    prod_name	CHAR(254)		NOT NULL,
-    prod_price	DECIMAL(8,2)	DEFAULT 1,
-    prod_desc	VARCHAR(1000)	NULL
-);
+CREATE SCHEMA
+CREATE DOMAIN
+CREATE TABLE
+CREATE VIEW
+
+ALTER DOMAIN
+ALTER TABLE
+
+DROP SCHEMA
+DROP DOMAIN
+DROP TABLE
+DROP VIEW
+
+-- 许多DBMS 提供以下两个语句，虽然SQL标准不支持 ：
+CREATE INDEX
+DROP INDEX
 ```
 
 
 
-**SQL 语句中的空格。**
-
-语句可以在一个长行上输入，也可以分成许多行，它们没有差别。前面的CREATE TABLE 语句就是SQL 语句格式化的一个好例子，代码安排在多个行上，列定义进行了恰当的缩进，更易阅读和编辑。以何种格式安排SQL 语句并没有规定，但推荐采用某种缩进格式
 
 
+### 创建数据库
 
-- **NULL 值**
-
-  允许NULL 值的列也允许在插入行时不给出该列的值。不允许NULL 值的列不接受没有列值的行，换句话说，在插入或更新行时，该列必须有值。
-  每个表列要么是NULL 列，要么是NOT NULL 列，这种状态在创建时由表的定义规定
-
-  **多数DBMS 以 NULL 为默认值** 
-
-  - **主键和NULL 值**
-
-    主键是其值唯一标识表中每一行的列。只有不允许NULL值的列可作为主键，允许NULL 值的列不能作为唯一标识。
+根据 ISO 标准，关系和其他数据库对象都存在于某个环境中。每个环境包含一个或多个目录，每个目录中包含一组模式。模式是一组数据库对象的命名集合，该集合中的对象以某种方式相互关联。模式中的对象可以是表、视图、域、声明、序列、转变规则和字符集。模式中的所有对象有相同的所有者并共享若干模式值。
 
 
 
-- 默认值 DEFAULT value
+**模式定义语句 ：**
 
-  默认值经常用于日期或时间戳列。例如，通过指定引用系统日期的函数或变量，将系统日期用作默认日期
+```sql
+CREATE SCHEMA [Name | AUTHORIZATION CreatorIdentifier]
 
-![image-20240408163758057](https://s2.loli.net/2024/05/07/DlhfoN3HbtQKz8e.png)
+-- 模式 SqlTests 创建者是 Smith :
+CREATE SHCEMA SqlTests AUTHORIZATION Smith;
+```
+
+
+
+**删除模式 ：**
+
+```sql
+DROP SCHEMA Name [RESTRICT|CASCADE]
+```
+
+- 若指定了 RESTRICT( 也是默认值 ) :  则模式必须为空，否则删除操作失败
+- CASCADE : 级联地删除域模式相关的所有对象。其中的任一删除操作失败 则 DROP SCHEMA 操作失败。
+
+
+
+#### Schema
+
+https://www.sqlshack.com/a-walkthrough-of-sql-schema/
+
+A SQL database contains multiple objects such as tables, views, stored procedures, functions, indexes, triggers. We define SQL Schema as a logical collection of database objects.
+
+Starting from SQL Server 2005, we have different meanings of user and schema. Now, the database object owner is a schema, and we define schema owners. We can have a single or multiple schema owners. It provides the following benefits:
+
+- We can quickly transfer ownership of a SQL schema to another user
+- We can share a schema among multiple users
+- It allows you to move database objects among the schemas
+- We get more control over database objects access and security
+
+If we do not define any default schema for a user, SQL Server assumes **dbo** as the default schema. 
+
+If not specify any schema in the `CREATE TABLE` statement. It automatically uses dbo schema for the table because the current user default schema is dbo:
+
+##### Retrieve all schema and their owners in a database
+
+```
+SELECT s.name AS schema_name, 
+       s.schema_id, 
+       u.name AS schema_owner
+FROM sys.schemas s
+     INNER JOIN sys.sysusers u ON u.uid = s.principal_id
+ORDER BY s.name
+```
+
+![image-20240511192010643](https://s2.loli.net/2024/05/11/NOTPtE7K1Vcu2so.png)
+
+
+
+
+
+##### create schema
+
+```sql
+CREATE SCHEMA <schema_name>
+[AUTHORIZATION owner_name]
+```
+
+Optionally, you can specify the schema owner as `AUTHORIZATION owner_name`.
+
+the default user is`dbo`(database owner)
+
+
+
+After you create a schema, you can create objects under this schema and grant permissions to other users.
+
+example: creates a new table under `hrdbo` schema
+
+```
+CREATE TABLE hrdbo.Consultant
+(
+	ConsultantID int,
+	FirstName nvarchar(50) NOT NULL,
+	LastName nvarchar(50) NOT NULL
+)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+####  INFORMATION_SCHEMA
+
+https://learn.microsoft.com/en-us/sql/relational-databases/system-information-schema-views/system-information-schema-views-transact-sql?view=sql-server-ver16
+
+In relational databases, the INFORMATION_SCHEMA is an ANSI-standard set of read-only views that provide information about all of the tables, views, columns, and procedures in a database
+
+This view can be called from any of the databases in an instance of SQL Server 
+
+
+
+The information schema views are defined in a special schema named INFORMATION_SCHEMA. This schema is contained in each database. 
+
+the relationships between the SQL Server names and the SQL standard names.
+
+| SQL Server name        | Maps to this equivalent SQL standard name |
+| :--------------------- | :---------------------------------------- |
+| Database               | Catalog                                   |
+| Schema                 | Schema                                    |
+| Object                 | Object                                    |
+| user-defined data type | Domain                                    |
+
+
+
+##### TABLES
+
+> Returns one row for each table or view **in the current database** for which the current user has permissions.
+
+| Column name   | Data type       | Description                               |
+| :------------ | :-------------- | :---------------------------------------- |
+| TABLE_CATALOG | `nvarchar(128)` | Table qualifier.                          |
+| TABLE_SCHEMA  | `nvarchar(128)` | Name of schema that contains the table.   |
+| TABLE_NAME    | `sysname`       | Table or view name.                       |
+| TABLE_TYPE    | `varchar(10)`   | Type of table. Can be VIEW or BASE TABLE. |
+
+
+
+![image-20240510212428126](https://s2.loli.net/2024/05/10/GohD6P7r3xE54Wq.png)
+
+
+
+##### COLUMNS
+
+Returns one row for each column that can be accessed by the current user in the current database.
+
+| Column name                  | Data type                | Description                                                  |
+| :--------------------------- | :----------------------- | :----------------------------------------------------------- |
+| **TABLE_CATALOG**            | **nvarchar(128)**        | Table qualifier.                                             |
+| **TABLE_SCHEMA**             | **nvarchar(128)**        | Name of schema that contains the table.                      |
+| **TABLE_NAME**               | **nvarchar(128)**        | Table name.                                                  |
+| **COLUMN_NAME**              | **nvarchar(128\**)**     | Column name.                                                 |
+| **ORDINAL_POSITION**         | **int**                  | Column identification number.                                |
+| **COLUMN_DEFAULT**           | **nvarchar(\**4000\**)** | Default value of the column.                                 |
+| **IS_NULLABLE**              | **varchar(\**3\**)**     | Nullability of the column. If this column allows for NULL, this column returns YES. Otherwise, NO is returned. |
+| **DATA_TYPE**                | **nvarchar(\**128\**)**  | System-supplied data type.                                   |
+| **CHARACTER_MAXIMUM_LENGTH** | **int**                  | Maximum length, in characters, for binary data, character data, or text and image data.  -1 for **xml** and large-value type data. Otherwise, NULL is returned. For more information, see [Data Types (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver16). |
+| **CHARACTER_OCTET_LENGTH**   | **int**                  | Maximum length, in bytes, for binary data, character data, or text and image data.  -1 for **xml** and large-value type data. Otherwise, NULL is returned. |
+| **NUMERIC_PRECISION**        | **tinyint**              | Precision of approximate numeric data, exact numeric data, integer data, or monetary data. Otherwise, NULL is returned. |
+| **NUMERIC_PRECISION_RADIX**  | **smallint**             | Precision radix of approximate numeric data, exact numeric data, integer data, or monetary data. Otherwise, NULL is returned. |
+| **NUMERIC_SCALE**            | **int**                  | Scale of approximate numeric data, exact numeric data, integer data, or monetary data. Otherwise, NULL is returned. |
+| **DATETIME_PRECISION**       | **smallint**             | Subtype code for **datetime** and ISO **interval** data types. For other data types, NULL is returned. |
+| **CHARACTER_SET_CATALOG**    | **nvarchar(\**128\**)**  | Returns **master**. This indicates the database in which the character set is located, if the column is character data or **text** data type. Otherwise, NULL is returned. |
+| **CHARACTER_SET_SCHEMA**     | **nvarchar(\**128\**)**  | Always returns NULL.                                         |
+| **CHARACTER_SET_NAME**       | **nvarchar(\**128\**)**  | Returns the unique name for the character set if this column is character data or **text** data type. Otherwise, NULL is returned. |
+| **COLLATION_CATALOG**        | **nvarchar(\**128\**)**  | Always returns NULL.                                         |
+| **COLLATION_SCHEMA**         | **nvarchar(\**128\**)**  | Always returns NULL.                                         |
+| **COLLATION_NAME**           | **nvarchar(\**128\**)**  | Returns the unique name for the collation if the column is character data or **text** data type. Otherwise, NULL is returned. |
+| **DOMAIN_CATALOG**           | **nvarchar(\**128\**)**  | If the column is an alias data type, this column is the database name in which the user-defined data type was created. Otherwise, NULL is returned. |
+| **DOMAIN_SCHEMA**            | **nvarchar(\**128\**)**  | If the column is a user-defined data type, this column returns the name of the schema of the user-defined data type. Otherwise, NULL is returned.  **Important:** Don't use INFORMATION_SCHEMA views to determine the schema of a data type. The only reliable way to find the schema of a type is to use the TYPEPROPERTY function. |
+| **DOMAIN_NAME**              | **nvarchar(\**128\**)**  | If the column is a user-defined data type, this column is the name of the user-defined data type. Otherwise, NULL is returned. |
+
+
+
+
+
+
+
+
+
+
+
+### 创建表 
+
+
+
+```sql
+CREATE TABLE TableName
+{(columnName dataType [NOT NULL][UNIQUE]
+[DEFAULT defaultOption][CHECK (searchCondition)][,...]}
+[PRIMARY KEY (listOfColumns),]
+{[UNIQUE(listOfColumns)][,...]} 
+{[FOREIGN KEY(listOfForeignKeyColumns) REFERENCES ParentTableName [(listOfCandidateKeyColumns)]
+ 	[MATCH {PARTIAL|FULL}
+    [ON UPDATE referentialAction]
+    [ON DELETE referentialAction]] [,...]}
+{[CHECK (searchCondition)]})
+```
+
+- CONSTRAINT
+
+  - PRIMARY KEY : 
+
+    - 主关键字的每一列默认为 NOT NULL
+    - SQL 拒绝任何使 PRIMARY KEY 列值重复的 INSERT 和 UPDATE 操作，保证主关键字的唯一性
+
+  - FOREIGN KEY
+
+    - 若省略 REFERENCES 的 listOfCandidateKeyColumns ，则认为外部关键字和父表的主关键字相匹配。此时父表的 CREATE TABLE 语句必须含有 PRIMARY KEY 子句
+
+    - 当与子表外部关键字匹配的父表中候选关键字更新时，可选的联系更新规则( ON UPDATE ) 指定应采取的动作。
+
+      父表中候选关键字被删除 ： ON DELETE 
+
+      referentialAction : CASCADE/SET NULL / SET DEFAULT / NO ACTION 
+
+  - CHECK 和 CONSTRAINT 子句允许定义另外的约束。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2621,49 +2726,33 @@ DROP TABLE CustCopy;
 
 # 视图
 
-视图是虚拟的表。与包含数据的表不一样，视图只包含检索数据的查询。
-
-视图提供了一种封装SELECT 语句的层次，可用来简化数据处理，重新
-格式化或保护基础数据。
-
-![image-20240408212705294](https://s2.loli.net/2024/05/07/lwoDz4AyxiNa1W6.png)
-
-![image-20240408212721897](https://s2.loli.net/2024/05/07/aPg4JrHsTUtLmbo.png)
+- **基本关系 vs 视图**
+  - base relation ：与概念模式中的一个实体相对应的具名关系 ，它的元组都存储在数据库的物理结构中。
+  - 视图 ( **虚关系** 或 **导出关系** )：对一个或多个基本关系进行关系操作得到的动态结果。
+    - 视图是动态的 ：对导出视图的基本关系的修改将立即反映到视图上，当用户对视图做允许的修改时，这些修改将作用到基本关系上。
+    - 并不真正存在于数据库中(虽然它的定义存储在系统目录中)。
 
 
 
-
+- 当 DBMS 遇到视图引用时
+  - 一种方法是查找视图定义，并将请求转换为对视图源表的等价请求：**视图分解(view resolution)**
+  - 把视图存储在数据库的临时表中，并在基表变化时更新临时表以及时维护视图：**视图物化(view materialization)**
 
 
 
 - **视图应用** ：
 
-  - 简化复杂的SQL 操作。在编写查询后，可以方便地重用它而不必知道其基本查询细节。
+  - 简化复杂的SQL 操作，不必知道其基本查询细节。
 
-  -  使用表的一部分而不是整个表。保护数据。可以授予用户访问表的特定部分的权限，而不是整个表的访问权限。
+  - 隐藏部分数据库信息。授予用户访问表的特定部分的权限
 
   - 更改数据格式和表示。视图可返回与底层表的表示和格式不同的数据。
 
     
 
-- 创建视图之后，可以用与表基本相同的方式使用它们。可以对视图执行SELECT 操作，过滤和排序数据，将视图联结到其他视图或表，甚至添加和更新数据（添加和更新数据存在某些限制)
-
-
-
-- 更改表中的数据后，对应的视图将返回改变过的数据。
-
-
-
-## 视图的规则和限制
-
-
-
-- 与表一样，视图必须唯一命名
-
-- 创建视图，必须具有足够的访问权限。通常由数据库管理人员授予。
+## **规则和限制**
 
 - 视图可以嵌套，即可以利用从其他视图中检索数据的查询来构造视图。
-  所允许的嵌套层数在不同的DBMS中有所不同（嵌套视图可能会严重降低查询的性能，因此在产品环境中使用之前，应该对其进行全面测试）。
 
 - 许多DBMS 禁止在视图查询中使用ORDER BY 子句。
 
@@ -2671,81 +2760,223 @@ DROP TABLE CustCopy;
 
 - 视图不能索引，也不能有关联的触发器或默认值。
 
-- 
+- 若视图中某个列是基于聚集函数的，那么在访问该视图的查询语句中，该列只能出现在 SELECT 和 ORDER BY 子句里，即在基于该视图的查询语句中，该列不能出现在 WHERE 子句中 ，也不能作为任何聚集函数的参数
+
+- 分组视图不能与基表或视图连接
 
 
 
-## CREATE VIEW
+### 可更新性
 
-与 `CREATE TABLE` 一样，`CREATE VIEW`只能用于创建不存在的视图。
+为了使视图可更新，对于任何一个行或列，DBMS 必须都能追溯到其源表中相应的行或列。
 
-覆盖（或更新）视图，必须先删除它，然后再重新创建。 删除视图，可以使用DROP 语句 :  `DROP VIEW viewname;`
-
-
-
-## 应用
-
-**利用视图简化复杂的联结**
-
-```sql
-CREATE VIEW ProductCustomers AS
-SELECT cust_name, cust_contact, prod_id
-FROM Customers, Orders, OrderItems
-WHERE Customers.cust_id = Orders.cust_id
-AND OrderItems.order_num = Orders.order_num
-```
+![image-20240517173009814](https://s2.loli.net/2024/05/17/ZjdJh9vr6OaSEUk.png)
 
 
 
-```sql
-SELECT cust_name, cust_contact
-FROM ProductCustomers
-WHERE prod_id = 'RGAN01';
-```
+ISO 标准指出视图可更新的充要条件为 ：
 
-从视图检索数据时如果使用了一条WHERE 子句，则两组子句（一组在视图中，另一组是传递给视图的）将自动组合。
+- 未指定 DISTINCT, 即重复元组未从查询结果中消除
+- 定义查询的 SELECT 列表中的每个元素均为列名 ( 而不是常量、表达式或聚集函数)，且列名出现次数不多于一次
+- FROM 子句只指定一个表。因此排除了基于连接、并交叉操作的所有视图
+- WHERE 子句不能包括任何引用了 FROM 子句中的表的嵌套 SELECT 操作
+- 定义查询中不能有 GROUP BY 或 HAVING 子句
 
-**用视图重新格式化检索出的数据**
-
-```sql
-CREATE VIEW VendorLocations AS
-SELECT RTRIM(vend_name) || ' (' || RTRIM(vend_country) || ')'
-AS vend_title
-FROM Vendors;
-```
+添加到视图的每一行都不能违反基表的完整性约束。例如，如果通过视图插入一个新行，则视图中没有涉及的列可以设置为空，但这不能违反基表的 NOT NULL 约束。
 
 
 
-**用视图过滤不想要的数据**
+
+
+
+
+
+
+
+
+
+
+## 视图创建与删除
+
+
+
+### 创建视图
+
+视图通过指定 SQL SELECT 语句定义。
 
 ```sql
-CREATE VIEW CustomerEMailList AS
-SELECT cust_id, cust_name, cust_email
-FROM Customers
-WHERE cust_email IS NOT NULL;
+CREATE VIEW ViewName [(newColumnName[,...])]
+AS subselect [WITH [CASCADED |LOCAL] CHECK OPTION]
 ```
 
+若省略列名表，则视图中列的名字即采用 subselect 子句中相应列的名字
+
+subselect 称为 **定义查询** ， 
+
+若 WITH CHECK OPTION, SQL 将确保那些不满足 subselect 中 WHERE 子句的行不会被添加到视图的基表中。
 
 
-**使用视图与计算字段**
+
+- 创建水平视图
+
+  ```sql
+  CREATE VIEW Manager3Staff
+  AS SELECT *
+  	FROM Staff
+  	WHERE branchNo = 'B003';
+  	
+  -- 执行
+  SELECT * FROM Manager3Staff
+  ```
+
+  
+
+- 创建垂直视图
+
+  垂直视图限制用户只能访问一个或多个表中选定的列。
+
+  ```sql
+  CREATE VIEW Staff3
+  AS SELECT staffNo, fName, lName, position, sex
+  	FROM Staff
+  	WHERE branchNo = 'B003';
+  ```
+
+  
+
+- 分组或连接视图
+
+  使用视图最常见的一个原因就是可以简单地进行多表查询。
+
+  ```sql
+  CREATE VIEW StaffPropCnt (branchNo, staffNo, cnt)
+  AS SELECT s.branchNO, s.staffNo, COUNT(*)
+  	FROM Staff s, PropertyFOrRent p
+  	WHERE s.staffNo = p.staffNo
+  	GROUP BY s.branchNo, s.staffNo;
+  ```
+
+  
+
+  
+
+### 删除视图
 
 ```sql
-CREATE VIEW OrderItemsExpanded AS
-SELECT order_num,
-	prod_id,
-	quantity,
-	item_price,
-	quantity*item_price AS expanded_price
-FROM OrderItems
+DROP VIEW ViewName [RESTRICT | CASCADE]
 ```
 
+- CASCADE : 删除所有相关依赖的对象，即也删除定义在被删除视图上的所有视图
+- RESTRICT : 若存在依赖被删除视图的其他对象，sql将不进行该删除操作，默认设置为 RESTRICT 
 
+
+
+
+
+### WITH CHECK OPTION
+
+视图中的行均满足**定义查询**中的 WHERE 条件。
+
+如果某行被修改后不再满足这种条件，那么它应当从视图中去除。相似地，当对视图进行插入和更新时，若有新行满足 WHERE 条件，那么这些新行便会出现在视图中 。进入或离开视图的行称为 **迁移行** 。
+
+
+
+- WITH CHECK OPTION 子句用于禁止行迁移出视图( 即不允许会导致行迁移出去的 UPDATE 操作 , 即需要 UPDATE 后的数据仍需要满足定义视图时的 WHERE 条件) 。：
+
+  exmaple :
+
+  ```sql
+  CREATE VIEW IS_Class
+  AS
+  SELECT * 
+  FROM Class
+  WHERE className LIKE '注册会计%'
+  WITH CHECK OPTION
+  
+  -- 把“注册会计08_01班”改为“会计08_01班” : 报错
+  -- 把“注册会计08_01班”改为“注册会计08_02班” :成功
+  ```
+
+  
+
+- 可选修饰词 LOCAL/ CASCADED 应用于层次视图 （由视图导出的视图 ）
+
+  `WITH LOCAL|CASCADED CHECK OPTION`
+
+> WITH LOCAL CHECK OPTION：在该视图或由该视图直接导出的视图上进行插入或更新操作时，不允许行迁移出视图，除非该行也迁移出底层视图或表
+
+> WITH CASCADED CHECK OPTION : 在该视图或由该视图直接导出的视图上进行插入或更新操作时，都不允许行迁移出视图
+
+![image-20240517192337353](https://s2.loli.net/2024/05/17/rjVKbE3Bl2YyPmw.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 视图分解
+
+
+
+example ：
 
 ```sql
-SELECT *
-FROM OrderItemsExpanded
-WHERE order_num = 20008;
+SELECT staffNo, cnt
+FROM StaffPropCnt
+WHERE branchNo = 'B003'
+ORDER BY staffNo;
 ```
+
+视图分解是将以上查询与 StaffPropCnt 视图的定义查询合并 ：
+
+
+
+1. 将 SELECT 列表中给出的视图列名转换为定义查询中相应的列名
+
+   `SELECT s.staffNo AS staffNo, COUNT(*) AS cnt`
+
+2. FROM 子句中的视图名用定义查询中相应的FROM 列表替代
+
+   `FROM Staff s, PropertyForRent p`
+
+3. 用逻辑运算符 AND 合并来自用户查询的 WHERE 子句和 定义查询的 WHERE 子句 ：
+
+   `WHERE s.staffNo = p.staffNo AND branchNo = 'B003'`
+
+4. 从定义查询复制 GROUP BY 和 HAVING 子句
+
+   ```sql
+   GROUP BY s.branchNo, s.staffNo
+   ```
+
+5. 从用户查询复制 ORDER BY 子句, 视图列名转换为定义查询的列名
+
+   `ORDER BY s.branchNo, s.staffNo`
+
+6. 合并查询
+
+
+
+
+
+## 视图物化
+
+**将第一次访问视图的结果存储为数据库的临时表**。这样，基于物化视图的查询比每次计算视图要快得多。当查询频繁且视图复杂，以至于每次查询都计算视图不现实时，这种速度上的差异在应用中就显得非常重要了 。
+
+这种方法的困难之处在于基表更新的同时还要保证视图的实时性。更新基表的同时引起物化视图更新的过程称为**视图维护** 。
+
+
 
 
 
@@ -3348,189 +3579,7 @@ CLOSE 语句用来关闭游标。一旦游标关闭，如果不再次打开，�
 
 
 
-## 约束
-
-**约束 ( constraint ) : 管理如何插入或处理数据库数据的规则**
-
-**DBMS 通过在数据库表上施加约束来实施引用完整性。大多数约束是在表定义中定义的**
-
-关系数据库存储分解为多个表的数据， 每个表存储相应的数据 。利用键来建立从一个表到另一个表的引用 ， 由此产生术语 ： 引用完整性( referential integrity )
-
-正确地进行关系数据库设计， 需要一种方法保证只在表中插入合法数据 。例， 若 Orders 表中存储订单信息， OrderItems 表存储订单详细内容， 应保证 OrderItems 中引用的任何订单 ID 都存在于 Orders 中。
-
-虽然可以在插入新行时进行检查（在另一个表上执行SELECT，以保证所有值合法并存在），但最好不要这样做，原因如下。
-
-- 若在 客户端层面上实施数据库完整性规则， 则每个客户端都要被迫实施这些规则，一定会有一些客户端不实施这些规则 。
-- 在执行UPDATE 和DELETE 操作时，也必须实施这些规则。
-- 执行客户端检查是非常耗时的 ，而DBMS 执行这些检查会相对高效 。
-
-
-
-### 主键
-
-主键是一种特殊的约束， 用来保证一列( 或一组列 ) 中的值是唯一的， 且永不改动 。
-
-这方便了直接或交互地处理表中的行 ， 没有主键 ， 要安全地 UPDATE 或 DELETE 特定行而不影响其他行会非常困难 。
-
-
-
-**作为主键的列需满足的条件** 
-
-- 任意两行的主键值都不相同且该值不允许为 NULL
-- 包含主键值的列从不修改或更新。（大多数DBMS 不允许这么做）
-- 主键值不能重用。如果从表中删除某一行，其主键值不分配给新行
-
-
-
-#### 关键字PRIMARY KEY
-
-在创建表时定义
-
-```sql
-CREATE TABLE Vendors
-(
-vend_id CHAR(10) NOT NULL PRIMARY KEY,
-vend_name CHAR(50) NOT NULL,
-vend_address CHAR(50) NULL,
-vend_city CHAR(50) NULL,
-vend_state CHAR(5) NULL,
-vend_zip CHAR(10) NULL,
-vend_country CHAR(50) NULL
-);
-```
-
-
-
-#### CONSTRAINT 定义
-
-```sql
-ALTER TABLE Vendors
-ADD CONSTRAINT PROMARY KEY (vend_id);
-```
-
-`CONSTRAINT` 语法可用于 `CREATE TABLE` 和 `ALTER TABLE ` 语句
-
-- SQLite 不允许使用 ALTER TABLE 定义键 ， 要求在初始的 CREATE TABLE 语句中定义它们 。
-
-
-
-
-
-### 外键
-
-**外键是表中的一列 。其值必须列在另一个表的主键中 **
-
-
-
-**外键有助防止意外删除**
-除帮助保证引用完整性外，外键还可以防止意外删除。
-在定义外键后，DBMS 不允许删除在另一个表中具有关联行的行。如，不能删除关联订单的顾客。删除该顾客的唯一方法是首先删除相关的订单（这表示还要删除相关的订单项）。由于需要一系列的删除，因而利用外键可以防止意外删除数据。
-有的DBMS 支持称为级联删除（cascading delete）的特性。若启用，该特性在从一个表中删除行时删除所有相关的数据。例如，如果启用级联删除并且从Customers 表中删除某个顾客，则任何关联的订单行
-也会被自动删除。
-
-
-
-**定义方法 ：**
-
-#### `REFERENCES`
-
-```sql
-CREATE TABLE Orders
-(
-	order_num	INTEGER		NOT NULL PRIMARY KEY,
-    order_date	DATETIME	NOT NULL
-    cust_id		CHAR(10)	NOT NULL REFERENCES Customers(cust_id)
-)
-```
-
-`REFERENCES` 关键字表示 `cust_id` 中任何值都必须是 Customers 表的 `cust_id `中的值 。
-
-
-
-#### `CONSTRAINT`
-
-```sql
-ALTER TABLE Orders
-ADD CONSTRAINT
-FOREIGN KEY (cust_id) REFERENCES Customers (cust_id)
-```
-
-
-
-
-
-### 唯一约束
-
-唯一约束用来保证一列（或一组列）中的数据是唯一的。它们类似于主键，但存在以下重要区别
-
- 表可包含多个唯一约束，但每个表只允许一个主键。
- 唯一约束列可包含NULL 值。
- 唯一约束列可修改或更新。
- 唯一约束列的值可重复使用。
- 与主键不一样，唯一约束不能用来定义外键。
-
-
-
-example ：
-
-employees 表是一个使用约束的例子。 每个雇员都有唯一的社会安全号 ，但我们并不想用它做主键 ： 因为它太长 且我们不想使该信息容易利用。
-
-因此每个雇员除了其社会安全号外还有唯一的雇员ID（主键）。
-
-雇员ID 是主键，可以确定它是唯一的。你可能还想使DBMS 保证每个社会安全号也是唯一的（保证输入错误不会导致使用他人号码）。可以通过在社会安全号列上定义 `UNIQUE` 约束做到。
-
-唯一约束的语法类似于其他约束的语法。
-
-```sql
-CREATE TABLE employees(
-	ID		CHAR(10)	PRIMARY KEY,
-    SOCIAL_NUMBER	CHAR(50) 	UNIQUE,
-    NAME		CHAR(20),
-)
-```
-
-
-
-### 检查约束
-
-检查约束用来保证一列或一组列中的数据满足指定条件。
-
-检查约束的常见用途 ：
-
-- 检查最小或最大值 ：。例如，防止0 个物品的订单（即使0 是合法的数）。
-- 指定范围。例如，保证发货日期大于等于今天的日期，但不超过今天起一年后的日期。
-- 只允许特定的值。例如，在性别字段中只允许M 或F。
-
-数据类型限制了列中可保存的数据的类型。检查约束在数据类型内又做了进一步的限制，这些限制极其重要，可以确保插入数据库的数据正是你想要的数据。不需要依赖于客户端应用程序或用户来保证正确获取它，DBMS 本身将会拒绝任何无效的数据。
-
-
-
-example ：
-
-```sql
-CREATE TABLE OrderItems
-(
-	order_num		INTEGER		NOT NULL,
-    order_item		INTEGER		NOT NULL,
-    prod_id			CHAR(10)	NOT NULL,
-    quantity		INTEGER		NOT NULL CHECK(quantity > 0),
-    item_price		MONEY		NOT NULL
-)
-
-ADD CONSTRAINT CHECK(gender LIKE '[MF]');
-```
-
-
-
-- 用户定义数据类型
-
-  有点 DBMS 允许用户定义自己的数据类型。它们是定义检查约束(  或其他约束 ) 的基本简单数据类型。
-
-  例如，你可以定义自己的名为gender的数据类型，它是单字符的文本数据类型，带限制其值为M 或F（对于未知值或许还允许NULL）的检查约束。。然后，可以将此数据类型用于表的定义。
-
-  定制数据类型的优点是只需施加约束一次（在数据类型定义中），而每当使用该数据类型时，都会自动应用这些约束
-
-  请查阅相应的DBMS 文档，看它是否支持自定义数据类型。
+- 
 
 
 
@@ -3632,15 +3681,7 @@ END;
 
 
 
-## 数据库安全
 
-一般说来，需要保护的操作有：
- 对数据库管理功能（创建表、更改或删除已存在的表等）的访问；
- 对特定数据库或表的访问；
- 访问的类型（只读、对特定列的访问等）；
- 仅通过视图或存储过程对表进行访问；
- 创建多层次的安全措施，从而允许多种基于登录的访问和控制；
- 限制管理用户账号的能力。
 
 
 
@@ -3758,50 +3799,49 @@ SQL Server treats *n* as one of two possible values. If **1**<=n<=**24**, *n* is
 
 ### Strings
 
-Character strings data types allow you to store either fixed-length (char) or variable-length data (varchar). The text data type can store non-Unicode data in the code page of the server.
-
 
 
 #### Character strings
 
-##### `char[(n)]`
+**`char[(n)]`**
 
-Fixed-size string data. *n* defines the string size in bytes and must be a value from 1 through 8,000. 
+The ISO synonym for **char** is **character**. 
 
-For single-byte encoding character sets such as `Latin`, the storage size is *n* bytes and the number of characters that can be stored is also *n*. For multibyte encoding character sets, the storage size is still *n* bytes but the number of characters that can be stored may be smaller than *n*. 
-
-The ISO synonym for **char** is **character**. For more information on character sets, see [Single-Byte and Multibyte Character Sets](https://learn.microsoft.com/en-us/cpp/c-runtime-library/single-byte-and-multibyte-character-sets).
-
-
-
-##### `varchar[(n|max)]`
-
-Variable-size string data. Use *n* to define the string size in bytes and can be a value from 1 through 8,000, or use **max** to indicate a column constraint size up to a maximum storage of 2^31-1 bytes (2 GB)
-
-he ISO synonyms for **varchar** are **char varying** or **character varying**.
+- Fixed-size string data. 
+- *n* defines the string size in bytes 1 <= n <= 8000
 
 
 
-##### Remarks
+**`varchar[(n|max)]`**
 
-- A common misconception is to think that with **char(n)** and **varchar(n)**, the *n* defines the number of characters. 
+the ISO synonyms for **varchar** are **char varying** or **character varying**.
 
-  However, in char(n) and varchar(n), the *n* defines the string length in **bytes** (0 to 8,000). 
-
-  *n* never defines numbers of characters that can be stored. This is similar to the definition of **nchar(n)** and **nvarchar(n)**
-
-  The misconception happens because when using single-byte encoding, the storage size of char and varchar is *n* bytes and the number of characters is also *n*. However, for multibyte encoding such as [UTF-8](https://www.wikipedia.org/wiki/UTF-8), higher Unicode ranges (128 to 1,114,111) result in one character using two or more bytes.
-
-
-
-- When *n* isn't specified in a data definition or variable declaration statement, the default length is 1. If *n* isn't specified when using the `CAST` and `CONVERT` functions, the default length is 30.
+- Variable-size string data. 
+- Use *n* to define the max string size in bytes ,1 <= n <= 8000 
+- use 2 more bytes for the length information
+- or use **max** to indicate a column constraint size up to a maximum of 2^31-1 bytes (2 GB)
 
 
 
-- If you use **char** or **varchar**, we recommend that you:
-  - Use **char** when the sizes of the column data entries are consistent.
-  - Use **varchar** when the sizes of the column data entries vary considerably.
-  - Use **varchar(max)** when the sizes of the column data entries vary considerably, and the string length might exceed 8,000 bytes.
+**Remarks**
+
+- *n* never defines numbers of characters that can be stored. 
+
+  when using single-byte encoding, the storage size and the number of characters is both *n*. However, for multibyte encoding such as [UTF-8](https://www.wikipedia.org/wiki/UTF-8), higher Unicode ranges (128 to 1,114,111) result in one character using two or more bytes.
+
+
+
+- When *n* isn't specified , the default length is 1. 
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3821,7 +3861,7 @@ Fixed-length binary data with a length of *n* bytes, where *n* is a value from 1
 
 Variable-length binary data. *n* can be a value from 1 through 8,000. max indicates that the maximum storage size is 2^31^-1 bytes. The storage size is the actual length of the data entered + 2 bytes. The data that is entered can be 0 bytes in length.
 
-![image-20240422194951448](C:\Users\89388\AppData\Roaming\Typora\typora-user-images\image-20240422194951448.png)
+
 
 
 
@@ -3841,81 +3881,200 @@ GO
 
 
 
+Transact-SQL 语句可以使用下列方法进行编写并提交到 数据库引擎 ：
+
+- 通过使用 SQL Server Management Studio。
+- 通过使用 [sqlcmd](https://learn.microsoft.com/zh-cn/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver16) 实用工具。
+- 通过从您创建的应用程序进行连接。
+
+代码以相同方式和相同权限在 数据库引擎 上执行，而不管您如何提交代码语句
 
 
 
-
-## Manage
-
+## DEMO
 
 
-### Create database
 
-https://learn.microsoft.com/en-us/sql/t-sql/statements/create-database-transact-sql?view=sql-server-ver16&tabs=sqlpool
+### 创建数据库
 
 ```sql
-USE master;
+CREATE DATABASE TestData
+GO
+```
+
+1. 使用指针选择词语 `CREATE DATABASE`，再按 **F1**。 `CREATE DATABASE` 文章将打开。 你可以使用此方法查找 `CREATE DATABASE` 以及在本教程中使用的其他语句的完整语法。
+2. 按 **F5** 以执行语句
+
+
+
+> Tips :**在单个批处理中提交多条语句时，可以用关键字 GO 分隔各语句。 当批处理只包含一条语句时，GO 是可选的。**
+
+
+
+### 创建表
+
+```sql
+USE TestData
 GO
 
-CREATE DATABASE Sales ON
-(NAME = Sales_dat,
-    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\saledat.mdf',
-    SIZE = 10,
-    MAXSIZE = 50,
-    FILEGROWTH = 5)
-LOG ON
-(NAME = Sales_log,
-    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\salelog.ldf',
-    SIZE = 5 MB,
-    MAXSIZE = 25 MB,
-    FILEGROWTH = 5 MB);
+CREATE TABLE dbo.Products
+    (ProductID int PRIMARY KEY NOT NULL,
+    ProductName varchar(25) NOT NULL,
+    Price money NULL,
+    ProductDescription varchar(max) NULL)
+GO
+
+```
+
+架构是拥有表的数据库对象。 如果您是管理员，则 `dbo` 是默认架构。 `dbo` 代表数据库所有者。
+
+
+
+### 插入和更新表中数据
+
+```sql
+-- Standard syntax
+INSERT dbo.Products (ProductID, ProductName, Price, ProductDescription)
+    VALUES (1, 'Clamp', 12.48, 'Workbench clamp')
 GO
 ```
 
 
 
-#### Files and Filegroups
-
-At a minimum, every SQL Server database has two operating system files: a data file and a log file
-
-Data files contain data and objects such as tables, indexes, stored procedures, and views.
-
-Log files contain the information that is required to recover all transactions in the database
-
-Data files can be grouped together in filegroups for allocation and administration purposes.
-
-
-
-
-
-## Operators
-
-
-
-### UNION
-
-Concatenates the results of two queries into a single result set. You control whether the result set includes duplicate rows:
-
-**UNION ALL** - Includes duplicates.
-
-**UNION** - Excludes duplicates.
+删除表中的所有行：
 
 ```sql
-{ <query_specification> | ( <query_expression> ) }   
-{ UNION [ ALL ]   
-  { <query_specification> | ( <query_expression> ) } 
-  [ ...n ] }
+TRUNCATE TABLE TestData.dbo.Products;
+GO
 ```
 
 
 
 
 
-- basic rules using **UNION**:
+### 配置数据库对象权限
 
-  - The number and the order of the columns must be the same in all queries.
+授予用户访问数据库的权限涉及三个步骤。 首先，创建登录名。 使用登录名，用户可以连接到 SQL Server 数据库引擎。 然后将登录名配置为指定数据库中的用户。 最后，授予该用户访问数据库对象的权限。
 
-  - The definitions of the columns that are part of a UNION operation don't have to be the same, but they must be compatible through implicit conversion. 
 
-Columns of the **xml** data type must be equal. All columns must be either typed to an XML schema or untyped. If typed, they must be typed to the same XML schema collection.
+
+- **创建登录名**
+
+   登录名可以将用户身份表示为 Windows 帐户或 Windows 组成员，登录名也可以是仅存在于 SQL Server 中的 SQL Server登录名。 应该尽可能使用 Windows 身份验证。
+
+  
+
+  - **创建新的windows账户**
+
+  1. 选择“开始”后，选择“运行”，在“打开”框中，键入 `%SystemRoot%\system32\compmgmt.msc /s`，然后选择“确定”打开“计算机管理”程序。
+
+  2. 在“系统工具”下，展开“本地用户和组”，右键单击“用户”，然后选择“新建用户”。
+
+     ...
+
+     
+
+  - **创建SQL登录名**
+
+    ```
+    CREATE LOGIN [your_computer_name\Mary]
+        FROM WINDOWS
+        WITH DEFAULT_DATABASE = [TestData];
+    GO
+    ```
+
+    
+
+    
+
+### 删除数据库对象
+
+
+
+#### 删除数据库
+
+正在使用 `TestData` 数据库时，无法删除该数据库；因此，请首先将上下文切换到其他数据库，再使用 `DROP` 语句删除 `TestData` 数据库：
+
+```sql
+USE MASTER;
+GO
+DROP DATABASE TestData;
+GO
+```
+
+
+
+## DDL
+
+
+
+### `CREATE TABLE`
+
+```sql
+CREATE TABLE
+    { database_name.schema_name.table_name | schema_name.table_name | table_name }
+    ( { <column_definition> } [ ,... n ] )
+[ ; ]
+```
+
+
+
+```sql
+<column_definition> ::=
+column_name <data_type>
+    [ [ CONSTRAINT constraint_name ] DEFAULT constant_expression ]
+    [ [ CONSTRAINT constraint_name ] {NULL | NOT NULL} ]
+    [ <column_constraint> [ ,... n ] ]
+    [ <column_index> ]
+   
+
+<column_constraint> ::=
+[ CONSTRAINT constraint_name ]
+{
+   { PRIMARY KEY | UNIQUE }
+        [ ( <column_name> [ ,... n ] ) ]
+
+  | [ FOREIGN KEY ]
+        REFERENCES [ schema_name. ] referenced_table_name [ ( ref_column ) ]
+        [ ON DELETE { NO ACTION | CASCADE | SET NULL | SET DEFAULT } ]
+        [ ON UPDATE { NO ACTION | CASCADE | SET NULL | SET DEFAULT } ]
+        
+  | CHECK [ NOT FOR REPLICATION ] ( logical_expression )
+}
+```
+
+
+
+### `INSERT`
+
+```sql
+INSERT   
+{  
+        [ TOP ( expression ) [ PERCENT ] ]   
+        [ INTO ]   
+        { <object> | rowset_function_limited   
+          [ WITH ( <Table_Hint_Limited> [ ...n ] ) ]  
+        }  
+    {  
+        [ ( column_list ) ]   
+        [ <OUTPUT Clause> ]  
+        { VALUES ( { DEFAULT | NULL | expression } [ ,...n ] ) [ ,...n     ]   
+        | derived_table   
+        | execute_statement  
+        | <dml_table_source>  
+        | DEFAULT VALUES   
+        }  
+    }  
+}  
+[;]  
+  
+<object> ::=  
+{   
+    [ server_name . database_name . schema_name .   
+      | database_name .[ schema_name ] .   
+      | schema_name .   
+    ]  
+  table_or_view_name  
+}  
+```
 
